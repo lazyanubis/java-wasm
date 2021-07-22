@@ -14,8 +14,12 @@ public class I32Extend8S implements Operate {
 
     @Override
     public void operate(VirtualMachine vm, Dump args) {
+        byte[] bytes = vm.popU32().getBytes();
+
+        byte sign = ((bytes[3] & 0x80) == 0) ? 0 : (byte)0xFF;
+
         vm.pushS32(new U32(new byte[]{
-                0, 0, 0, vm.popU32().getBytes()[3]
+            sign, sign, sign, bytes[3]
         }).intValue());
     }
 

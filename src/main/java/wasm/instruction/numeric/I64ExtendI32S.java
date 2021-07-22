@@ -4,7 +4,6 @@ import wasm.core.VirtualMachine;
 import wasm.core.WasmReader;
 import wasm.instruction.Operate;
 import wasm.model.Dump;
-import wasm.model.number.U64;
 
 public class I64ExtendI32S implements Operate {
     @Override
@@ -14,7 +13,7 @@ public class I64ExtendI32S implements Operate {
 
     @Override
     public void operate(VirtualMachine vm, Dump args) {
-        vm.pushS64(new U64(vm.popS32()).longValue());
+        vm.pushS64(vm.popS32());
     }
 
 }

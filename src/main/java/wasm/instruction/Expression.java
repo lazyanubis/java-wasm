@@ -50,5 +50,5 @@ public class Expression implements Dump {
     public String toString() {
         return dump();
     }
-    
+
 }

@@ -14,10 +14,13 @@ public class I64Extend32S implements Operate {
 
     @Override
     public void operate(VirtualMachine vm, Dump args) {
+        byte[] bytes = vm.popU64().getBytes();
+
+        byte sign = ((bytes[4] & 0x80) == 0) ? 0 : (byte)0xFF;
+
         vm.pushS64(new U64(new byte[]{
-                0, 0, 0, 0,
-                vm.popU64().getBytes()[4], vm.popU64().getBytes()[5],
-                vm.popU64().getBytes()[6], vm.popU64().getBytes()[7]
+            sign, sign, sign, sign,
+            bytes[4], bytes[5], bytes[6], bytes[7]
         }).longValue());
     }
 
