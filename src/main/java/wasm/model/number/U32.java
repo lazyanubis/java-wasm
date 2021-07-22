@@ -7,7 +7,7 @@ import java.util.Arrays;
 
 import static wasm.util.NumberUtil.toHex;
 
-public class U32 implements Dump {
+public class U32 implements Dump, Comparable<U32> {
 
     private final byte[] bytes;
 
@@ -88,5 +88,15 @@ public class U32 implements Dump {
         return Arrays.equals(bytes, u32.bytes);
     }
 
+    private BigInteger parseBigInteger() {
+        return new BigInteger(
+                toHex(bytes[0]) + toHex(bytes[1]) + toHex(bytes[2]) + toHex(bytes[3]),
+                16);
+    }
+
+    @Override
+    public int compareTo(U32 o) {
+        return parseBigInteger().compareTo(o.parseBigInteger());
+    }
 
 }

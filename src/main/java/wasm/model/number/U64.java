@@ -7,7 +7,7 @@ import java.util.Arrays;
 
 import static wasm.util.NumberUtil.toHex;
 
-public class U64 implements Dump {
+public class U64 implements Dump, Comparable<U64> {
 
     private final byte[] bytes;
 
@@ -76,18 +76,10 @@ public class U64 implements Dump {
 
     @Override
     public String toString() {
-        BigInteger value = new BigInteger(
-                bytes[0] > 0 ||
-                bytes[1] > 0 ||
-                bytes[2] > 0 ||
-                bytes[3] > 0 ||
-                bytes[4] > 0 ||
-                bytes[5] > 0 ||
-                bytes[6] > 0 ||
-                bytes[7] > 0 ? 1 : 0,
-                bytes
-        );
-        return value.toString();
+        return new BigInteger(
+                toHex(bytes[0]) + toHex(bytes[1]) + toHex(bytes[2]) + toHex(bytes[3])
+                  + toHex(bytes[4]) + toHex(bytes[5]) + toHex(bytes[6]) + toHex(bytes[7]),
+                16).toString();
     }
 
     @Override
@@ -114,6 +106,18 @@ public class U64 implements Dump {
         if (o == null || getClass() != o.getClass()) return false;
         U64 u64 = (U64) o;
         return Arrays.equals(bytes, u64.bytes);
+    }
+
+    private BigInteger parseBigInteger() {
+        return new BigInteger(
+                toHex(bytes[0]) + toHex(bytes[1]) + toHex(bytes[2]) + toHex(bytes[3])
+                  + toHex(bytes[4]) + toHex(bytes[5]) + toHex(bytes[6]) + toHex(bytes[7]),
+                16);
+    }
+
+    @Override
+    public int compareTo(U64 o) {
+        return parseBigInteger().compareTo(o.parseBigInteger());
     }
 
 }
