@@ -1,4 +1,4 @@
-package wasm.model2.instruction.util;
+package wasm.instruction.dump;
 
 import wasm.model.Dump;
 
@@ -9,6 +9,7 @@ public class DumpZero implements Dump {
     public byte value;
 
     public DumpZero(byte value) {
+        assert value == 0x00;
         this.value = value;
     }
 

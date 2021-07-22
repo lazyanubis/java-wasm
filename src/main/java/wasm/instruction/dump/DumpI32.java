@@ -1,18 +1,18 @@
-package wasm.model2.instruction.util;
+package wasm.instruction.dump;
 
 import wasm.model.Dump;
 
-public class DumpInt32 implements Dump {
+public class DumpI32 implements Dump {
 
     public int value;
 
-    public DumpInt32(int value) {
+    public DumpI32(int value) {
         this.value = value;
     }
 
     @Override
     public String dump() {
-        return Integer.toHexString(value);
+        return String.valueOf(value);
     }
 
     @Override

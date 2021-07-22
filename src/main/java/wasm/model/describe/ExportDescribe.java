@@ -1,23 +1,23 @@
-package wasm.model2.section;
+package wasm.model.describe;
 
-import wasm.model2.section.util.ExportType;
-import wasm.model2.section.util.Uint32;
+import wasm.model.number.U32;
+import wasm.model.tag.PortTag;
 
 public class ExportDescribe {
 
-    public ExportType type;
+    public PortTag tag;
 
-    public Uint32 index;
+    public U32 index; // funcidx tableidx memidx globalidx
 
-    public ExportDescribe(ExportType type, Uint32 index) {
-        this.type = type;
+    public ExportDescribe(PortTag tag, U32 index) {
+        this.tag = tag;
         this.index = index;
     }
 
     @Override
     public String toString() {
         return "ExportDescribe{" +
-                "type=" + type +
+                "tag=" + tag +
                 ", index=" + index +
                 '}';
     }

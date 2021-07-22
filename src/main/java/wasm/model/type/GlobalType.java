@@ -1,32 +1,26 @@
-package wasm.model2.section;
-
-import wasm.model2.section.util.ValueType;
-import wasm.model2.section.util.VariableType;
+package wasm.model.type;
 
 public class GlobalType {
 
     public ValueType valueType;
 
-    public VariableType variableType;
+    public MutableType mutableType;
 
-    public GlobalType(ValueType valueType, VariableType variableType) {
+    public GlobalType(ValueType valueType, MutableType mutableType) {
         this.valueType = valueType;
-        this.variableType = variableType;
+        this.mutableType = mutableType;
     }
 
     @Override
     public String toString() {
         return "GlobalType{" +
                 "valueType=" + valueType +
-                ", variableType=" + variableType +
+                ", mutableType=" + mutableType +
                 '}';
     }
 
     public String dump() {
-        StringBuilder sb = new StringBuilder();
-
-        sb.append("{type: ").append(valueType.name()).append(", mut: ").append(variableType.name()).append("}");
-
-        return sb.toString();
+        return "{type: " + valueType.name() + ", mut: " + mutableType.name() + "}";
     }
+
 }

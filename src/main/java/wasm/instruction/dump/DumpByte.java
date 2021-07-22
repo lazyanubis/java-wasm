@@ -1,4 +1,4 @@
-package wasm.model2.instruction.util;
+package wasm.instruction.dump;
 
 import wasm.model.Dump;
 
