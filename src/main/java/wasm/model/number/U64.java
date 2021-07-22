@@ -63,13 +63,9 @@ public class U64 implements Dump {
     }
 
     public long longValue() {
-        if ((bytes[0] & 0b10000000) != 0) {
-            throw new RuntimeException("to large");
-        }
-        return new BigInteger(
-                toHex(bytes[0]) + toHex(bytes[1]) + toHex(bytes[2]) + toHex(bytes[3]) +
-                toHex(bytes[4]) + toHex(bytes[5]) + toHex(bytes[6]) + toHex(bytes[7]),
-                16).longValue();
+        return Long.parseUnsignedLong(
+                toHex(bytes[0]) + toHex(bytes[1]) + toHex(bytes[2]) + toHex(bytes[3])
+                + toHex(bytes[4]) + toHex(bytes[5]) + toHex(bytes[6]) + toHex(bytes[7]), 16);
     }
 
     public String toHexString() {
@@ -119,5 +115,5 @@ public class U64 implements Dump {
         U64 u64 = (U64) o;
         return Arrays.equals(bytes, u64.bytes);
     }
-    
+
 }

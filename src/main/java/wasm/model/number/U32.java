@@ -48,12 +48,8 @@ public class U32 implements Dump {
     }
 
     public int intValue() {
-        if ((bytes[0] & 0b10000000) != 0) {
-            throw new RuntimeException("to large");
-        }
-        return new BigInteger(
-                toHex(bytes[0]) + toHex(bytes[1]) + toHex(bytes[2]) + toHex(bytes[3]),
-                16).intValue();
+        return Integer.parseUnsignedInt(
+                toHex(bytes[0]) + toHex(bytes[1]) + toHex(bytes[2]) + toHex(bytes[3]), 16);
     }
 
     public byte[] getBytes() {
