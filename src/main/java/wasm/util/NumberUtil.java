@@ -11,9 +11,25 @@ public class NumberUtil {
         return v;
     }
 
+    public static String toHexArray(byte[] bytes) {
+        StringBuilder sb = new StringBuilder();
+        for (byte b : bytes) {
+            sb.append(toHex(b));
+        }
+        return sb.toString();
+    }
+
     public static String toBinary(byte value) {
         String v = toHex(value);
         return parse(v.charAt(0)) + parse(v.charAt(1));
+    }
+
+    public static String toBinaryArray(byte[] bytes) {
+        StringBuilder sb = new StringBuilder();
+        for (byte b : bytes) {
+            sb.append(toBinary(b));
+        }
+        return sb.toString();
     }
 
     private static String parse(char c) {
@@ -58,6 +74,46 @@ public class NumberUtil {
             sb.append(toHex(b));
         }
         return sb.toString();
+    }
+
+
+    public static int clz(byte[] bytes) {
+        String v = toBinaryArray(bytes);
+        int count = 0;
+        for (int i = 0; i < v.length(); i++) {
+            if (v.charAt(i) == '0') {
+                count++;
+            } else {
+                break;
+            }
+        }
+        return count;
+    }
+
+    public static int ctz(byte[] bytes) {
+        String v = toBinaryArray(bytes);
+        int count = 0;
+        for (int i = v.length() - 1; 0 <= i; i--) {
+            if (v.charAt(i) == '0') {
+                count++;
+            } else {
+                break;
+            }
+        }
+        return count;
+    }
+
+    public static int popcnt(byte[] bytes) {
+        String v = toBinaryArray(bytes);
+        int count = 0;
+        for (int i = v.length() - 1; 0 <= i; i--) {
+            if (v.charAt(i) == '0') {
+
+            } else {
+                count++;
+            }
+        }
+        return count;
     }
 
 }

@@ -1,12 +1,12 @@
 package wasm.model.number;
 
 import wasm.model.Dump;
+import wasm.util.NumberUtil;
 
 import java.math.BigInteger;
 import java.util.Arrays;
 
-import static wasm.util.NumberUtil.toBinary;
-import static wasm.util.NumberUtil.toHex;
+import static wasm.util.NumberUtil.*;
 
 public class U32 implements Dump, Comparable<U32> {
 
@@ -49,8 +49,7 @@ public class U32 implements Dump, Comparable<U32> {
     }
 
     public int intValue() {
-        return Integer.parseUnsignedInt(
-                toHex(bytes[0]) + toHex(bytes[1]) + toHex(bytes[2]) + toHex(bytes[3]), 16);
+        return Integer.parseUnsignedInt(toHexArray(bytes), 16);
     }
 
     public byte[] getBytes() {
@@ -63,9 +62,7 @@ public class U32 implements Dump, Comparable<U32> {
 
     @Override
     public String toString() {
-        return new BigInteger(
-                toHex(bytes[0]) + toHex(bytes[1]) + toHex(bytes[2]) + toHex(bytes[3]),
-                16).toString();
+        return new BigInteger(toHexArray(bytes), 16).toString();
     }
 
     @Override
@@ -90,9 +87,7 @@ public class U32 implements Dump, Comparable<U32> {
     }
 
     private BigInteger parseBigInteger() {
-        return new BigInteger(
-                toHex(bytes[0]) + toHex(bytes[1]) + toHex(bytes[2]) + toHex(bytes[3]),
-                16);
+        return new BigInteger(toHexArray(bytes), 16);
     }
 
     @Override
@@ -101,42 +96,15 @@ public class U32 implements Dump, Comparable<U32> {
     }
 
     public U32 clz() {
-        String v = toBinary(bytes[0]) + toBinary(bytes[1]) + toBinary(bytes[2]) + toBinary(bytes[3]);
-        int count = 0;
-        for (int i = 0; i < v.length(); i++) {
-            if (v.charAt(i) == '0') {
-                count++;
-            } else {
-                break;
-            }
-        }
-        return new U32(count);
+        return new U32(NumberUtil.clz(bytes));
     }
 
     public U32 ctz() {
-        String v = toBinary(bytes[0]) + toBinary(bytes[1]) + toBinary(bytes[2]) + toBinary(bytes[3]);
-        int count = 0;
-        for (int i = v.length() - 1; 0 <= i; i--) {
-            if (v.charAt(i) == '0') {
-                count++;
-            } else {
-                break;
-            }
-        }
-        return new U32(count);
+        return new U32(NumberUtil.ctz(bytes));
     }
 
     public U32 popcnt() {
-        String v = toBinary(bytes[0]) + toBinary(bytes[1]) + toBinary(bytes[2]) + toBinary(bytes[3]);
-        int count = 0;
-        for (int i = v.length() - 1; 0 <= i; i--) {
-            if (v.charAt(i) == '0') {
-
-            } else {
-                count++;
-            }
-        }
-        return new U32(count);
+        return new U32(NumberUtil.popcnt(bytes));
     }
 
 }
