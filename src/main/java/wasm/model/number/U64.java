@@ -59,12 +59,26 @@ public class U64 implements Dump, Comparable<U64> {
 
     }
 
+    public U64(byte[] bytes) {
+        this.bytes = new byte[8];
+
+        assert null != bytes;
+
+        for (int i = 0; i < 8; i++) {
+            this.bytes[7 - i] = (bytes.length - 1 - i < bytes.length) ? bytes[bytes.length - 1 - i] : 0;
+        }
+    }
+
     public U32 u32() {
         return new U32(bytes[4], bytes[5], bytes[6], bytes[7]);
     }
 
     public long longValue() {
         return Long.parseUnsignedLong(toHexArray(bytes), 16);
+    }
+
+    public byte[] getBytes() {
+        return bytes;
     }
 
     public String toHexString() {
@@ -125,5 +139,6 @@ public class U64 implements Dump, Comparable<U64> {
         return new U64(NumberUtil.popcnt(bytes));
     }
 
+    public U64 add(U64 o) { return NumberUtil.add(this, o); }
 
 }

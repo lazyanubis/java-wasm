@@ -48,6 +48,16 @@ public class U32 implements Dump, Comparable<U32> {
         this.bytes[3] = u32.bytes[3];
     }
 
+    public U32(byte[] bytes) {
+        this.bytes = new byte[4];
+
+        assert null != bytes;
+
+        for (int i = 0; i < 4; i++) {
+            this.bytes[3 - i] = (bytes.length - 1 - i < bytes.length) ? bytes[bytes.length - 1 - i] : 0;
+        }
+    }
+
     public int intValue() {
         return Integer.parseUnsignedInt(toHexArray(bytes), 16);
     }
@@ -106,5 +116,7 @@ public class U32 implements Dump, Comparable<U32> {
     public U32 popcnt() {
         return new U32(NumberUtil.popcnt(bytes));
     }
+
+    public U32 add(U32 o) { return NumberUtil.add(this, o); }
 
 }

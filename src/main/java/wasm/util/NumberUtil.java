@@ -1,5 +1,8 @@
 package wasm.util;
 
+import wasm.model.number.U32;
+import wasm.model.number.U64;
+
 public class NumberUtil {
 
     public static String toHex(byte value) {
@@ -106,7 +109,7 @@ public class NumberUtil {
     public static int popcnt(byte[] bytes) {
         String v = toBinaryArray(bytes);
         int count = 0;
-        for (int i = v.length() - 1; 0 <= i; i--) {
+        for (int i = 0; i < v.length(); i++) {
             if (v.charAt(i) == '0') {
 
             } else {
@@ -114,6 +117,31 @@ public class NumberUtil {
             }
         }
         return count;
+    }
+
+    private static byte[] add(byte[] a, byte[] b, int size) {
+        byte[] r = new byte[size];
+
+        byte last = 0;
+        for (int i = size - 1; 0 <= i; i--) {
+            byte aa = a[i];
+            byte bb = b[i];
+
+            int v = aa + bb + last;
+
+            r[i] = (byte) v;
+            last = (byte) ((v & 0x0000FF00) >> 8);
+        }
+
+        return r;
+    }
+
+    public static U32 add(U32 a, U32 b) {
+        return new U32(add(a.getBytes(), b.getBytes(), 4));
+    }
+
+    public static U64 add(U64 a, U64 b) {
+        return new U64(add(a.getBytes(), b.getBytes(), 4));
     }
 
 }
