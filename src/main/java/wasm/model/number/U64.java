@@ -19,7 +19,7 @@ public class U64 implements Dump, Comparable<U64> {
         this.bytes = new byte[8];
 
         for (int i = 0; i < 8; i++) {
-            bytes[i] = Byte.valueOf(value.substring(8 * i, 8 * i + 8), 2);
+            bytes[i] = parseByte(value.substring(8 * i, 8 * i + 8));
         }
     }
 

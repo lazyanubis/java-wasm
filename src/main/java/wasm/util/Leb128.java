@@ -2,6 +2,8 @@ package wasm.util;
 
 import wasm.model.number.U64;
 
+import static wasm.util.NumberUtil.toBinary;
+
 public class Leb128 {
 
     public static class U64Result {
@@ -33,7 +35,7 @@ public class Leb128 {
             }
 
             // 每次只取后面7位数字
-            sb.insert(0, toBinaryString(b).substring(1));
+            sb.insert(0, toBinary(b).substring(1));
 
             if ((b & 0x80) == 0) {
                 String v = "0000000000000000000000000000000000000000000000000000000000000000" + sb;
@@ -68,7 +70,7 @@ public class Leb128 {
             }
 
             // 每次只取后面7位数字
-            sb.insert(0, toBinaryString(b).substring(1));
+            sb.insert(0, toBinary(b).substring(1));
 
             if ((b&0x80) == 0) {
                 String v = sb.toString();
@@ -85,22 +87,6 @@ public class Leb128 {
         }
 
         throw new RuntimeException("unexpected end of section or function");
-    }
-
-    private static String toBinaryString(byte b) {
-        String s = Integer.toBinaryString(b);
-        if (s.length() >= 8) { return s.substring(s.length() - 8); }
-        switch (s.length()) {
-            case 1: return "0000000" + s;
-            case 2: return "000000" + s;
-            case 3: return "00000" + s;
-            case 4: return "0000" + s;
-            case 5: return "000" + s;
-            case 6: return "00" + s;
-            case 7: return "0" + s;
-            case 8: return s;
-        }
-        throw new RuntimeException("wrong byte: " + b);
     }
 
 
@@ -125,7 +111,7 @@ public class Leb128 {
             }
 
             // 每次只取后面7位数字
-            sb.insert(0, toBinaryString(b).substring(1));
+            sb.insert(0, toBinary(b).substring(1));
 
             if ((b & 0x80) == 0) {
                 String v = sb.toString();

@@ -10,6 +10,7 @@ public class Main {
                 "ch01_hw.wasm",
                 "hw_rust.wasm",
 //                "ch03_eg1_num.wasm",
+                "ch03_eg1_num2.wasm",
                 "ch03_eg2_var.wasm",
                 "ch03_eg3_mem.wasm",
                 "ch03_eg4_block.wasm",

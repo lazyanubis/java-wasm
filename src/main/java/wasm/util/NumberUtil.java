@@ -9,9 +9,15 @@ import java.util.Map;
 
 public class NumberUtil {
 
-    /**
-     * 格式化为16进制字符串
-     */
+    public static byte parseByte(String v) {
+        assert v.length() == 8;
+        if (v.charAt(0) == '0') {
+            return (byte) Integer.parseInt(v, 2);
+        } else {
+            return (byte) Integer.parseUnsignedInt(ones(24) + v, 2);
+        }
+    }
+
     public static String toHex(byte value) {
         String v = Integer.toHexString(value).toUpperCase();
         if (v.length() > 2) { return v.substring(v.length() - 2); }

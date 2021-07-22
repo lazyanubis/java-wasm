@@ -26,7 +26,7 @@ public class U32 implements Dump, Comparable<U32> {
         this.bytes = new byte[4];
 
         for (int i = 0; i < 4; i++) {
-            bytes[i] = Byte.valueOf(value.substring(8 * i, 8 * i + 8), 2);
+            bytes[i] = parseByte(value.substring(8 * i, 8 * i + 8));
         }
     }
 
