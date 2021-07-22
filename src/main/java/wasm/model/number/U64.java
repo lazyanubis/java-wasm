@@ -118,7 +118,7 @@ public class U64 implements Dump, Comparable<U64> {
         return Arrays.equals(bytes, u64.bytes);
     }
 
-    private BigInteger parseBigInteger() {
+    public BigInteger parseBigInteger() {
         return new BigInteger(toHexArray(bytes), 16);
     }
 
@@ -138,7 +138,5 @@ public class U64 implements Dump, Comparable<U64> {
     public U64 popcnt() {
         return new U64(NumberUtil.popcnt(bytes));
     }
-
-    public U64 add(U64 o) { return NumberUtil.add(this, o); }
 
 }

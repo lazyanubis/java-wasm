@@ -20,6 +20,16 @@ public class U32 implements Dump, Comparable<U32> {
         this.bytes[3] = b3;
     }
 
+    public U32(String value) {
+        assert value.length() == 32;
+
+        this.bytes = new byte[4];
+
+        for (int i = 0; i < 4; i++) {
+            bytes[i] = Byte.valueOf(value.substring(8 * i, 8 * i + 8), 2);
+        }
+    }
+
     public U32(int value) {
         this.bytes = new byte[4];
 
@@ -96,7 +106,7 @@ public class U32 implements Dump, Comparable<U32> {
         return Arrays.equals(bytes, u32.bytes);
     }
 
-    private BigInteger parseBigInteger() {
+    public BigInteger parseBigInteger() {
         return new BigInteger(toHexArray(bytes), 16);
     }
 
@@ -116,7 +126,5 @@ public class U32 implements Dump, Comparable<U32> {
     public U32 popcnt() {
         return new U32(NumberUtil.popcnt(bytes));
     }
-
-    public U32 add(U32 o) { return NumberUtil.add(this, o); }
 
 }
