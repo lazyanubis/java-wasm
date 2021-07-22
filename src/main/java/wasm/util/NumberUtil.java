@@ -9,7 +9,7 @@ import java.util.Map;
 
 public class NumberUtil {
 
-    public static byte parseByte(String v) {
+    public static byte parseByteByBinary(String v) {
         assert v.length() == 8;
         if (v.charAt(0) == '0') {
             return (byte) Integer.parseInt(v, 2);
@@ -17,6 +17,16 @@ public class NumberUtil {
             return (byte) Integer.parseUnsignedInt(ones(24) + v, 2);
         }
     }
+
+    public static byte parseByteByHex(String v) {
+        assert v.length() == 2;
+        if (v.charAt(0) < '8') {
+            return (byte) Integer.parseInt(v, 16);
+        } else {
+            return (byte) Integer.parseUnsignedInt("FFFFFF" + v, 16);
+        }
+    }
+
 
     public static String toHex(byte value) {
         String v = Integer.toHexString(value).toUpperCase();
@@ -159,7 +169,7 @@ public class NumberUtil {
         }
 
         for (int i = 0; i < size; i++) {
-            bytes[i] = Byte.valueOf(sb.substring(i * 8, i * 8 + 8), 2);
+            bytes[i] = parseByteByBinary(sb.substring(i * 8, i * 8 + 8));
         }
 
         return bytes;

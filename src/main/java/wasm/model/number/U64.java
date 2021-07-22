@@ -19,14 +19,14 @@ public class U64 implements Dump, Comparable<U64> {
         this.bytes = new byte[8];
 
         for (int i = 0; i < 8; i++) {
-            bytes[i] = parseByte(value.substring(8 * i, 8 * i + 8));
+            bytes[i] = parseByteByBinary(value.substring(8 * i, 8 * i + 8));
         }
     }
 
     public U64(long value) {
         this.bytes = new byte[8];
 
-        String s = Long.toHexString(value);
+        String s = Long.toHexString(value).toUpperCase();
         switch (s.length()) {
             case  1: s = "000000000000000" + s; break;
             case  2: s = "00000000000000" + s; break;
@@ -46,7 +46,7 @@ public class U64 implements Dump, Comparable<U64> {
         }
 
         for (int i = 0; i < 8; i++) {
-            bytes[i] = Byte.valueOf(s.substring(2 * i, 2 * i + 2), 16);
+            bytes[i] = parseByteByHex(s.substring(2 * i, 2 * i + 2));
         }
     }
 

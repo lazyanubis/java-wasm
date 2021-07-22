@@ -79,7 +79,7 @@ public class Leb128 {
                     v = "1111111111111111111111111111111111111111111111111111111111111111" + v;
                     v = v.substring(v.length() - 64);
                 }
-                s64Result.result = Long.parseUnsignedLong(sb.toString(), 2);
+                s64Result.result = Long.parseUnsignedLong(v, 2);
                 s64Result.length = i + 1;
                 return s64Result;
             }
@@ -120,7 +120,7 @@ public class Leb128 {
                     v = "1111111111111111111111111111111111111111111111111111111111111111" + v;
                     v = v.substring(v.length() - 64);
                 }
-                i64Result.result = Long.parseUnsignedLong(sb.toString(), 2);
+                i64Result.result = Long.parseUnsignedLong(v, 2);
                 i64Result.length = i + 1;
                 return i64Result;
             }

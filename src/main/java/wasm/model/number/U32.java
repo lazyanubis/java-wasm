@@ -26,7 +26,7 @@ public class U32 implements Dump, Comparable<U32> {
         this.bytes = new byte[4];
 
         for (int i = 0; i < 4; i++) {
-            bytes[i] = parseByte(value.substring(8 * i, 8 * i + 8));
+            bytes[i] = parseByteByBinary(value.substring(8 * i, 8 * i + 8));
         }
     }
 
@@ -44,10 +44,10 @@ public class U32 implements Dump, Comparable<U32> {
             case 7: s = "0" + s; break;
         }
 
-        this.bytes[0] = Byte.valueOf(s.substring(0, 2), 16);
-        this.bytes[1] = Byte.valueOf(s.substring(2, 4), 16);
-        this.bytes[2] = Byte.valueOf(s.substring(4, 6), 16);
-        this.bytes[3] = Byte.valueOf(s.substring(6, 8), 16);
+        this.bytes[0] = parseByteByHex(s.substring(0, 2));
+        this.bytes[1] = parseByteByHex(s.substring(2, 4));
+        this.bytes[2] = parseByteByHex(s.substring(4, 6));
+        this.bytes[3] = parseByteByHex(s.substring(6, 8));
     }
 
     public U32(U32 u32) {

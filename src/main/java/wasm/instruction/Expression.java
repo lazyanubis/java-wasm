@@ -46,4 +46,9 @@ public class Expression implements Dump {
         return args;
     }
 
+    @Override
+    public String toString() {
+        return dump();
+    }
+    
 }
