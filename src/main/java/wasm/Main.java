@@ -1,7 +1,7 @@
 package wasm;
 
-import wasm.model.Module;
-import wasm.model.WasmReader;
+import wasm.core.Module;
+import wasm.core.WasmReader;
 
 public class Main {
 
