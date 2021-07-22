@@ -5,6 +5,7 @@ import wasm.model.Dump;
 import java.math.BigInteger;
 import java.util.Arrays;
 
+import static wasm.util.NumberUtil.toBinary;
 import static wasm.util.NumberUtil.toHex;
 
 public class U32 implements Dump, Comparable<U32> {
@@ -97,6 +98,45 @@ public class U32 implements Dump, Comparable<U32> {
     @Override
     public int compareTo(U32 o) {
         return parseBigInteger().compareTo(o.parseBigInteger());
+    }
+
+    public U32 clz() {
+        String v = toBinary(bytes[0]) + toBinary(bytes[1]) + toBinary(bytes[2]) + toBinary(bytes[3]);
+        int count = 0;
+        for (int i = 0; i < v.length(); i++) {
+            if (v.charAt(i) == '0') {
+                count++;
+            } else {
+                break;
+            }
+        }
+        return new U32(count);
+    }
+
+    public U32 ctz() {
+        String v = toBinary(bytes[0]) + toBinary(bytes[1]) + toBinary(bytes[2]) + toBinary(bytes[3]);
+        int count = 0;
+        for (int i = v.length() - 1; 0 <= i; i--) {
+            if (v.charAt(i) == '0') {
+                count++;
+            } else {
+                break;
+            }
+        }
+        return new U32(count);
+    }
+
+    public U32 popcnt() {
+        String v = toBinary(bytes[0]) + toBinary(bytes[1]) + toBinary(bytes[2]) + toBinary(bytes[3]);
+        int count = 0;
+        for (int i = v.length() - 1; 0 <= i; i--) {
+            if (v.charAt(i) == '0') {
+
+            } else {
+                count++;
+            }
+        }
+        return new U32(count);
     }
 
 }

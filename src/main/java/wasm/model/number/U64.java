@@ -5,6 +5,7 @@ import wasm.model.Dump;
 import java.math.BigInteger;
 import java.util.Arrays;
 
+import static wasm.util.NumberUtil.toBinary;
 import static wasm.util.NumberUtil.toHex;
 
 public class U64 implements Dump, Comparable<U64> {
@@ -118,6 +119,48 @@ public class U64 implements Dump, Comparable<U64> {
     @Override
     public int compareTo(U64 o) {
         return parseBigInteger().compareTo(o.parseBigInteger());
+    }
+
+    public U64 clz() {
+        String v = toBinary(bytes[0]) + toBinary(bytes[1]) + toBinary(bytes[2]) + toBinary(bytes[3])
+                + toBinary(bytes[4]) + toBinary(bytes[5]) + toBinary(bytes[6]) + toBinary(bytes[7]);
+        int count = 0;
+        for (int i = 0; i < v.length(); i++) {
+            if (v.charAt(i) == '0') {
+                count++;
+            } else {
+                break;
+            }
+        }
+        return new U64(count);
+    }
+
+    public U64 ctz() {
+        String v = toBinary(bytes[0]) + toBinary(bytes[1]) + toBinary(bytes[2]) + toBinary(bytes[3])
+                + toBinary(bytes[4]) + toBinary(bytes[5]) + toBinary(bytes[6]) + toBinary(bytes[7]);
+        int count = 0;
+        for (int i = v.length() - 1; 0 <= i; i--) {
+            if (v.charAt(i) == '0') {
+                count++;
+            } else {
+                break;
+            }
+        }
+        return new U64(count);
+    }
+
+    public U64 popcnt() {
+        String v = toBinary(bytes[0]) + toBinary(bytes[1]) + toBinary(bytes[2]) + toBinary(bytes[3])
+                + toBinary(bytes[4]) + toBinary(bytes[5]) + toBinary(bytes[6]) + toBinary(bytes[7]);
+        int count = 0;
+        for (int i = v.length() - 1; 0 <= i; i--) {
+            if (v.charAt(i) == '0') {
+
+            } else {
+                count++;
+            }
+        }
+        return new U64(count);
     }
 
 }
