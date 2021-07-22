@@ -14,7 +14,7 @@ public class I32Eqz implements Operate {
 
     @Override
     public void operate(VirtualMachine vm, Dump args) {
-        vm.pushBool(vm.popU32().parseBool());
+        vm.pushBool(vm.popU32().intValue() == 0);
     }
 
 }

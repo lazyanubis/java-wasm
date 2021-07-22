@@ -14,7 +14,7 @@ public class I64Eqz implements Operate {
 
     @Override
     public void operate(VirtualMachine vm, Dump args) {
-        vm.pushBool(vm.popU64().parseBool());
+        vm.pushBool(vm.popU64().longValue() == 0);
     }
 
 }
