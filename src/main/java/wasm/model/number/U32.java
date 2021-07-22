@@ -3,6 +3,7 @@ package wasm.model.number;
 import wasm.model.Dump;
 
 import java.math.BigInteger;
+import java.util.Arrays;
 
 import static wasm.util.NumberUtil.toHex;
 
@@ -74,4 +75,22 @@ public class U32 implements Dump {
     public String dump() {
         return toString();
     }
+
+    public boolean parseBool() {
+        return bytes[0] != 0
+                || bytes[1] != 0
+                || bytes[2] != 0
+                || bytes[3] != 0
+                ;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        U32 u32 = (U32) o;
+        return Arrays.equals(bytes, u32.bytes);
+    }
+
+
 }

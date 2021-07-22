@@ -1,23 +1,23 @@
 package wasm.core;
 
+import wasm.instruction.Expression;
+import wasm.model.Code;
+
 public class VirtualMachine extends OperandStack {
 
     public Module module;
 
-//    public void executeCode(int index) {
-//        Code code = module.codeSections[index];
-//        for (Instruction instruction : code.instructions) {
-//            executeInstruction(instruction);
-//        }
-//    }
-//
-//    private void executeInstruction(Instruction instruction) {
-//        if (null == INSTRUCTION_TABLE[instruction.opcode]) {
-//            throw new RuntimeException("wait");
-//        }
-//        INSTRUCTION_TABLE[instruction.opcode].accept(this, instruction.args);
-//    }
-//
+    public void executeCode(int index) {
+        Code code = module.codeSections[index];
+        for (Expression expression : code.expressions) {
+            executeExpression(expression);
+        }
+    }
+
+    private void executeExpression(Expression expression) {
+        expression.getInstruction().operate(this, expression.getArgs());
+    }
+
 //    private static final BiConsumer<VirtualMachine, Dump>[] INSTRUCTION_TABLE = new BiConsumer[256];
 //
 //    static {

@@ -37,4 +37,13 @@ public class Expression implements Dump {
 
         return sb.toString();
     }
+
+    public Instruction getInstruction() {
+        return instruction;
+    }
+
+    public Dump getArgs() {
+        return args;
+    }
+
 }

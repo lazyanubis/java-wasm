@@ -16,9 +16,7 @@ public class FileReader {
 
         byte[] bytes = new byte[(int)file.length()];
 
-        FileInputStream inputStream;
-        try {
-            inputStream = new FileInputStream(file);
+        try (FileInputStream inputStream = new FileInputStream(file)) {
             int r = inputStream.read(bytes, 0, bytes.length);
             if (r < 0) {
                 throw new RuntimeException("read error");

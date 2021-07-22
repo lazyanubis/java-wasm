@@ -262,5 +262,5 @@ public enum Instruction {
         }
         throw new RuntimeException("unknown code: 0x" + toHex(value));
     }
-    
+
 }
