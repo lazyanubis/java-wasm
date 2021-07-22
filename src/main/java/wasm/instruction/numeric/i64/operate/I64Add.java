@@ -5,6 +5,7 @@ import wasm.core.WasmReader;
 import wasm.instruction.Operate;
 import wasm.model.Dump;
 import wasm.model.number.U64;
+import wasm.util.NumberUtil;
 
 public class I64Add implements Operate {
 
@@ -17,7 +18,7 @@ public class I64Add implements Operate {
     public void operate(VirtualMachine vm, Dump args) {
         U64 v2 = vm.popU64();
         U64 v1 = vm.popU64();
-        vm.pushU64(v1.add(v2));
+        vm.pushU64(NumberUtil.add(v1, v2));
     }
 
 }

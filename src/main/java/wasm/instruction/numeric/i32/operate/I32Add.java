@@ -5,6 +5,7 @@ import wasm.core.WasmReader;
 import wasm.instruction.Operate;
 import wasm.model.Dump;
 import wasm.model.number.U32;
+import wasm.util.NumberUtil;
 
 public class I32Add implements Operate {
 
@@ -17,7 +18,7 @@ public class I32Add implements Operate {
     public void operate(VirtualMachine vm, Dump args) {
         U32 v2 = vm.popU32();
         U32 v1 = vm.popU32();
-        vm.pushU32(v1.add(v2));
+        vm.pushU32(NumberUtil.add(v1, v2));
     }
 
 }
