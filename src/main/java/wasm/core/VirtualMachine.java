@@ -73,4 +73,9 @@ public class VirtualMachine extends OperandStack {
         return bytes;
     }
 
+    public void writeBytesToMemory(MemoryIndex index, DumpMemory args, byte[] data) {
+        U64 offset = getOffset(args);
+        this.memories[index.intValue()].write(offset.u32(), data);
+    }
+
 }
