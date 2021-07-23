@@ -105,25 +105,27 @@ public class Module {
     }
 
     public FunctionType getBlockType(BlockType blockType) {
-        switch (blockType.valueType.value()) {
-            case 0x40: // EMPTY
-                return new FunctionType(FunctionTypeTag.BLOCK_TYPE, new ValueType[0], new ValueType[]{ValueType.EMPTY});
-            case 0x7F: // I32
-                return new FunctionType(FunctionTypeTag.BLOCK_TYPE, new ValueType[0], new ValueType[]{ValueType.I32});
-            case 0x7E: // I64
-                return new FunctionType(FunctionTypeTag.BLOCK_TYPE, new ValueType[0], new ValueType[]{ValueType.I64});
-            case 0x7D: // F32
-                return new FunctionType(FunctionTypeTag.BLOCK_TYPE, new ValueType[0], new ValueType[]{ValueType.F32});
-            case 0x7C: // F64
-                return new FunctionType(FunctionTypeTag.BLOCK_TYPE, new ValueType[0], new ValueType[]{ValueType.F64});
+        if (null != blockType.valueType) {
+            switch (blockType.valueType.value()) {
+                case 0x40: // EMPTY
+                    return new FunctionType(FunctionTypeTag.BLOCK_TYPE, new ValueType[0], new ValueType[0]);
+                case 0x7F: // I32
+                    return new FunctionType(FunctionTypeTag.BLOCK_TYPE, new ValueType[0], new ValueType[]{ValueType.I32});
+                case 0x7E: // I64
+                    return new FunctionType(FunctionTypeTag.BLOCK_TYPE, new ValueType[0], new ValueType[]{ValueType.I64});
+                case 0x7D: // F32
+                    return new FunctionType(FunctionTypeTag.BLOCK_TYPE, new ValueType[0], new ValueType[]{ValueType.F32});
+                case 0x7C: // F64
+                    return new FunctionType(FunctionTypeTag.BLOCK_TYPE, new ValueType[0], new ValueType[]{ValueType.F64});
 
-            case 0x70: // FUNCTION_REFERENCE
-                return new FunctionType(FunctionTypeTag.BLOCK_TYPE, new ValueType[0], new ValueType[]{ValueType.FUNCTION_REFERENCE});
-            case 0x6F: // EXTERN_REFERENCE
-                return new FunctionType(FunctionTypeTag.BLOCK_TYPE, new ValueType[0], new ValueType[]{ValueType.EXTERN_REFERENCE});
-            default:
-                return typeSections[(int) blockType.s33];
+                case 0x70: // FUNCTION_REFERENCE
+                    return new FunctionType(FunctionTypeTag.BLOCK_TYPE, new ValueType[0], new ValueType[]{ValueType.FUNCTION_REFERENCE});
+                case 0x6F: // EXTERN_REFERENCE
+                    return new FunctionType(FunctionTypeTag.BLOCK_TYPE, new ValueType[0], new ValueType[]{ValueType.EXTERN_REFERENCE});
+                default:
+            }
         }
+        return typeSections[(int) blockType.s33];
     }
 
 }

@@ -429,10 +429,13 @@ public class WasmReader {
     public Expressions readExpressions() {
 //        System.out.println("read expressions");
         Expression[] expressions = readExpressionArray();
-        byte end = readByte();
+        byte end = readByte(false);
         if (end != EXPRESS_END && end != EXPRESS_ELSE) {
             // 读取完表达式后，末尾应该有结尾
             throw new RuntimeException(String.format("invalid expr end: %d", end));
+        }
+        if (end == EXPRESS_END) {
+            readByte(); // 如果是else留给IfBlock处理
         }
         return new Expressions(expressions);
     }

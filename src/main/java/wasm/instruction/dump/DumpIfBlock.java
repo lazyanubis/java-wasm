@@ -21,7 +21,7 @@ public class DumpIfBlock implements Dump {
     public String dump() {
         StringBuilder sb = new StringBuilder();
 
-        sb.append(" -> ").append(blockType.name()).append("\n");
+        sb.append("-> ").append(blockType.name()).append("\n");
         for (Expression e : expressions1) {
             sb.append("  ").append(e.dump().replace("\n", "\n  ")).append("\n");
         }

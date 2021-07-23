@@ -111,6 +111,9 @@ public class VirtualMachine {
 
 
     public static void execStartFunction(Module module) {
+        System.out.println(module.dump());
+        System.out.println();
+
         VirtualMachine vm = new VirtualMachine(module);
         vm.initMemory();
         vm.initGlobals();
