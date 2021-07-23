@@ -22,4 +22,9 @@ public class Const {
     public static final byte EXPRESS_END = 0x0B;
     public static final byte EXPRESS_ELSE = 0x05; // 若是else也应该结束当前指令读取
 
+    // 65536B 标准中每个内存页64KB  真正使用的时候，需要减小到1KB
+    public static final int MEMORY_PAGE_SIZE = 1024 * 64;
+    // 65536 标准最大页面数  真正使用的时候，可以增加为 1024 * 64 * 64 = 4194304
+    public static final int MEMORY_MAX_PAGE_COUNT = 1024 * 64;
+
 }
