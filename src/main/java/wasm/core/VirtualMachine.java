@@ -4,10 +4,7 @@ import wasm.instruction.Expression;
 import wasm.instruction.Expressions;
 import wasm.instruction.Instruction;
 import wasm.instruction.dump.DumpMemory;
-import wasm.model.Code;
-import wasm.model.Data;
-import wasm.model.FunctionType;
-import wasm.model.Import;
+import wasm.model.*;
 import wasm.model.index.MemoryIndex;
 import wasm.model.index.TypeIndex;
 import wasm.model.number.U32;
@@ -24,6 +21,7 @@ public class VirtualMachine {
     public GlobalVariable[] globals; // 存放全局变量
     public U32 local0Index; // 如果是函数调用，记录函数可用部分的起始位置
     public VirtualMachineFunction[] functions; // 整个模块的函数集合
+    public Table[] tables;
 
     public VirtualMachine(Module module) {
         this.module = module;
@@ -147,6 +145,19 @@ public class VirtualMachine {
         }
     }
 
+    private void initTable() {
+        tables = new Table[module.tableSections.length];
+        for (int i = 0; i < tables.length; i++) {
+            tables[i] = new Table(module.tableSections[i]);
+        }
+        for (int i = 0; i < module.elementSections.length; i++) {
+            Element element = module.elementSections[i];
+            if (element.value.isActive()) {
+                element.value.init(this);
+            }
+        }
+    }
+
     public Module getModule() {
         return module;
     }
@@ -169,6 +180,7 @@ public class VirtualMachine {
         vm.initMemory();
         vm.initGlobals();
         vm.initFunctions();
+        vm.initTable();
         Instruction.CALL.operate(vm, module.startFunctionIndex); // 执行启动段指定的函数
         vm.loop();
 

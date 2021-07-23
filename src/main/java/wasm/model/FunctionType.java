@@ -39,4 +39,21 @@ public class FunctionType {
                 ")";
     }
 
+    public boolean same(FunctionType other) {
+        if (tag.value() != other.tag.value()) { return false; }
+        if (parameters.length != other.parameters.length) { return false; }
+        for (int i = 0; i < parameters.length; i++) {
+            if (parameters[i].value() != other.parameters[i].value()) {
+                return false;
+            }
+        }
+        if (results.length != other.results.length) { return false; }
+        for (int i = 0; i < results.length; i++) {
+            if (results[i].value() != other.results[i].value()) {
+                return false;
+            }
+        }
+        return true;
+    }
+
 }

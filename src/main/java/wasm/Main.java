@@ -9,6 +9,7 @@ public class Main {
     public static void main(String[] args) {
         String[] names = {
 //                "ch01_hw.wasm",
+//                "ch01_hw2.wasm",
 //                "hw_rust.wasm",
 //
 ////                "ch03_eg1_num.wasm",
@@ -48,11 +49,13 @@ public class Main {
 //                "ch08_eg8_br_table.wasm",
 //                "ch08_eg9_return.wasm",
 
+//                "ch09_calc.wasm",
+
         };
         for (String n : names) {
             System.out.println("=============== " + n + " ===============");
             Module module = WasmReader.readByName(n);
-            System.out.println(module.dump());
+            System.out.print(module.dump());
         }
 
 //        VirtualMachine.execStartFunction(WasmReader.readByName("ch05_cz.wasm"));
@@ -80,7 +83,9 @@ public class Main {
 //        VirtualMachine.execStartFunction(WasmReader.readByName("ch08_eg8_br_table.wasm"));
 //        VirtualMachine.execStartFunction(WasmReader.readByName("ch08_eg9_return.wasm"));
 
-        VirtualMachine.execStartFunction(WasmReader.readByName("ch01_hw2.wasm"));
+//        VirtualMachine.execStartFunction(WasmReader.readByName("ch01_hw2.wasm"));
+
+        VirtualMachine.execStartFunction(WasmReader.readByName("ch09_calc.wasm"));
 
     }
 

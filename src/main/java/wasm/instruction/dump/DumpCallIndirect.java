@@ -6,9 +6,9 @@ import wasm.model.index.TypeIndex;
 
 public class DumpCallIndirect implements Dump {
 
-    private final TypeIndex typeIndex;
+    public final TypeIndex typeIndex;
 
-    private final TableIndex tableIndex;
+    public final TableIndex tableIndex;
 
     public DumpCallIndirect(TypeIndex typeIndex, TableIndex tableIndex) {
         this.typeIndex = typeIndex;

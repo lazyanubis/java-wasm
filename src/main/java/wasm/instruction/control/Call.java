@@ -30,7 +30,7 @@ public class Call implements Operate {
         callFunction(vm, function);
     }
 
-    private void callFunction(VirtualMachine vm, VirtualMachineFunction function) {
+    public void callFunction(VirtualMachine vm, VirtualMachineFunction function) {
         if (null != function.local) {
             // 有本地函数内容，对于模块来说是外部的
             callExternalFunction(vm, function);
