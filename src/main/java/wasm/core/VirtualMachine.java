@@ -111,8 +111,13 @@ public class VirtualMachine {
 
 
     public static void execStartFunction(Module module) {
-        System.out.println(module.dump());
-        System.out.println();
+        System.out.println("========================= ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ =========================");
+        System.out.print(module.dump());
+        System.out.println("========================= ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ =========================");
+
+        if (null == module.startFunctionIndex) {
+            throw new RuntimeException("no start function");
+        }
 
         VirtualMachine vm = new VirtualMachine(module);
         vm.initMemory();

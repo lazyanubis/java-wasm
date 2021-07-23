@@ -53,18 +53,18 @@ public class Call implements Operate {
         // 执行外部函数
         // 1. 本地函数
         // 2. 其他模块的函数
-        System.out.println(vm.getModule().importSections[index].name);
         switch (vm.getModule().importSections[index].name) {
-            case "assert_true": assertEq(vm.operandStack.popBool(), true); break;
-            case "assert_false": assertEq(vm.operandStack.popBool(), false); break;
-            case "assert_eq_i32": assertEq(vm.operandStack.popU32(), vm.operandStack.popU32()); break;
-            case "assert_eq_i64": assertEq(vm.operandStack.popU64(), vm.operandStack.popU64()); break;
+            case "assert_true": assertEq(vm.getModule().importSections[index].name, vm.operandStack.popBool(), true); break;
+            case "assert_false": assertEq(vm.getModule().importSections[index].name, vm.operandStack.popBool(), false); break;
+            case "assert_eq_i32": assertEq(vm.getModule().importSections[index].name, vm.operandStack.popU32(), vm.operandStack.popU32()); break;
+            case "assert_eq_i64": assertEq(vm.getModule().importSections[index].name, vm.operandStack.popU64(), vm.operandStack.popU64()); break;
             default:
                 throw new RuntimeException("what a " + vm.getModule().importSections[index].name);
         }
     }
 
-    private void assertEq(Object a, Object b) {
+    private void assertEq(String name, Object a, Object b) {
+        System.err.println(name + " " + a + " == " + b);
         if (!a.equals(b)) {
             throw new RuntimeException("not equals: " + a + " != " + b);
         }

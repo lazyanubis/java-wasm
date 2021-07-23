@@ -16,8 +16,8 @@ public class NumberType implements Type {
     private static final NumberType EMPTY = new NumberType((byte) 0x40, "nil");
     private static final NumberType I32 = new NumberType((byte) 0x7F, "i32");
     private static final NumberType I64 = new NumberType((byte) 0x7E, "i64");
-    private static final NumberType F32 = new NumberType((byte) 0x7D, "f32");
-    private static final NumberType F64 = new NumberType((byte) 0x7C, "f64");
+    public static final NumberType F32 = new NumberType((byte) 0x7D, "f32");
+    public static final NumberType F64 = new NumberType((byte) 0x7C, "f64");
 
     public static NumberType of(byte value) {
         switch (value) {

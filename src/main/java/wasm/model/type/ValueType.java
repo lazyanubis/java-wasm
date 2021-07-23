@@ -15,8 +15,8 @@ public class ValueType implements Type, Dump {
     public static final ValueType EMPTY = new ValueType(NumberType.of((byte) 0x40));
     public static final ValueType I32 = new ValueType(NumberType.of((byte) 0x7F));
     public static final ValueType I64 = new ValueType(NumberType.of((byte) 0x7E));
-    public static final ValueType F32 = new ValueType(NumberType.of((byte) 0x7D));
-    public static final ValueType F64 = new ValueType(NumberType.of((byte) 0x7C));
+    public static final ValueType F32 = new ValueType(NumberType.F32);
+    public static final ValueType F64 = new ValueType(NumberType.F64);
 
     public static final ValueType FUNCTION_REFERENCE = new ValueType(ReferenceType.of((byte) 0x70));
     public static final ValueType EXTERN_REFERENCE   = new ValueType(ReferenceType.of((byte) 0x6F));

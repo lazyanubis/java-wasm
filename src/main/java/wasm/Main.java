@@ -1,6 +1,7 @@
 package wasm;
 
 import wasm.core.Module;
+import wasm.core.VirtualMachine;
 import wasm.core.WasmReader;
 
 public class Main {
@@ -64,7 +65,20 @@ public class Main {
 //        VirtualMachine.execStartFunction(WasmReader.readByName("ch07_global2.wasm"));
 //        VirtualMachine.execStartFunction(WasmReader.readByName("ch07_local.wasm"));
 //        VirtualMachine.execStartFunction(WasmReader.readByName("ch07_max.wasm"));
-//        VirtualMachine.execStartFunction(WasmReader.readByName("ch07_sum.wasm"));
+
+//        VirtualMachine.execStartFunction(WasmReader.readByName("ch08_cmp.wasm"));
+//        VirtualMachine.execStartFunction(WasmReader.readByName("ch08_fac.wasm"));
+//        VirtualMachine.execStartFunction(WasmReader.readByName("ch08_sum.wasm"));
+//        VirtualMachine.execStartFunction(WasmReader.readByName("ch08_test.wasm"));
+//        VirtualMachine.execStartFunction(WasmReader.readByName("ch08_eg1_labels.wasm"));
+//        VirtualMachine.execStartFunction(WasmReader.readByName("ch08_eg2_nested_labels.wasm"));
+//        VirtualMachine.execStartFunction(WasmReader.readByName("ch08_eg3_label_names.wasm"));
+//        VirtualMachine.execStartFunction(WasmReader.readByName("ch08_eg4_add.wasm"));
+//        VirtualMachine.execStartFunction(WasmReader.readByName("ch08_eg5_calc.wasm"));
+//        VirtualMachine.execStartFunction(WasmReader.readByName("ch08_eg6_br.wasm"));
+        VirtualMachine.execStartFunction(WasmReader.readByName("ch08_eg7_br_if.wasm"));
+        VirtualMachine.execStartFunction(WasmReader.readByName("ch08_eg8_br_table.wasm"));
+        VirtualMachine.execStartFunction(WasmReader.readByName("ch08_eg9_return.wasm"));
 
     }
 
