@@ -25,7 +25,7 @@ public class I64Store implements Operate {
         U64 v = vm.operandStack.popU64();
         byte[] bytes = v.getBytes();
 
-        System.err.println("So, which memory ?");
+        // System.err.println("So, which memory ?");
         vm.writeBytesToMemory(new MemoryIndex(new U32(0)), a,
                 new byte[] {bytes[7], bytes[6], bytes[5], bytes[4], bytes[3], bytes[2], bytes[1], bytes[0]});
     }

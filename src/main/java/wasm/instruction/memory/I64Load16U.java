@@ -22,7 +22,7 @@ public class I64Load16U implements Operate {
 
         DumpMemory a = (DumpMemory) args;
 
-        System.err.println("So, which memory ?");
+        // System.err.println("So, which memory ?");
         byte[] bytes = vm.readBytesFromMemory(new MemoryIndex(new U32(0)), a, 2);
 
         vm.operandStack.pushU64(new U64((bytes[1] & 0x00FF) << 8 | (bytes[0] & 0xFF)));

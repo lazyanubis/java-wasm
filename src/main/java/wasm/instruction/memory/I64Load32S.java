@@ -21,7 +21,7 @@ public class I64Load32S implements Operate {
 
         DumpMemory a = (DumpMemory) args;
 
-        System.err.println("So, which memory ?");
+        // System.err.println("So, which memory ?");
         byte[] bytes = vm.readBytesFromMemory(new MemoryIndex(new U32(0)), a, 4);
 
         vm.operandStack.pushS64(

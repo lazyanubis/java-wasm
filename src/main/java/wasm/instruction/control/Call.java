@@ -1,15 +1,15 @@
 package wasm.instruction.control;
 
 import wasm.core.VirtualMachine;
+import wasm.core.VirtualMachineFunction;
 import wasm.core.WasmReader;
 import wasm.instruction.Instruction;
 import wasm.instruction.Operate;
-import wasm.model.Code;
 import wasm.model.Dump;
 import wasm.model.FunctionType;
 import wasm.model.index.FunctionIndex;
-import wasm.model.index.TypeIndex;
 import wasm.model.number.U64;
+import wasm.model.type.ValueType;
 
 public class Call implements Operate {
 
@@ -20,54 +20,79 @@ public class Call implements Operate {
 
     @Override
     public void operate(VirtualMachine vm, Dump args) {
+        assert null != args;
         assert args instanceof FunctionIndex;
 
         int index = ((FunctionIndex) args).intValue();
 
-        int importedFunctionCount = vm.module.importSections.length; // 导入了多少个函数
+        VirtualMachineFunction function = vm.functions[index];
 
-        if (index < importedFunctionCount) {
-            callExternalFunction(vm, index);
+        callFunction(vm, function);
+    }
+
+    private void callFunction(VirtualMachine vm, VirtualMachineFunction function) {
+        if (null != function.local) {
+            // 有本地函数内容，对于模块来说是外部的
+            callExternalFunction(vm, function);
         } else {
-            callInternalFunction(vm, index - importedFunctionCount); // 序号要减去导入的函数
+            callInternalFunction(vm, function);
         }
     }
 
-    private void callInternalFunction(VirtualMachine vm, int index) {
-        // 执行模块内部定义的函数
-        TypeIndex typeIndex = vm.module.functionSections[index]; // 函数签名序号
-        FunctionType functionType = vm.module.typeSections[typeIndex.intValue()]; // 函数签名
-        Code code = vm.module.codeSections[index]; // 函数代码
+    private void callInternalFunction(VirtualMachine vm, VirtualMachineFunction function) {
+        assert null != function.code;
 
-        vm.enterBlock(Instruction.CALL, functionType, code.expressions);
+        vm.enterBlock(Instruction.CALL, function.type, function.code.expressions);
 
         // 分配本地变量
-        long length = code.localCount();
-        for (int i = 0; i < length; i++) {
-            vm.operandStack.pushU64(new U64(0));
-        }
-
+        long length = function.code.localCount();
+        for (int i = 0; i < length; i++) { vm.operandStack.pushU64(new U64(0)); }
     }
 
-    private void callExternalFunction(VirtualMachine vm, int index) {
-        // 执行外部函数
-        // 1. 本地函数
-        // 2. 其他模块的函数
-        switch (vm.getModule().importSections[index].name) {
-            case "assert_true": assertEq(vm.getModule().importSections[index].name, vm.operandStack.popBool(), true); break;
-            case "assert_false": assertEq(vm.getModule().importSections[index].name, vm.operandStack.popBool(), false); break;
-            case "assert_eq_i32": assertEq(vm.getModule().importSections[index].name, vm.operandStack.popU32(), vm.operandStack.popU32()); break;
-            case "assert_eq_i64": assertEq(vm.getModule().importSections[index].name, vm.operandStack.popU64(), vm.operandStack.popU64()); break;
+    // ========================== tools ==========================
+
+    private Object wrapU64(ValueType type, U64 value) {
+        switch (type.value()) {
+            case 0x7F: // i32
+                return (int) value.longValue();
+            case 0x7E: // i64
+                return value.longValue();
             default:
-                throw new RuntimeException("what a " + vm.getModule().importSections[index].name);
+                throw new RuntimeException("what a type ?");
         }
     }
 
-    private void assertEq(String name, Object a, Object b) {
-        System.err.println(name + " " + a + " == " + b);
-        if (!a.equals(b)) {
-            throw new RuntimeException("not equals: " + a + " != " + b);
+    private U64 unwrapU64(ValueType type, Object value) {
+        switch (type.value()) {
+            case 0x7F: // i32
+                return new U64((int) value);
+            case 0x7E: // i64
+                return new U64((long) value);
+            default:
+                throw new RuntimeException("what a type ?");
         }
+    }
+
+    private Object[] popArgs(VirtualMachine vm, FunctionType type) {
+        Object[] args = new Object[type.parameters.length];
+        for (int i = args.length - 1; 0 <= i; i--) {
+            args[i] = wrapU64(type.parameters[i], vm.operandStack.popU64());
+        }
+        return args;
+    }
+
+    private void pushResults(VirtualMachine vm, FunctionType type, Object[] results) {
+        for (int i = 0; i < results.length; i++) {
+            vm.operandStack.pushU64(unwrapU64(type.results[i], results[i]));
+        }
+    }
+
+    private void callExternalFunction(VirtualMachine vm, VirtualMachineFunction function) {
+        assert null != function.local;
+
+        Object[] args = popArgs(vm, function.type);
+        Object[] results = function.local.execute(args);
+        pushResults(vm, function.type, results);
     }
 
 }

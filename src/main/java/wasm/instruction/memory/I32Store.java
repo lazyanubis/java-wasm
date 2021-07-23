@@ -24,7 +24,7 @@ public class I32Store implements Operate {
         U32 v = vm.operandStack.popU32();
         byte[] bytes = v.getBytes();
 
-        System.err.println("So, which memory ?");
+        // System.err.println("So, which memory ?");
         vm.writeBytesToMemory(new MemoryIndex(new U32(0)), a,
                 new byte[] {bytes[3], bytes[2], bytes[1], bytes[0]});
     }

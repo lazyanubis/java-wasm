@@ -76,9 +76,11 @@ public class Main {
 //        VirtualMachine.execStartFunction(WasmReader.readByName("ch08_eg4_add.wasm"));
 //        VirtualMachine.execStartFunction(WasmReader.readByName("ch08_eg5_calc.wasm"));
 //        VirtualMachine.execStartFunction(WasmReader.readByName("ch08_eg6_br.wasm"));
-        VirtualMachine.execStartFunction(WasmReader.readByName("ch08_eg7_br_if.wasm"));
-        VirtualMachine.execStartFunction(WasmReader.readByName("ch08_eg8_br_table.wasm"));
-        VirtualMachine.execStartFunction(WasmReader.readByName("ch08_eg9_return.wasm"));
+//        VirtualMachine.execStartFunction(WasmReader.readByName("ch08_eg7_br_if.wasm"));
+//        VirtualMachine.execStartFunction(WasmReader.readByName("ch08_eg8_br_table.wasm"));
+//        VirtualMachine.execStartFunction(WasmReader.readByName("ch08_eg9_return.wasm"));
+
+        VirtualMachine.execStartFunction(WasmReader.readByName("ch01_hw2.wasm"));
 
     }
 

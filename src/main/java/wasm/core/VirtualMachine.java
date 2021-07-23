@@ -4,11 +4,15 @@ import wasm.instruction.Expression;
 import wasm.instruction.Expressions;
 import wasm.instruction.Instruction;
 import wasm.instruction.dump.DumpMemory;
+import wasm.model.Code;
 import wasm.model.Data;
 import wasm.model.FunctionType;
+import wasm.model.Import;
 import wasm.model.index.MemoryIndex;
+import wasm.model.index.TypeIndex;
 import wasm.model.number.U32;
 import wasm.model.number.U64;
+import wasm.nav.function.NativeFunction;
 import wasm.util.NumberUtil;
 
 public class VirtualMachine {
@@ -19,6 +23,7 @@ public class VirtualMachine {
     public ControlStack controlStack = new ControlStack();
     public GlobalVariable[] globals; // 存放全局变量
     public U32 local0Index; // 如果是函数调用，记录函数可用部分的起始位置
+    public VirtualMachineFunction[] functions; // 整个模块的函数集合
 
     public VirtualMachine(Module module) {
         this.module = module;
@@ -101,6 +106,47 @@ public class VirtualMachine {
         }
     }
 
+    private void initFunctions() {
+        this.functions = new VirtualMachineFunction[module.importSections.length + module.functionSections.length];
+
+        this.linkNativeFunctions(); // 链接本地函数
+
+        for (int i = 0; i < module.functionSections.length; i++) {
+            TypeIndex index = module.functionSections[i];
+            FunctionType type = module.typeSections[index.intValue()];
+            Code code = module.codeSections[i];
+            this.functions[module.importSections.length + i] = new VirtualMachineFunction(type, code);
+        }
+    }
+
+    private void linkNativeFunctions() {
+        for (int i = 0; i < module.importSections.length; i++) {
+            Import importSection = module.importSections[i];
+
+            if (importSection.describe.tag.value() == 0x00) {
+                // 导入类型是函数 FUNCTION
+                if (importSection.module.equals("env")) {
+                    // 导入环境 本地函数
+                    FunctionType type = module.typeSections[i];
+                    switch (importSection.name) {
+                        // env模块的哪个函数
+                        case "print_char": functions[i] = new VirtualMachineFunction(type, NativeFunction.PRINT_CHAR); break;
+                        case "assert_true": functions[i] = new VirtualMachineFunction(type, NativeFunction.ASSERT_TRUE); break;
+                        case "assert_false": functions[i] = new VirtualMachineFunction(type, NativeFunction.ASSERT_FALSE); break;
+                        case "assert_eq_i32": functions[i] = new VirtualMachineFunction(type, NativeFunction.ASSERT_EQUAL_INT); break;
+                        case "assert_eq_i64": functions[i] = new VirtualMachineFunction(type, NativeFunction.ASSERT_EQUAL_LONG); break;
+                        default:
+                            throw new RuntimeException("what a function: " + importSection.name + " for module env.");
+                    }
+                } else {
+                    throw new RuntimeException("what a module: " + module);
+                }
+            } else {
+                throw new RuntimeException("what a import tag: " + importSection.describe.tag.value());
+            }
+        }
+    }
+
     public Module getModule() {
         return module;
     }
@@ -122,8 +168,11 @@ public class VirtualMachine {
         VirtualMachine vm = new VirtualMachine(module);
         vm.initMemory();
         vm.initGlobals();
+        vm.initFunctions();
         Instruction.CALL.operate(vm, module.startFunctionIndex); // 执行启动段指定的函数
         vm.loop();
+
+        System.out.println();
     }
 
     private U64 getOffset(DumpMemory args) {

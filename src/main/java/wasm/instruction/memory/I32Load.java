@@ -21,7 +21,7 @@ public class I32Load implements Operate {
 
         DumpMemory a = (DumpMemory) args;
 
-        System.err.println("So, which memory ?");
+        // System.err.println("So, which memory ?");
         byte[] bytes = vm.readBytesFromMemory(new MemoryIndex(new U32(0)), a, 4);
 
         vm.operandStack.pushU32(new U32(bytes[3], bytes[2], bytes[1], bytes[0]));
