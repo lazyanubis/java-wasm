@@ -5,6 +5,7 @@ import wasm.instruction.Expressions;
 import wasm.instruction.dump.DumpMemory;
 import wasm.model.Code;
 import wasm.model.Data;
+import wasm.model.index.MemoryIndex;
 import wasm.model.number.U32;
 import wasm.model.number.U64;
 import wasm.util.NumberUtil;
@@ -65,32 +66,11 @@ public class VirtualMachine extends OperandStack {
         return NumberUtil.add(new U64(offset), new U64(immediate));
     }
 
-    public U32 readU8FromMemory(int index, DumpMemory args) {
-        byte[] bytes = new byte[1];
+    public byte[] readBytesFromMemory(MemoryIndex index, DumpMemory args, int size) {
+        byte[] bytes = new byte[size];
         U64 offset = getOffset(args);
-        this.memories[index].read(offset.u32(), bytes);
-        return new U32(bytes[0]);
-    }
-
-    public U32 readU16FromMemory(int index, DumpMemory args) {
-        byte[] bytes = new byte[2];
-        U64 offset = getOffset(args);
-        this.memories[index].read(offset.u32(), bytes);
-        return new U32(bytes[0] << 8 + bytes[1]);
-    }
-
-    public U32 readU32FromMemory(int index, DumpMemory args) {
-        byte[] bytes = new byte[4];
-        U64 offset = getOffset(args);
-        this.memories[index].read(offset.u32(), bytes);
-        return new U32(bytes[3], bytes[2], bytes[1], bytes[0]);
-    }
-
-    public U64 readU64FromMemory(int index, DumpMemory args) {
-        byte[] bytes = new byte[8];
-        U64 offset = getOffset(args);
-        this.memories[index].read(offset.u32(), bytes);
-        return new U64(new byte[]{bytes[7], bytes[6], bytes[5], bytes[4], bytes[3], bytes[2], bytes[1], bytes[0]});
+        this.memories[index.intValue()].read(offset.u32(), bytes);
+        return bytes;
     }
 
 }
