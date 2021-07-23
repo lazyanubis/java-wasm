@@ -440,7 +440,7 @@ public class WasmReader {
     private Expression[] readExpressionArray() {
         List<Expression> expressions = new ArrayList<>();
         while (true) {
-            byte end = data[0];
+            byte end = data[0]; // 一定有字符
             if (end == EXPRESS_END || end == EXPRESS_ELSE) {
                 return expressions.toArray(new Expression[0]);
             }
@@ -533,8 +533,29 @@ public class WasmReader {
         long s33 = 0;
         byte b = data[0];
         if ((b & 0b10000000) == 0) {
-            // 首位是0 必须是ValueType
-            valueType = ValueType.of(readByte());
+            // TODO 这就很尴尬了
+            //  blocktype ->
+            //      0x40 表示空返回值
+            //      0x7F I32
+            //      0x7E I64
+            //      0x7D F32
+            //      0x7C F64
+            //      0x70 FUNCTION_REFERENCE;
+            //      0x6F EXTERN_REFERENCE
+            //      其他值。。。。莫名其妙
+            b = readByte();
+            switch (b) {
+                case 0x40: // nil
+                case 0x7F: // i32
+                case 0x7E: // i64
+                case 0x7D: // f32
+                case 0x7C: // 64
+                case 0x70: // funcref
+                case 0x6F: // externref
+                    valueType = ValueType.of(b);
+                    break;
+                default: s33 = b;
+            }
         } else {
             Leb128.S64Result s = Leb128.decodeVarInt33(data);
             drop(s.length);
