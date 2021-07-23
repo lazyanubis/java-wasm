@@ -13,8 +13,8 @@ public class MutableType implements Type {
         this.name = name;
     }
 
-    private static final MutableType CONST   = new MutableType((byte) 0x00, "const");
-    private static final MutableType MUTABLE = new MutableType((byte) 0x01, "var");
+    public static final MutableType CONST   = new MutableType((byte) 0x00, "const");
+    public static final MutableType MUTABLE = new MutableType((byte) 0x01, "var");
 
     public static MutableType of(byte value) {
         switch (value) {

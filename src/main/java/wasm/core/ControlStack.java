@@ -17,7 +17,7 @@ public class ControlStack {
         return frames.remove(frames.size() - 1);
     }
 
-    public int size() {
+    public int depth() {
         return frames.size();
     }
 

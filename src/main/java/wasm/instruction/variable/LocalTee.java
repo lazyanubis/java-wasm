@@ -5,6 +5,7 @@ import wasm.core.WasmReader;
 import wasm.instruction.Operate;
 import wasm.model.Dump;
 import wasm.model.index.LocalIndex;
+import wasm.model.number.U64;
 
 public class LocalTee implements Operate {
 
@@ -19,7 +20,13 @@ public class LocalTee implements Operate {
 
         LocalIndex a = (LocalIndex) args;
 
-        Operate.super.operate(vm, args);
+        int index = vm.local0Index.intValue() + a.intValue();
+
+        U64 value = vm.operandStack.popU64();
+
+        vm.operandStack.pushU64(value); // 再压回去
+
+        vm.operandStack.setOperand(index, value);
     }
 
 }

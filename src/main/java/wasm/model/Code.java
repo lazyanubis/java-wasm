@@ -21,6 +21,14 @@ public class Code {
         this.expressions = expressions;
     }
 
+    public long localCount() {
+        long count = 0;
+        for (Local local : locals) {
+            count += local.n.intValue();
+        }
+        return count;
+    }
+
     @Override
     public String toString() {
         return "Code{" +

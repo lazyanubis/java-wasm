@@ -5,6 +5,7 @@ import wasm.core.WasmReader;
 import wasm.instruction.Operate;
 import wasm.model.Dump;
 import wasm.model.index.GlobalIndex;
+import wasm.model.number.U64;
 
 public class GlobalSet implements Operate {
 
@@ -19,7 +20,9 @@ public class GlobalSet implements Operate {
 
         GlobalIndex a = (GlobalIndex) args;
 
-        Operate.super.operate(vm, args);
+        U64 value = vm.operandStack.popU64();
+
+        vm.globals[a.intValue()].setU64(value);
     }
 
 }

@@ -36,9 +36,10 @@ public class OperandStack {
         slots.set(index, value);
     }
 
-    public void pushU64s(U64 value, U64... values) {
-        pushU64(value);
-        for (U64 u : values) { pushU64(u); }
+    public void pushU64s(U64[] values) {
+        for (U64 u : values) {
+            pushU64(u);
+        }
     }
 
     public U64[] popU64s(int size) {

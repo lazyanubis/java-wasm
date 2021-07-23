@@ -8,13 +8,13 @@ import static wasm.util.Const.MEMORY_PAGE_SIZE;
 
 public class Memory {
 
-    private final MemoryType memoryType;
+    private final MemoryType type;
 
     private byte[] data;
 
-    public Memory(MemoryType memoryType) {
-        this.memoryType = memoryType;
-        this.data = new byte[MEMORY_PAGE_SIZE * memoryType.getMin().intValue()]; // 先按照最小的初始化
+    public Memory(MemoryType type) {
+        this.type = type;
+        this.data = new byte[MEMORY_PAGE_SIZE * type.getMin().intValue()]; // 先按照最小的初始化
     }
 
     /**
@@ -29,7 +29,7 @@ public class Memory {
 
         int wanna = old.intValue() + grow.intValue();
 
-        if (null != memoryType.getMax() && wanna > memoryType.getMax().intValue()) {
+        if (null != type.getMax() && wanna > type.getMax().intValue()) {
             return new U32(-1);
         }
 
