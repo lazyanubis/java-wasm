@@ -15,6 +15,7 @@ public class TableDrop implements Operate {
 
     @Override
     public void operate(VirtualMachine vm, Dump args) {
+        assert null != args;
         assert args instanceof ElementIndex;
 
         ElementIndex a = (ElementIndex) args;

@@ -16,6 +16,7 @@ public class BrTable implements Operate {
 
     @Override
     public void operate(VirtualMachine vm, Dump args) {
+        assert null != args;
         assert args instanceof DumpBrTable;
 
         DumpBrTable t = (DumpBrTable) args;

@@ -15,6 +15,7 @@ public class TableInit implements Operate {
 
     @Override
     public void operate(VirtualMachine vm, Dump args) {
+        assert null != args;
         assert args instanceof DumpTableInit;
 
         DumpTableInit a = (DumpTableInit) args;

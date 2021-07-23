@@ -15,6 +15,7 @@ public class I32Const implements Operate {
 
     @Override
     public void operate(VirtualMachine vm, Dump args) {
+        assert null != args;
         assert args instanceof DumpI32;
 
         DumpI32 a = (DumpI32) args;

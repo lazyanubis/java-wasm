@@ -15,6 +15,7 @@ public class I64Const implements Operate {
 
     @Override
     public void operate(VirtualMachine vm, Dump args) {
+        assert null != args;
         assert args instanceof DumpI64;
 
         DumpI64 a = (DumpI64) args;

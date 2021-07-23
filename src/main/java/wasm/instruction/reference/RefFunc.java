@@ -15,6 +15,7 @@ public class RefFunc implements Operate {
 
     @Override
     public void operate(VirtualMachine vm, Dump args) {
+        assert null != args;
         assert args instanceof FunctionIndex;
 
         FunctionIndex a = (FunctionIndex) args;

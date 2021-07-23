@@ -30,6 +30,7 @@ public class IfBlock implements Operate {
 
     @Override
     public void operate(VirtualMachine vm, Dump args) {
+        assert null != args;
         assert args instanceof DumpIfBlock;
 
         DumpIfBlock b = (DumpIfBlock) args;

@@ -21,6 +21,7 @@ public class Block implements Operate {
 
     @Override
     public void operate(VirtualMachine vm, Dump args) {
+        assert null != args;
         assert args instanceof DumpBlock;
 
         DumpBlock b = (DumpBlock) args;

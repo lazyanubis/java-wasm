@@ -16,6 +16,7 @@ public class GlobalSet implements Operate {
 
     @Override
     public void operate(VirtualMachine vm, Dump args) {
+        assert null != args;
         assert args instanceof GlobalIndex;
 
         GlobalIndex a = (GlobalIndex) args;

@@ -17,6 +17,7 @@ public class Br implements Operate {
 
     @Override
     public void operate(VirtualMachine vm, Dump args) {
+        assert null != args;
         assert args instanceof LabelIndex;
 
         int index = ((LabelIndex) args).intValue();
