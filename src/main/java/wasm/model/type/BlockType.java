@@ -4,11 +4,11 @@ public class BlockType implements Type {
 
     public final ValueType valueType;
 
-    public final long s32;
+    public final long s33;
 
-    public BlockType(ValueType valueType, long s32) {
+    public BlockType(ValueType valueType, long s33) {
         this.valueType = valueType;
-        this.s32 = s32;
+        this.s33 = s33;
     }
 
     @Override
@@ -18,7 +18,7 @@ public class BlockType implements Type {
 
     @Override
     public String name() {
-        return null == valueType ? "s33:" + s32 : valueType.name();
+        return null == valueType ? "s33:" + s33 : valueType.name();
     }
 
     @Override

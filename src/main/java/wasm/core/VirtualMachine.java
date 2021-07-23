@@ -75,6 +75,12 @@ public class VirtualMachine {
         }
     }
 
+    public void resetBlock(ControlFrame frame) {
+        U64[] results = operandStack.popU64s(frame.functionType.parameters.length);
+        operandStack.popU64s(operandStack.stackSize() - frame.bp);
+        operandStack.pushU64s(results);
+    }
+
     private void initMemory() {
         this.memories = new Memory[module.memorySections.length];
         for (int i = 0; i < this.memories.length; i++) {

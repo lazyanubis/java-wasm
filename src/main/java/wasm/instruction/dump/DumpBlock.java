@@ -7,8 +7,8 @@ import wasm.model.type.BlockType;
 
 public class DumpBlock implements Dump {
 
-    private final BlockType blockType;
-    private final Expressions expressions;
+    public final BlockType blockType;
+    public final Expressions expressions;
 
     public DumpBlock(BlockType blockType, Expressions expressions) {
         this.blockType = blockType;

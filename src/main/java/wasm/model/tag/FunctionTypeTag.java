@@ -15,7 +15,9 @@ public class FunctionTypeTag implements Type {
         this.name = name;
     }
 
-    private static final FunctionTypeTag FUNCTION_TYPE = new FunctionTypeTag((byte) 0x60, "functype");
+    public static final FunctionTypeTag BLOCK_TYPE = new FunctionTypeTag((byte) 0x00, "blocktype");
+
+    public static final FunctionTypeTag FUNCTION_TYPE = new FunctionTypeTag((byte) 0x60, "functype");
 
     public static FunctionTypeTag of(byte value) {
         switch (value) {

@@ -7,9 +7,9 @@ import wasm.model.type.BlockType;
 
 public class DumpIfBlock implements Dump {
 
-    private final BlockType blockType;
-    private final Expressions expressions1;
-    private final Expressions expressions2;
+    public final BlockType blockType;
+    public final Expressions expressions1;
+    public final Expressions expressions2;
 
     public DumpIfBlock(BlockType blockType, Expressions expressions1, Expressions expressions2) {
         this.blockType = blockType;

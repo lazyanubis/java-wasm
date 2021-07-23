@@ -12,14 +12,14 @@ public class ValueType implements Type, Dump {
         this.value = value;
     }
 
-    private static final ValueType EMPTY = new ValueType(NumberType.of((byte) 0x40));
-    private static final ValueType I32 = new ValueType(NumberType.of((byte) 0x7F));
-    private static final ValueType I64 = new ValueType(NumberType.of((byte) 0x7E));
-    private static final ValueType F32 = new ValueType(NumberType.of((byte) 0x7D));
-    private static final ValueType F64 = new ValueType(NumberType.of((byte) 0x7C));
+    public static final ValueType EMPTY = new ValueType(NumberType.of((byte) 0x40));
+    public static final ValueType I32 = new ValueType(NumberType.of((byte) 0x7F));
+    public static final ValueType I64 = new ValueType(NumberType.of((byte) 0x7E));
+    public static final ValueType F32 = new ValueType(NumberType.of((byte) 0x7D));
+    public static final ValueType F64 = new ValueType(NumberType.of((byte) 0x7C));
 
-    private static final ValueType FUNCTION_REFERENCE = new ValueType(ReferenceType.of((byte) 0x70));
-    private static final ValueType EXTERN_REFERENCE   = new ValueType(ReferenceType.of((byte) 0x6F));
+    public static final ValueType FUNCTION_REFERENCE = new ValueType(ReferenceType.of((byte) 0x70));
+    public static final ValueType EXTERN_REFERENCE   = new ValueType(ReferenceType.of((byte) 0x6F));
 
     public static ValueType of(byte value) {
         switch (value) {

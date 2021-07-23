@@ -13,8 +13,6 @@ public class Nop implements Operate {
     }
 
     @Override
-    public void operate(VirtualMachine vm, Dump args) {
-        throw new RuntimeException("nop code ?");
-    }
+    public void operate(VirtualMachine vm, Dump args) { }
 
 }

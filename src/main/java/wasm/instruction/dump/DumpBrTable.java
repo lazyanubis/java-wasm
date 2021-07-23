@@ -9,17 +9,17 @@ import java.util.stream.Stream;
 
 public class DumpBrTable implements Dump {
 
-    private final LabelIndex[] labelIndices;
+    public final LabelIndex[] labelIndices;
 
-    private final LabelIndex labelIndex;
+    public final LabelIndex omit;
 
-    public DumpBrTable(LabelIndex[] labelIndices, LabelIndex labelIndex) {
+    public DumpBrTable(LabelIndex[] labelIndices, LabelIndex omit) {
         this.labelIndices = labelIndices;
-        this.labelIndex = labelIndex;
+        this.omit = omit;
     }
 
     @Override
     public String dump() {
-        return "[" + Stream.of(labelIndices).map(U32::toString).collect(Collectors.joining(",")) + "] " + labelIndex;
+        return "[" + Stream.of(labelIndices).map(U32::toString).collect(Collectors.joining(",")) + "] " + omit;
     }
 }
