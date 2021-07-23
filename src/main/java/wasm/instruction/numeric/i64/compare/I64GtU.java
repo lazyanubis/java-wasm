@@ -15,9 +15,9 @@ public class I64GtU implements Operate {
 
     @Override
     public void operate(VirtualMachine vm, Dump args) {
-        U64 v2 = vm.popU64();
-        U64 v1 = vm.popU64();
-        vm.pushBool(v1.compareTo(v2) > 0);
+        U64 v2 = vm.operandStack.popU64();
+        U64 v1 = vm.operandStack.popU64();
+        vm.operandStack.pushBool(v1.compareTo(v2) > 0);
     }
 
 }

@@ -24,7 +24,7 @@ public class I64Load16S implements Operate {
         System.err.println("So, which memory ?");
         byte[] bytes = vm.readBytesFromMemory(new MemoryIndex(new U32(0)), a, 2);
 
-        vm.pushS64((bytes[1] << 8) | (bytes[0] & 0xFF));
+        vm.operandStack.pushS64((bytes[1] << 8) | (bytes[0] & 0xFF));
     }
 
 }

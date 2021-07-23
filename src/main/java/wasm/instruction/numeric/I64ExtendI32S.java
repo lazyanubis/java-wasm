@@ -13,7 +13,7 @@ public class I64ExtendI32S implements Operate {
 
     @Override
     public void operate(VirtualMachine vm, Dump args) {
-        vm.pushS64(vm.popS32());
+        vm.operandStack.pushS64(vm.operandStack.popS32());
     }
 
 }

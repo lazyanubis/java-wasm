@@ -19,7 +19,7 @@ public class I64Const implements Operate {
 
         DumpI64 a = (DumpI64) args;
 
-        vm.pushS64(a.value);
+        vm.operandStack.pushS64(a.value);
     }
 
 }

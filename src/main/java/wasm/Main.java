@@ -1,7 +1,6 @@
 package wasm;
 
 import wasm.core.Module;
-import wasm.core.VirtualMachine;
 import wasm.core.WasmReader;
 
 public class Main {
@@ -25,7 +24,14 @@ public class Main {
 //                "ch05_param.wasm",
 
 //                "ch06_mem.wasm",
-                "ch06_mem2.wasm",
+//                "ch06_mem2.wasm",
+
+                "ch07_fib.wasm",
+//                "ch07_global.wasm",
+                "ch07_global2.wasm",
+                "ch07_local.wasm",
+                "ch07_max.wasm",
+                "ch07_sum.wasm",
 
         };
         for (String n : names) {
@@ -38,7 +44,7 @@ public class Main {
 //        VirtualMachine.execStartFunction(WasmReader.readByName("ch05_num2.wasm"));
 //        VirtualMachine.execStartFunction(WasmReader.readByName("ch05_param.wasm"));
 
-        VirtualMachine.execStartFunction(WasmReader.readByName("ch06_mem2.wasm"));
+//        VirtualMachine.execStartFunction(WasmReader.readByName("ch06_mem2.wasm"));
 
     }
 

@@ -15,9 +15,9 @@ public class I32RemS implements Operate {
 
     @Override
     public void operate(VirtualMachine vm, Dump args) {
-        int v2 = vm.popS32();
-        int v1 = vm.popS32();
-        vm.pushS32(NumberUtil.remS(v1, v2));
+        int v2 = vm.operandStack.popS32();
+        int v1 = vm.operandStack.popS32();
+        vm.operandStack.pushS32(NumberUtil.remS(v1, v2));
     }
 
 }

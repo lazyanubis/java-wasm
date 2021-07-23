@@ -15,8 +15,8 @@ public class I64Ctz implements Operate {
 
     @Override
     public void operate(VirtualMachine vm, Dump args) {
-        U64 v = vm.popU64();
-        vm.pushU64(v.ctz());
+        U64 v = vm.operandStack.popU64();
+        vm.operandStack.pushU64(v.ctz());
     }
 
 }

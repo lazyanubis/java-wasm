@@ -15,10 +15,10 @@ public class MemoryGrow implements Operate {
 
     @Override
     public void operate(VirtualMachine vm, Dump args) {
-        U32 grow = vm.popU32();
+        U32 grow = vm.operandStack.popU32();
         System.err.println("So, which memory ?");
         U32 old = vm.getMemory(0).grow(grow);
-        vm.pushU32(old);
+        vm.operandStack.pushU32(old);
     }
     
 }

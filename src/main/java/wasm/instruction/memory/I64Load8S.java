@@ -24,7 +24,7 @@ public class I64Load8S implements Operate {
         System.err.println("So, which memory ?");
         byte[] bytes = vm.readBytesFromMemory(new MemoryIndex(new U32(0)), a, 1);
 
-        vm.pushS64(bytes[0]);
+        vm.operandStack.pushS64(bytes[0]);
     }
 
 }

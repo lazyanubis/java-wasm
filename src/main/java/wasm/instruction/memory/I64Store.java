@@ -22,7 +22,7 @@ public class I64Store implements Operate {
 
         DumpMemory a = (DumpMemory) args;
 
-        U64 v = vm.popU64();
+        U64 v = vm.operandStack.popU64();
         byte[] bytes = v.getBytes();
 
         System.err.println("So, which memory ?");

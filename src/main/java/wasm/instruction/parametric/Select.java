@@ -15,13 +15,13 @@ public class Select implements Operate {
 
     @Override
     public void operate(VirtualMachine vm, Dump args) {
-        boolean v3 = vm.popBool();
-        U64 v2 = vm.popU64();
-        U64 v1 = vm.popU64();
+        boolean v3 = vm.operandStack.popBool();
+        U64 v2 = vm.operandStack.popU64();
+        U64 v1 = vm.operandStack.popU64();
         if (v3) {
-            vm.pushU64(v1);
+            vm.operandStack.pushU64(v1);
         } else {
-            vm.pushU64(v2);
+            vm.operandStack.pushU64(v2);
         }
     }
 

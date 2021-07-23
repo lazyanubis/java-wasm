@@ -14,6 +14,6 @@ public class I32WrapI64 implements Operate {
 
     @Override
     public void operate(VirtualMachine vm, Dump args) {
-        vm.pushU32(vm.popU64().u32());
+        vm.operandStack.pushU32(vm.operandStack.popU64().u32());
     }
 }

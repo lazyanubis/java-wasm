@@ -10,11 +10,13 @@ import wasm.model.number.U32;
 import wasm.model.number.U64;
 import wasm.util.NumberUtil;
 
-public class VirtualMachine extends OperandStack {
+public class VirtualMachine {
 
     public Module module;
-
+    public OperandStack operandStack = new OperandStack();
     private Memory[] memories;
+    public ControlStack controlStack = new ControlStack();
+
 
     public VirtualMachine(Module module) {
         this.module = module;
@@ -62,7 +64,7 @@ public class VirtualMachine extends OperandStack {
 
     private U64 getOffset(DumpMemory args) {
         U32 offset = args.getOffset();
-        U32 immediate = this.popU32();
+        U32 immediate = operandStack.popU32();
         return NumberUtil.add(new U64(offset), new U64(immediate));
     }
 

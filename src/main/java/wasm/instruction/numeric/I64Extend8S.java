@@ -14,11 +14,11 @@ public class I64Extend8S implements Operate {
 
     @Override
     public void operate(VirtualMachine vm, Dump args) {
-        byte[] bytes = vm.popU64().getBytes();
+        byte[] bytes = vm.operandStack.popU64().getBytes();
 
         byte sign = ((bytes[7] & 0x80) == 0) ? 0 : (byte)0xFF;
 
-        vm.pushS64(new U64(new byte[]{
+        vm.operandStack.pushS64(new U64(new byte[]{
             sign, sign, sign, sign,
             sign, sign, sign, bytes[7]
         }).longValue());

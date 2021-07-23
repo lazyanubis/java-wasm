@@ -35,7 +35,7 @@ public class Data {
         @Override
         public void initMemory(VirtualMachine vm) {
             vm.executeExpressions(expressions);
-            U32 offset = vm.popU32();
+            U32 offset = vm.operandStack.popU32();
 
             vm.getMemory(0).write(offset, bytes);
         }
@@ -80,7 +80,7 @@ public class Data {
             int index = memoryIndex.intValue();
 
             vm.executeExpressions(expressions);
-            U32 offset = vm.popU32();
+            U32 offset = vm.operandStack.popU32();
 
             vm.getMemory(index).write(offset, bytes);
         }

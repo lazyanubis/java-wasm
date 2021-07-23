@@ -15,7 +15,7 @@ public class MemorySize implements Operate {
     @Override
     public void operate(VirtualMachine vm, Dump args) {
         System.err.println("The memory.size instruction returns the current size of a memory. So, which memory ?");
-        vm.pushU32(vm.getMemory(0).size());
+        vm.operandStack.pushU32(vm.getMemory(0).size());
     }
 
 }

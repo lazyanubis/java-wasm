@@ -15,9 +15,9 @@ public class I64DivS implements Operate {
 
     @Override
     public void operate(VirtualMachine vm, Dump args) {
-        long v2 = vm.popS64();
-        long v1 = vm.popS64();
-        vm.pushS64(NumberUtil.divS(v1, v2));
+        long v2 = vm.operandStack.popS64();
+        long v1 = vm.operandStack.popS64();
+        vm.operandStack.pushS64(NumberUtil.divS(v1, v2));
     }
 
 }

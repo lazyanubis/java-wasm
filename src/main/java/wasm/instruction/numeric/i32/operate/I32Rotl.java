@@ -16,9 +16,9 @@ public class I32Rotl implements Operate {
 
     @Override
     public void operate(VirtualMachine vm, Dump args) {
-        U32 v2 = vm.popU32();
-        U32 v1 = vm.popU32();
-        vm.pushU32(NumberUtil.rotl(v1, v2));
+        U32 v2 = vm.operandStack.popU32();
+        U32 v1 = vm.operandStack.popU32();
+        vm.operandStack.pushU32(NumberUtil.rotl(v1, v2));
     }
 
 }

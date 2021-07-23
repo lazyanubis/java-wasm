@@ -19,7 +19,7 @@ public class I32Const implements Operate {
 
         DumpI32 a = (DumpI32) args;
 
-        vm.pushS32(a.value);
+        vm.operandStack.pushS32(a.value);
     }
 
 }

@@ -14,7 +14,7 @@ public class Drop implements Operate {
 
     @Override
     public void operate(VirtualMachine vm, Dump args) {
-        vm.popU64();
+        vm.operandStack.popU64();
     }
 
 }

@@ -15,8 +15,8 @@ public class I32Popcnt implements Operate {
 
     @Override
     public void operate(VirtualMachine vm, Dump args) {
-        U32 v = vm.popU32();
-        vm.pushU32(v.popcnt());
+        U32 v = vm.operandStack.popU32();
+        vm.operandStack.pushU32(v.popcnt());
     }
 
 }

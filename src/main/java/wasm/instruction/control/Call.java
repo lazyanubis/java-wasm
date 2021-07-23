@@ -22,10 +22,10 @@ public class Call implements Operate {
         // 暂时直接默认所有方法都是导入方法，并且本地直接实现
         System.out.println(vm.getModule().importSections[index].name);
         switch (vm.getModule().importSections[index].name) {
-            case "assert_true": assertEq(vm.popBool(), true); break;
-            case "assert_false": assertEq(vm.popBool(), false); break;
-            case "assert_eq_i32": assertEq(vm.popU32(), vm.popU32()); break;
-            case "assert_eq_i64": assertEq(vm.popU64(), vm.popU64()); break;
+            case "assert_true": assertEq(vm.operandStack.popBool(), true); break;
+            case "assert_false": assertEq(vm.operandStack.popBool(), false); break;
+            case "assert_eq_i32": assertEq(vm.operandStack.popU32(), vm.operandStack.popU32()); break;
+            case "assert_eq_i64": assertEq(vm.operandStack.popU64(), vm.operandStack.popU64()); break;
             default:
                 throw new RuntimeException("what a " + vm.getModule().importSections[index].name);
         }

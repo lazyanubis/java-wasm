@@ -15,9 +15,9 @@ public class I32Ne implements Operate {
 
     @Override
     public void operate(VirtualMachine vm, Dump args) {
-        U32 v2 = vm.popU32();
-        U32 v1 = vm.popU32();
-        vm.pushBool(!v1.equals(v2));
+        U32 v2 = vm.operandStack.popU32();
+        U32 v1 = vm.operandStack.popU32();
+        vm.operandStack.pushBool(!v1.equals(v2));
     }
 
 }

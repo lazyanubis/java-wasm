@@ -14,9 +14,9 @@ public class I64GeS implements Operate {
 
     @Override
     public void operate(VirtualMachine vm, Dump args) {
-        long v2 = vm.popS64();
-        long v1 = vm.popS64();
-        vm.pushBool(v1 >= v2);
+        long v2 = vm.operandStack.popS64();
+        long v1 = vm.operandStack.popS64();
+        vm.operandStack.pushBool(v1 >= v2);
     }
 
 }

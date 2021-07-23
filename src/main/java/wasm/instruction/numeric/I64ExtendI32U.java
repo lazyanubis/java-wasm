@@ -15,7 +15,7 @@ public class I64ExtendI32U implements Operate {
 
     @Override
     public void operate(VirtualMachine vm, Dump args) {
-        vm.pushU64(new U64(vm.popU32()));
+        vm.operandStack.pushU64(new U64(vm.operandStack.popU32()));
     }
 
 }

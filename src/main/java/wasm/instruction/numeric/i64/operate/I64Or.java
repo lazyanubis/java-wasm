@@ -16,9 +16,9 @@ public class I64Or implements Operate {
 
     @Override
     public void operate(VirtualMachine vm, Dump args) {
-        U64 v2 = vm.popU64();
-        U64 v1 = vm.popU64();
-        vm.pushU64(NumberUtil.or(v1, v2));
+        U64 v2 = vm.operandStack.popU64();
+        U64 v1 = vm.operandStack.popU64();
+        vm.operandStack.pushU64(NumberUtil.or(v1, v2));
     }
 
 }

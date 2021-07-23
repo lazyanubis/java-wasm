@@ -21,7 +21,7 @@ public class I32Store16 implements Operate {
 
         DumpMemory a = (DumpMemory) args;
 
-        U32 v = vm.popU32();
+        U32 v = vm.operandStack.popU32();
         byte[] bytes = v.getBytes();
 
         System.err.println("So, which memory ?");
