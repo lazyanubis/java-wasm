@@ -24,6 +24,9 @@ public class Main {
 //                "ch05_num2.wasm",
 //                "ch05_param.wasm",
 
+//                "ch06_mem.wasm",
+                "ch06_mem2.wasm",
+
         };
         for (String n : names) {
             System.out.println("=============== " + n + " ===============");
@@ -32,8 +35,10 @@ public class Main {
         }
 
 //        VirtualMachine.execStartFunction(WasmReader.readByName("ch05_cz.wasm"));
-        VirtualMachine.execStartFunction(WasmReader.readByName("ch05_num2.wasm"));
+//        VirtualMachine.execStartFunction(WasmReader.readByName("ch05_num2.wasm"));
 //        VirtualMachine.execStartFunction(WasmReader.readByName("ch05_param.wasm"));
+
+        VirtualMachine.execStartFunction(WasmReader.readByName("ch06_mem2.wasm"));
 
     }
 

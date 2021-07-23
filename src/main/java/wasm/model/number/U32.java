@@ -64,7 +64,7 @@ public class U32 implements Dump, Comparable<U32> {
         assert null != bytes;
 
         for (int i = 0; i < 4; i++) {
-            this.bytes[3 - i] = (bytes.length - 1 - i < bytes.length) ? bytes[bytes.length - 1 - i] : 0;
+            this.bytes[3 - i] = (0 <= bytes.length - 1 - i) ? bytes[bytes.length - 1 - i] : 0;
         }
     }
 

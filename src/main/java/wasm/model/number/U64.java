@@ -65,7 +65,7 @@ public class U64 implements Dump, Comparable<U64> {
         assert null != bytes;
 
         for (int i = 0; i < 8; i++) {
-            this.bytes[7 - i] = (bytes.length - 1 - i < bytes.length) ? bytes[bytes.length - 1 - i] : 0;
+            this.bytes[7 - i] = (0 <= bytes.length - 1 - i) ? bytes[bytes.length - 1 - i] : 0;
         }
     }
 
