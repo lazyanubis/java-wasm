@@ -1,30 +1,20 @@
-package wasm.util;
+package wasm.core.util;
 
 import wasm.model2.number.U32;
 import wasm.model2.number.U64;
 
 import java.math.BigInteger;
-import java.util.HashMap;
-import java.util.Map;
 
+import static wasm.core.util.NumberTransform.*;
+
+/**
+ * 数字符号工具
+ */
 public class NumberUtil {
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    /**
+     * 前置0计数
+     */
     public static int clz(byte[] bytes) {
         String v = toBinaryArray(bytes);
         int count = 0;
@@ -38,6 +28,9 @@ public class NumberUtil {
         return count;
     }
 
+    /**
+     * 后置0计数
+     */
     public static int ctz(byte[] bytes) {
         String v = toBinaryArray(bytes);
         int count = 0;
@@ -51,6 +44,9 @@ public class NumberUtil {
         return count;
     }
 
+    /**
+     * 1计数
+     */
     public static int popcnt(byte[] bytes) {
         String v = toBinaryArray(bytes);
         int count = 0;
@@ -62,40 +58,7 @@ public class NumberUtil {
         return count;
     }
 
-    private static byte[] parse(BigInteger value, int size) {
-        byte[] bytes = new byte[size];
-        if (value.compareTo(BigInteger.ZERO) == 0) { return bytes; }
 
-        StringBuilder sb = new StringBuilder(value.abs().toString(2));
-        while (sb.length() < size * 8) {
-            sb.insert(0, "0");
-        }
-        sb = new StringBuilder(sb.substring(sb.length() - size * 8));
-        if (value.compareTo(BigInteger.ZERO) < 0) {
-            // 取反
-            for (int i = 0; i < sb.length(); i++) {
-                sb.replace(i, i + 1, sb.charAt(i) == '0' ? "1" : "0");
-            }
-            // 加1
-            int last = 1;
-            for (int i = sb.length() - 1; 0 <= i; i--) {
-                int c = sb.charAt(i) == '0' ? 0 : 1;
-                int v = last + c;
-                last = v > 1 ? 1 : 0;
-                v = v % 2;
-                sb.replace(i, i + 1, v == 0 ? "0" : "1");
-                if (last == 0) {
-                    break;
-                }
-            }
-        }
-
-        for (int i = 0; i < size; i++) {
-            bytes[i] = parseByteByBinary(sb.substring(i * 8, i * 8 + 8));
-        }
-
-        return bytes;
-    }
 
     public static U32 add(U32 a, U32 b) {
         return new U32(parse(a.parseBigInteger().add(b.parseBigInteger()), 4));
@@ -225,19 +188,7 @@ public class NumberUtil {
 
 
 
-    private static String zeros(int length) {
-        if (length < 0) { throw new RuntimeException("what a length? " + length); }
-        if (length == 0) { return ""; }
-        if (length <= 64) { return ZEROS.get(length); }
-        return zeros(64) + zeros(length - 64);
-    }
 
-    private static String ones(int length) {
-        if (length < 0) { throw new RuntimeException("what a length? " + length); }
-        if (length == 0) { return ""; }
-        if (length <= 64) { return ONES.get(length); }
-        return ones(64) + ones(length - 64);
-    }
 
     public static U32 shl(U32 a, U32 b) {
         int length = b.parseBigInteger().remainder(BigInteger.valueOf(32)).intValue();

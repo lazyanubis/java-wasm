@@ -3,6 +3,9 @@ package wasm.core.util;
 import static wasm.core.util.NumberTransform.parseByteByBinary;
 import static wasm.core.util.NumberTransform.toBinary;
 
+/**
+ * Leb128编码解析
+ */
 public class Leb128 {
 
     /**

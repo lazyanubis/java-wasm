@@ -1,5 +1,6 @@
 package wasm.core.util;
 
+import java.math.BigInteger;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -140,6 +141,37 @@ public class NumberTransform {
         return ZEROS.get(16 - v.length()) + v;
     }
 
+    /**
+     * 将大数解析为字节数组
+     */
+    static byte[] parse(BigInteger value, int size) {
+        byte[] bytes = new byte[size];
+        if (value.compareTo(BigInteger.ZERO) == 0) { return bytes; }
 
+        StringBuilder sb = new StringBuilder(value.abs().toString(2)); // 二进制形式
+        while (sb.length() < size * 8) { sb.insert(0, "0"); } // 补全0
+        sb = new StringBuilder(sb.substring(sb.length() - size * 8));
+        if (value.compareTo(BigInteger.ZERO) < 0) {
+            // 所有位取反
+            for (int i = 0; i < sb.length(); i++) {
+                sb.replace(i, i + 1, sb.charAt(i) == '0' ? "1" : "0");
+            }
+            // 加1
+            int last = 1;
+            for (int i = sb.length() - 1; 0 <= i; i--) {
+                int c = sb.charAt(i) == '0' ? 0 : 1; // 当前位的值
+                int v = last + c;
+                last = v > 1 ? 1 : 0; // 进位
+                v = v % 2; // 当前位
+                sb.replace(i, i + 1, v == 0 ? "0" : "1"); // 插入当前位
+                if (last == 0) { break; } // 若不进位 则跳出
+            }
+        }
+
+        for (int i = 0; i < size; i++) {
+            bytes[i] = parseByteByBinary(sb.substring(i * 8, i * 8 + 8));
+        }
+        return bytes;
+    }
 
 }
