@@ -1,7 +1,7 @@
 package wasm.core.util;
 
-import wasm.model2.number.U32;
-import wasm.model2.number.U64;
+import wasm.core.numeric.U32;
+import wasm.core.numeric.U64;
 
 import java.math.BigInteger;
 

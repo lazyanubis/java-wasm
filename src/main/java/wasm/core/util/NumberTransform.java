@@ -23,7 +23,7 @@ public class NumberTransform {
     /**
      * 取得全0字符串
      */
-    static String zeros(int length) {
+    public static String zeros(int length) {
         assert 0 <= length;
         assert length <= 64;
         return ZEROS.get(length);
@@ -32,7 +32,7 @@ public class NumberTransform {
     /**
      * 取得全1字符串
      */
-    static String ones(int length) {
+    public static String ones(int length) {
         assert 0 <= length;
         assert length <= 64;
         return ONES.get(length);
