@@ -1,6 +1,6 @@
 package wasm.util;
 
-import wasm.model.number.U64;
+import wasm.model2.number.U64;
 
 import static wasm.util.NumberUtil.toBinary;
 
