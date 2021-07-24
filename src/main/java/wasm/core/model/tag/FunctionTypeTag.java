@@ -1,8 +1,8 @@
-package wasm.model.tag;
+package wasm.core.model.tag;
 
-import wasm.model.type.Type;
+import wasm.model2.type.Type;
 
-import static wasm.util.NumberUtil.toHex;
+import static wasm.core.util.NumberTransform.toHex;
 
 public class FunctionTypeTag implements Type {
 
@@ -15,6 +15,7 @@ public class FunctionTypeTag implements Type {
         this.name = name;
     }
 
+    // 块没有标签
     public static final FunctionTypeTag BLOCK_TYPE = new FunctionTypeTag((byte) 0x00, "blocktype");
 
     public static final FunctionTypeTag FUNCTION_TYPE = new FunctionTypeTag((byte) 0x60, "functype");

@@ -1,8 +1,8 @@
-package wasm.model.tag;
+package wasm.core.model.tag;
 
-import wasm.model.type.Type;
+import wasm.model2.type.Type;
 
-import static wasm.util.NumberUtil.toHex;
+import static wasm.core.util.NumberTransform.toHex;
 
 public class LimitsTag implements Type {
 
