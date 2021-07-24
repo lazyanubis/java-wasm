@@ -1,10 +1,10 @@
 package wasm.instruction2.control;
 
-import wasm.core.structure.ModuleInstance;
-import wasm.core.instruction.Instruction;
+import wasm.core2.structure.ModuleInstance;
+import wasm.core2.instruction.Instruction;
 import wasm.instruction2.dump.DumpBlock;
-import wasm.core.model.Dump;
-import wasm.core.model.section.FunctionType;
+import wasm.core2.model.Dump;
+import wasm.core2.model.section.FunctionType;
 
 public class Loop extends Block {
 

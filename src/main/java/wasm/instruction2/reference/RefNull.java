@@ -1,10 +1,10 @@
 package wasm.instruction2.reference;
 
-import wasm.core.structure.ModuleInstance;
-import wasm.core.structure.WasmReader;
-import wasm.core.instruction.Operate;
-import wasm.core.model.Dump;
-import wasm.core.model.type.ReferenceType;
+import wasm.core2.structure.ModuleInstance;
+import wasm.core2.structure.WasmReader;
+import wasm.core2.instruction.Operate;
+import wasm.core2.model.Dump;
+import wasm.core2.model.type.ReferenceType;
 
 public class RefNull implements Operate {
 

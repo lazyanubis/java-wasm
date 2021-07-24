@@ -1,9 +1,9 @@
 package wasm.instruction2.dump;
 
-import wasm.core.instruction.Action;
-import wasm.core.instruction.Expression;
-import wasm.core.model.Dump;
-import wasm.core.model.type.BlockType;
+import wasm.core2.instruction.Action;
+import wasm.core2.instruction.Expression;
+import wasm.core2.model.Dump;
+import wasm.core2.model.type.BlockType;
 
 public class DumpIfBlock implements Dump {
 

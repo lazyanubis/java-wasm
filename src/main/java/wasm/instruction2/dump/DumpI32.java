@@ -1,6 +1,6 @@
 package wasm.instruction2.dump;
 
-import wasm.core.model.Dump;
+import wasm.core2.model.Dump;
 
 public class DumpI32 implements Dump {
 

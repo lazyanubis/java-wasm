@@ -1,8 +1,8 @@
 package wasm.instruction2.dump;
 
-import wasm.core.model.Dump;
+import wasm.core2.model.Dump;
 
-import static wasm.core.util.NumberTransform.toHex;
+import static wasm.core2.util.NumberTransform.toHex;
 
 
 public class DumpByte implements Dump {

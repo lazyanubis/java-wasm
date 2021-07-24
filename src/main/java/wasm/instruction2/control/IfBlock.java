@@ -1,16 +1,16 @@
 package wasm.instruction2.control;
 
-import wasm.core.structure.ModuleInstance;
-import wasm.core.structure.WasmReader;
-import wasm.core.instruction.Expression;
-import wasm.core.instruction.Instruction;
-import wasm.core.instruction.Operate;
+import wasm.core2.structure.ModuleInstance;
+import wasm.core2.structure.WasmReader;
+import wasm.core2.instruction.Expression;
+import wasm.core2.instruction.Instruction;
+import wasm.core2.instruction.Operate;
 import wasm.instruction2.dump.DumpIfBlock;
-import wasm.core.model.Dump;
-import wasm.core.model.section.FunctionType;
-import wasm.core.model.type.BlockType;
+import wasm.core2.model.Dump;
+import wasm.core2.model.section.FunctionType;
+import wasm.core2.model.type.BlockType;
 
-import static wasm.core.util.ConstNumber.EXPRESSION_ELSE;
+import static wasm.core2.util.ConstNumber.EXPRESSION_ELSE;
 
 public class IfBlock implements Operate {
 

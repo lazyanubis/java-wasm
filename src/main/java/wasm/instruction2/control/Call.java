@@ -1,14 +1,14 @@
 package wasm.instruction2.control;
 
-import wasm.core.instruction.Instruction;
-import wasm.core.instruction.Operate;
-import wasm.core.model.Dump;
-import wasm.core.model.index.FunctionIndex;
-import wasm.core.model.section.CodeSection;
-import wasm.core.numeric.U64;
-import wasm.core.structure.Function;
-import wasm.core.structure.ModuleInstance;
-import wasm.core.structure.WasmReader;
+import wasm.core2.instruction.Instruction;
+import wasm.core2.instruction.Operate;
+import wasm.core2.model.Dump;
+import wasm.core2.model.index.FunctionIndex;
+import wasm.core2.model.section.CodeSection;
+import wasm.core2.numeric.U64;
+import wasm.core2.structure.Function;
+import wasm.core2.structure.ModuleInstance;
+import wasm.core2.structure.WasmReader;
 
 public class Call implements Operate {
 

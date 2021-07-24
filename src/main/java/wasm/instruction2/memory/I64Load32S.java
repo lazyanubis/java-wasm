@@ -1,12 +1,12 @@
 package wasm.instruction2.memory;
 
-import wasm.core.structure.ModuleInstance;
-import wasm.core.structure.WasmReader;
-import wasm.core.instruction.Operate;
+import wasm.core2.structure.ModuleInstance;
+import wasm.core2.structure.WasmReader;
+import wasm.core2.instruction.Operate;
 import wasm.instruction2.dump.DumpMemory;
-import wasm.core.model.Dump;
-import wasm.core.model.index.MemoryIndex;
-import wasm.core.numeric.U32;
+import wasm.core2.model.Dump;
+import wasm.core2.model.index.MemoryIndex;
+import wasm.core2.numeric.U32;
 
 public class I64Load32S implements Operate {
 

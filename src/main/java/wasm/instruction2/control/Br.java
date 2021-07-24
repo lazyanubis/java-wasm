@@ -1,12 +1,12 @@
 package wasm.instruction2.control;
 
-import wasm.core.structure.ControlFrame;
-import wasm.core.structure.ModuleInstance;
-import wasm.core.structure.WasmReader;
-import wasm.core.instruction.Instruction;
-import wasm.core.instruction.Operate;
-import wasm.core.model.Dump;
-import wasm.core.model.index.LabelIndex;
+import wasm.core2.structure.ControlFrame;
+import wasm.core2.structure.ModuleInstance;
+import wasm.core2.structure.WasmReader;
+import wasm.core2.instruction.Instruction;
+import wasm.core2.instruction.Operate;
+import wasm.core2.model.Dump;
+import wasm.core2.model.index.LabelIndex;
 
 public class Br implements Operate {
 

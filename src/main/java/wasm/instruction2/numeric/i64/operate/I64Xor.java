@@ -1,11 +1,11 @@
 package wasm.instruction2.numeric.i64.operate;
 
-import wasm.core.structure.ModuleInstance;
-import wasm.core.structure.WasmReader;
-import wasm.core.instruction.Operate;
-import wasm.core.model.Dump;
-import wasm.core.numeric.U64;
-import wasm.core.util.NumberUtil;
+import wasm.core2.structure.ModuleInstance;
+import wasm.core2.structure.WasmReader;
+import wasm.core2.instruction.Operate;
+import wasm.core2.model.Dump;
+import wasm.core2.numeric.U64;
+import wasm.core2.util.NumberUtil;
 
 public class I64Xor implements Operate {
 
