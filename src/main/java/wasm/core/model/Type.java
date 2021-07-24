@@ -1,4 +1,4 @@
-package wasm.model.type;
+package wasm.core.model;
 
 public interface Type {
 

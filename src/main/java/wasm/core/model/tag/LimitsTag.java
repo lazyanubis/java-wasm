@@ -1,6 +1,6 @@
 package wasm.core.model.tag;
 
-import wasm.model2.type.Type;
+import wasm.core.model.Type;
 
 import static wasm.core.util.NumberTransform.toHex;
 

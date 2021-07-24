@@ -1,8 +1,9 @@
-package wasm.model.type;
+package wasm.core.model.type;
 
-import wasm.model.Dump;
+import wasm.core.model.Dump;
+import wasm.core.model.Type;
 
-import static wasm.util.NumberUtil.toHex;
+import static wasm.core.util.NumberTransform.toHex;
 
 public class ReferenceType implements Type, Dump {
 

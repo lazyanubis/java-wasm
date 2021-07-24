@@ -1,6 +1,8 @@
-package wasm.model.type;
+package wasm.core.model.type;
 
-import static wasm.util.NumberUtil.toHex;
+import wasm.core.model.Type;
+
+import static wasm.core.util.NumberTransform.toHex;
 
 public class MutableType implements Type {
 
@@ -46,4 +48,5 @@ public class MutableType implements Type {
                 ", name='" + name + '\'' +
                 '}';
     }
+
 }

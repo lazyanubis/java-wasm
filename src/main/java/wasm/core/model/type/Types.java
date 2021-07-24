@@ -1,6 +1,7 @@
-package wasm.model.type;
+package wasm.core.model.type;
 
-import wasm.model.Dump;
+import wasm.core.model.Dump;
+import wasm.core.model.Type;
 
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
