@@ -12,9 +12,9 @@ public class MemoryIndex extends U32 {
         super(value);
     }
 
-    public static MemoryIndex of(U32 value) { return MemoryIndex.of(value); }
+    public static MemoryIndex of(U32 value) { return new MemoryIndex(value); }
 
-    public static MemoryIndex of(int value) { return MemoryIndex.of(value); }
+    public static MemoryIndex of(int value) { return new MemoryIndex(value); }
 
     public String dump(int index) {
         return "mem[" + index + "]: " + "value=" + super.toString();

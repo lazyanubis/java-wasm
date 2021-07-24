@@ -12,9 +12,9 @@ public class FunctionIndex extends U32 {
         super(value);
     }
 
-    public static FunctionIndex of(U32 value) { return FunctionIndex.of(value); }
+    public static FunctionIndex of(U32 value) { return new FunctionIndex(value); }
 
-    public static FunctionIndex of(int value) { return FunctionIndex.of(value); }
+    public static FunctionIndex of(int value) { return new FunctionIndex(value); }
 
     public String dump(int index) {
         return "FunctionIndex[" + index + "]: " + "value=" + super.toString();

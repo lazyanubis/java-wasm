@@ -12,9 +12,9 @@ public class TableIndex extends U32 {
         super(value);
     }
 
-    public static TableIndex of(U32 value) { return TableIndex.of(value); }
+    public static TableIndex of(U32 value) { return new TableIndex(value); }
 
-    public static TableIndex of(int value) { return TableIndex.of(value); }
+    public static TableIndex of(int value) { return new TableIndex(value); }
 
     public String dump(int index) {
         return "table[" + index + "]: " + "value=" + super.toString();
