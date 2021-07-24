@@ -4,7 +4,7 @@ import wasm.core2.structure.ModuleInstance;
 import wasm.core2.structure.WasmReader;
 import wasm.core2.instruction.Operate;
 import wasm.core2.model.Dump;
-import wasm.core2.numeric.U32;
+import wasm.core.numeric.U32;
 
 public class I32Extend16S implements Operate {
 
@@ -19,7 +19,7 @@ public class I32Extend16S implements Operate {
 
         byte sign = ((bytes[2] & 0x80) == 0) ? 0 : (byte)0xFF;
 
-        mi.pushS32(new U32(new byte[]{
+        mi.pushS32(U32.valueOf(new byte[]{
             sign, sign, bytes[2], bytes[3]
         }).intValue());
     }

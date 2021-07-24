@@ -1,12 +1,12 @@
 package wasm.core2.instance;
 
 import wasm.core2.model.section.MemoryType;
-import wasm.core2.numeric.U32;
-import wasm.core2.numeric.U64;
+import wasm.core.numeric.U32;
+import wasm.core.numeric.U64;
 import wasm.core2.structure.Memory;
 
-import static wasm.core2.util.ConstNumber.MEMORY_MAX_PAGE_COUNT;
-import static wasm.core2.util.ConstNumber.MEMORY_PAGE_SIZE;
+import static wasm.core.util.ConstNumber.MEMORY_MAX_PAGE_COUNT;
+import static wasm.core.util.ConstNumber.MEMORY_PAGE_SIZE;
 
 /**
  * 由于标准中每个内存页64KB，每次增加太大了，特别是每增加一页就多64KB
@@ -33,7 +33,7 @@ public class MemoryInstance implements Memory {
 
     @Override
     public U32 size() {
-        return new U32(this.data.length / MEMORY_PAGE_SIZE);
+        return U32.valueOf(this.data.length / MEMORY_PAGE_SIZE);
     }
 
     @Override
@@ -43,11 +43,11 @@ public class MemoryInstance implements Memory {
         int wanna = old.intValue() + grow.intValue();
 
         if (!type.check(wanna)) {
-            return new U32(-1);
+            return U32.valueOf(-1);
         }
 
         if (wanna > MEMORY_MAX_PAGE_COUNT) {
-            return new U32(-1);
+            return U32.valueOf(-1);
         }
 
         byte[] data = new byte[MEMORY_PAGE_SIZE * wanna];

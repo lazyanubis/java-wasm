@@ -1,7 +1,7 @@
 package wasm.core2.instance;
 
 import wasm.core2.model.section.TableType;
-import wasm.core2.numeric.U32;
+import wasm.core.numeric.U32;
 import wasm.core2.structure.Function;
 import wasm.core2.structure.Table;
 
@@ -24,7 +24,7 @@ public class TableInstance implements Table {
 
     @Override
     public U32 size() {
-        return new U32(elements.length);
+        return U32.valueOf(elements.length);
     }
 
     @Override

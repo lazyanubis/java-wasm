@@ -5,7 +5,7 @@ import wasm.core2.instruction.Operate;
 import wasm.core2.model.Dump;
 import wasm.core2.model.index.FunctionIndex;
 import wasm.core2.model.section.CodeSection;
-import wasm.core2.numeric.U64;
+import wasm.core.numeric.U64;
 import wasm.core2.structure.Function;
 import wasm.core2.structure.ModuleInstance;
 import wasm.core2.structure.WasmReader;
@@ -44,7 +44,7 @@ public class Call implements Operate {
 
         // 分配本地变量
         long length = code.localCount();
-        for (int i = 0; i < length; i++) { mi.pushU64(new U64(0)); }
+        for (int i = 0; i < length; i++) { mi.pushU64(U64.valueOf(0)); }
     }
 
     private void callExternalFunction(ModuleInstance mi, Function function) {

@@ -1,6 +1,6 @@
 package wasm.core2.model.section;
 
-import wasm.core2.numeric.U32;
+import wasm.core.numeric.U32;
 import wasm.core2.model.tag.LimitsTag;
 import wasm.core2.model.Limits;
 

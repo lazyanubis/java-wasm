@@ -1,7 +1,7 @@
 package wasm.core2.model.section;
 
-import wasm.core2.numeric.U16;
-import wasm.core2.numeric.U32;
+import wasm.core.numeric.U16;
+import wasm.core.numeric.U32;
 
 /**
  * Wasm定义是一个U32数字
@@ -24,8 +24,8 @@ public class Version {
     }
 
     public Version(U32 u32) {
-        this(new U16(new byte[]{ u32.getBytes()[0], u32.getBytes()[1]}),
-             new U16(new byte[]{ u32.getBytes()[2], u32.getBytes()[3]}));
+        this( U16.valueOf(new byte[]{ u32.getBytes()[0], u32.getBytes()[1]}),
+              U16.valueOf(new byte[]{ u32.getBytes()[2], u32.getBytes()[3]}));
     }
 
     public String value() {

@@ -5,7 +5,7 @@ import wasm.core2.structure.ModuleInstance;
 import wasm.core2.instruction.Expression;
 import wasm.core2.model.index.FunctionIndex;
 import wasm.core2.model.index.TableIndex;
-import wasm.core2.numeric.U32;
+import wasm.core.numeric.U32;
 import wasm.core2.model.type.ReferenceType;
 
 import java.util.stream.Collectors;
@@ -55,7 +55,7 @@ public class ElementSection {
             // 初始化
             for (int i = 0; i < functionIndices.length; i++) {
                 // 默认是0 从初始化的函数表中取出对应的函数
-                mi.getTable(TableIndex.of(0)).setElement(new U32(offset + i), mi.getFunction(functionIndices[i]));
+                mi.getTable(TableIndex.of(0)).setElement(U32.valueOf(offset + i), mi.getFunction(functionIndices[i]));
             }
         }
     }
@@ -167,7 +167,7 @@ public class ElementSection {
                 mi.executeExpression(expressionsArray[i]);
                 U32 index = mi.popU32();
                 // 默认是0 从初始化的函数表中取出对应的函数
-                mi.getTable(TableIndex.of(0)).setElement(new U32(offset + i), mi.getFunction(new FunctionIndex(index)));
+                mi.getTable(TableIndex.of(0)).setElement(U32.valueOf(offset + i), mi.getFunction(new FunctionIndex(index)));
             }
         }
     }

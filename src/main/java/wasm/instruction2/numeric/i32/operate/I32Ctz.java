@@ -4,7 +4,7 @@ import wasm.core2.structure.ModuleInstance;
 import wasm.core2.structure.WasmReader;
 import wasm.core2.instruction.Operate;
 import wasm.core2.model.Dump;
-import wasm.core2.numeric.U32;
+import wasm.core.numeric.U32;
 
 public class I32Ctz implements Operate {
 
@@ -16,7 +16,7 @@ public class I32Ctz implements Operate {
     @Override
     public void operate(ModuleInstance mi, Dump args) {
         U32 v = mi.popU32();
-        mi.pushU32(new U32(v.ctz()));
+        mi.pushU32(U32.valueOf(v.ctz()));
     }
 
 }

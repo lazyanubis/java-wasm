@@ -6,7 +6,7 @@ import wasm.core2.model.Dump;
 import wasm.core2.model.index.TableIndex;
 import wasm.core2.model.index.TypeIndex;
 import wasm.core2.model.section.FunctionType;
-import wasm.core2.numeric.U32;
+import wasm.core.numeric.U32;
 import wasm.core2.structure.Function;
 import wasm.core2.structure.ModuleInstance;
 import wasm.core2.structure.WasmReader;
@@ -32,7 +32,7 @@ public class CallIndirect implements Operate {
             throw new RuntimeException("to large");
         }
 
-        Function function = mi.getTable(TableIndex.of(0)).getElement(new U32(i));
+        Function function = mi.getTable(TableIndex.of(0)).getElement(U32.valueOf(i));
 
         TypeIndex typeIndex = d.typeIndex;
         FunctionType functionType = mi.getModuleInfo().typeSections[typeIndex.intValue()];

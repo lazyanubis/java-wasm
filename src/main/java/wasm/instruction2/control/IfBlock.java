@@ -10,7 +10,7 @@ import wasm.core2.model.Dump;
 import wasm.core2.model.section.FunctionType;
 import wasm.core2.model.type.BlockType;
 
-import static wasm.core2.util.ConstNumber.EXPRESSION_ELSE;
+import static wasm.core.util.ConstNumber.EXPRESSION_ELSE;
 
 public class IfBlock implements Operate {
 

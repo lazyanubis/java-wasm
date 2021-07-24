@@ -7,8 +7,8 @@ import wasm.core2.model.index.GlobalIndex;
 import wasm.core2.model.index.MemoryIndex;
 import wasm.core2.model.index.TableIndex;
 import wasm.core2.model.section.FunctionType;
-import wasm.core2.numeric.U32;
-import wasm.core2.numeric.U64;
+import wasm.core.numeric.U32;
+import wasm.core.numeric.U64;
 import wasm.core2.structure.*;
 import wasm.instruction2.dump.DumpMemory;
 
@@ -22,7 +22,7 @@ public class Module implements ModuleInstance {
 
     private final OperandStack operandStack = new OperandStack();   // 操作数栈
     private final ControlStack controlStack = new ControlStack();   // 控制块栈
-    private U32 local0Index;                                        // 如果是函数调用，记录函数可用部分的起始位置
+    protected U32 local0Index;                                        // 如果是函数调用，记录函数可用部分的起始位置
 
     public Module(ModuleInfo moduleInfo) {
         this.moduleInfo = moduleInfo;
@@ -263,7 +263,7 @@ public class Module implements ModuleInstance {
 //        ControlFrame frame = new ControlFrame(bp, instruction, functionType, expression);
 //        controlStack.push(frame);
 //        if (instruction == Instruction.CALL) {
-//            local0Index = new U32(bp);
+//            local0Index = U32.valueOf(bp);
 //        }
 //    }
 //
@@ -281,7 +281,7 @@ public class Module implements ModuleInstance {
 //        pushU64s(results);
 //        if (frame.instruction == Instruction.CALL && controlStack.depth() > 0) {
 //            ControlFrame callFrame = controlStack.topCallFrame(new int[1]);
-//            local0Index = new U32(callFrame.bp);
+//            local0Index = U32.valueOf(callFrame.bp);
 //        }
 //    }
 //
@@ -397,7 +397,7 @@ public class Module implements ModuleInstance {
 //    private U64 getOffset(DumpMemory args) {
 //        U32 offset = args.getOffset();
 //        U32 immediate = popU32();
-//        return NumberUtil.add(new U64(offset), new U64(immediate));
+//        return NumberUtil.add(U64.valueOf(offset), U64.valueOf(immediate));
 //    }
 //
 //    public byte[] readBytes(MemoryIndex index, DumpMemory args, int size) {

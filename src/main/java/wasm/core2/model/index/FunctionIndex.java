@@ -1,6 +1,6 @@
 package wasm.core2.model.index;
 
-import wasm.core2.numeric.U32;
+import wasm.core.numeric.U32;
 
 public class FunctionIndex extends U32 {
 

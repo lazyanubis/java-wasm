@@ -4,7 +4,7 @@ import wasm.core2.structure.ModuleInstance;
 import wasm.core2.structure.WasmReader;
 import wasm.core2.instruction.Operate;
 import wasm.core2.model.Dump;
-import wasm.core2.numeric.U64;
+import wasm.core.numeric.U64;
 
 public class I64Extend16S implements Operate {
     @Override
@@ -18,7 +18,7 @@ public class I64Extend16S implements Operate {
 
         byte sign = ((bytes[6] & 0x80) == 0) ? 0 : (byte)0xFF;
 
-        mi.pushS64(new U64(new byte[]{
+        mi.pushS64(U64.valueOf(new byte[]{
             sign, sign, sign, sign,
             sign, sign, bytes[6], bytes[7]
         }).longValue());

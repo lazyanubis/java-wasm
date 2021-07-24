@@ -1,7 +1,7 @@
 package wasm.instruction2.dump;
 
 import wasm.core2.model.Dump;
-import wasm.core2.numeric.U32;
+import wasm.core.numeric.U32;
 
 public class DumpMemory implements Dump {
 

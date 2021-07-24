@@ -4,7 +4,7 @@ import wasm.core2.structure.ModuleInstance;
 import wasm.core2.structure.WasmReader;
 import wasm.core2.instruction.Operate;
 import wasm.core2.model.Dump;
-import wasm.core2.numeric.U64;
+import wasm.core.numeric.U64;
 
 public class I64Popcnt implements Operate {
 
@@ -16,7 +16,7 @@ public class I64Popcnt implements Operate {
     @Override
     public void operate(ModuleInstance mi, Dump args) {
         U64 v = mi.popU64();
-        mi.pushU64(new U64(v.popcnt()));
+        mi.pushU64(U64.valueOf(v.popcnt()));
     }
 
 }

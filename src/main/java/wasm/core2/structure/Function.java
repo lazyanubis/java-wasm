@@ -2,7 +2,7 @@ package wasm.core2.structure;
 
 import wasm.core2.model.section.CodeSection;
 import wasm.core2.model.section.FunctionType;
-import wasm.core2.numeric.U64;
+import wasm.core.numeric.U64;
 
 public interface Function {
 

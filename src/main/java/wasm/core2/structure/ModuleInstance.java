@@ -7,8 +7,8 @@ import wasm.core2.model.index.GlobalIndex;
 import wasm.core2.model.index.MemoryIndex;
 import wasm.core2.model.index.TableIndex;
 import wasm.core2.model.section.FunctionType;
-import wasm.core2.numeric.U32;
-import wasm.core2.numeric.U64;
+import wasm.core.numeric.U32;
+import wasm.core.numeric.U64;
 import wasm.instruction2.dump.DumpMemory;
 
 /**

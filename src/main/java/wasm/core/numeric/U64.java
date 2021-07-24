@@ -1,4 +1,4 @@
-package wasm.core2.numeric;
+package wasm.core.numeric;
 
 import java.math.BigInteger;
 import java.util.Arrays;
@@ -9,15 +9,15 @@ public class U64 implements USize<U64> {
 
     private final byte[] bytes;
 
-    public U64(byte[] bytes) {
+    protected U64(byte[] bytes) {
         this.bytes = USize.of(bytes, 8);
     }
 
-    public U64(String value, int radix) {
+    protected U64(String value, int radix) {
         this.bytes = USize.of(value, radix, 8);
     }
 
-    public U64(int value) {
+    protected U64(int value) {
         this.bytes = new byte[]{
             0, 0, 0, 0,
             (byte) ((value & 0xFF000000) >> 24),
@@ -27,7 +27,7 @@ public class U64 implements USize<U64> {
         };
     }
 
-    public U64(long value) {
+    protected U64(long value) {
         this.bytes = new byte[8];
 
         String s = Long.toHexString(value).toUpperCase();
@@ -54,10 +54,10 @@ public class U64 implements USize<U64> {
         }
     }
 
-    public U64(U8 value) { this(value.getBytes()); }
-    public U64(U16 value) { this(value.getBytes()); }
-    public U64(U32 value) { this(value.getBytes()); }
-    public U64(U64 value) { this(value.bytes); }
+    protected U64(U8 value) { this(value.getBytes()); }
+    protected U64(U16 value) { this(value.getBytes()); }
+    protected U64(U32 value) { this(value.getBytes()); }
+    protected U64(U64 value) { this(value.bytes); }
 
     public static U64 valueOf(byte[] bytes) { return new U64(bytes); }
     public static U64 valueOf(String value, int radix) { return new U64(value, radix); }
@@ -105,9 +105,9 @@ public class U64 implements USize<U64> {
         return new BigInteger(bytes);
     }
 
-    public final U8 u8() { return new U8(this.bytes); }
-    public final U16 u16() { return new U16(this.bytes); }
-    public final U32 u32() { return new U32(this.bytes); }
+    public final U8 u8() { return U8.valueOf(this.bytes); }
+    public final U16 u16() { return U16.valueOf(this.bytes); }
+    public final U32 u32() { return U32.valueOf(this.bytes); }
 
     @Override
     public final String toHexString() {

@@ -6,8 +6,8 @@ import wasm.core2.instruction.Operate;
 import wasm.instruction2.dump.DumpMemory;
 import wasm.core2.model.Dump;
 import wasm.core2.model.index.MemoryIndex;
-import wasm.core2.numeric.U32;
-import wasm.core2.numeric.U64;
+import wasm.core.numeric.U32;
+import wasm.core.numeric.U64;
 
 public class I64Load8U implements Operate {
 
@@ -23,9 +23,9 @@ public class I64Load8U implements Operate {
         DumpMemory a = (DumpMemory) args;
 
         // System.err.println("So, which memory ?");
-        byte[] bytes = mi.readBytes(new MemoryIndex(new U32(0)), a, 1);
+        byte[] bytes = mi.readBytes(new MemoryIndex(U32.valueOf(0)), a, 1);
 
-        mi.pushU64(new U64(bytes[0] & 0x00FF));
+        mi.pushU64(U64.valueOf(bytes[0] & 0x00FF));
     }
 
 }

@@ -1,7 +1,7 @@
 package wasm.core2.structure;
 
 import wasm.core2.model.section.TableType;
-import wasm.core2.numeric.U32;
+import wasm.core.numeric.U32;
 
 public interface Table {
 

@@ -3,7 +3,7 @@ package wasm.core2.instance;
 import wasm.core2.instruction.Instruction;
 import wasm.core2.model.section.CodeSection;
 import wasm.core2.model.section.FunctionType;
-import wasm.core2.numeric.U64;
+import wasm.core.numeric.U64;
 import wasm.core2.structure.Function;
 import wasm.core2.structure.ModuleInstance;
 import wasm.instruction2.control.Call;
@@ -53,7 +53,7 @@ public class FunctionInstance implements Function {
         return codeSection;
     }
 
-    private U64[] safeCall(ModuleInstance instance, U64[] args) {
+    protected U64[] safeCall(ModuleInstance instance, U64[] args) {
         pushArgs(instance, args);
         ((Call) Instruction.CALL.operate).callFunction(instance, this);
         if (null == function) { instance.loop(); }
@@ -68,7 +68,7 @@ public class FunctionInstance implements Function {
         }
     }
 
-    private U64[] popResults(ModuleInstance instance) {
+    protected U64[] popResults(ModuleInstance instance) {
         U64[] results = new U64[type.results.length];
         for (int i = results.length - 1; 0 <= i; i--) {
             results[i] = instance.popU64();

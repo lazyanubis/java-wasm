@@ -2,7 +2,7 @@ package wasm.instruction2.dump;
 
 import wasm.core2.model.Dump;
 import wasm.core2.model.index.LabelIndex;
-import wasm.core2.numeric.U32;
+import wasm.core.numeric.U32;
 
 import java.util.stream.Collectors;
 import java.util.stream.Stream;

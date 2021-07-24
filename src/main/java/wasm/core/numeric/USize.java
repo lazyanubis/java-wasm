@@ -1,4 +1,4 @@
-package wasm.core2.numeric;
+package wasm.core.numeric;
 
 import wasm.core2.model.Dump;
 

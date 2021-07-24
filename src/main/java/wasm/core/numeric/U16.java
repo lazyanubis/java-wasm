@@ -1,4 +1,4 @@
-package wasm.core2.numeric;
+package wasm.core.numeric;
 
 import java.math.BigInteger;
 import java.util.Arrays;
@@ -10,32 +10,32 @@ public class U16 implements USize<U16> {
 
     private final byte[] bytes;
 
-    public U16(byte[] bytes) {
+    protected U16(byte[] bytes) {
         this.bytes = USize.of(bytes, 2);
     }
 
-    public U16(String value, int radix) {
+    protected U16(String value, int radix) {
         this.bytes = USize.of(value, radix, 2);
     }
 
-    public U16(int value) {
+    protected U16(int value) {
         this.bytes = new byte[]{
             (byte) ((value & 0xFF00) >> 8),
             (byte) value
         };
     }
 
-    public U16(long value) {
+    protected U16(long value) {
         this.bytes = new byte[]{
             (byte) ((value & 0xFF00) >> 8),
             (byte) value
         };
     }
 
-    public U16(U8 value) { this(value.getBytes()); }
-    public U16(U16 value) { this(value.bytes); }
-    public U16(U32 value) { this(value.getBytes()); }
-    public U16(U64 value) { this(value.getBytes()); }
+    protected U16(U8 value) { this(value.getBytes()); }
+    protected U16(U16 value) { this(value.bytes); }
+    protected U16(U32 value) { this(value.getBytes()); }
+    protected U16(U64 value) { this(value.getBytes()); }
 
     public static U16 valueOf(byte[] bytes) { return new U16(bytes); }
     public static U16 valueOf(String value, int radix) { return new U16(value, radix); }
@@ -79,9 +79,9 @@ public class U16 implements USize<U16> {
         return new BigInteger(bytes);
     }
 
-    public final U8 u8() { return new U8(this.bytes); }
-    public final U32 u32() { return new U32(this.bytes); }
-    public final U64 u64() { return new U64(this.bytes); }
+    public final U8 u8() { return U8.valueOf(this.bytes); }
+    public final U32 u32() { return U32.valueOf(this.bytes); }
+    public final U64 u64() { return U64.valueOf(this.bytes); }
 
     @Override
     public final String toHexString() {

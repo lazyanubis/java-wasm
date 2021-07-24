@@ -11,8 +11,8 @@ import wasm.core2.instruction.Instruction;
 import wasm.core2.model.describe.ExportDescribe;
 import wasm.core2.model.describe.ImportDescribe;
 import wasm.core2.model.index.*;
-import wasm.core2.numeric.U32;
-import wasm.core2.numeric.U64;
+import wasm.core.numeric.U32;
+import wasm.core.numeric.U64;
 import wasm.core2.model.tag.FunctionTypeTag;
 import wasm.core2.model.tag.LimitsTag;
 import wasm.core2.model.tag.PortTag;
@@ -22,7 +22,7 @@ import wasm.core2.util.Leb128;
 import java.util.ArrayList;
 import java.util.List;
 
-import static wasm.core2.util.ConstNumber.*;
+import static wasm.core.util.ConstNumber.*;
 
 public class WasmReader {
 
@@ -142,7 +142,7 @@ public class WasmReader {
         if (data.length < 4) {
             throw new RuntimeException("unexpected end of section or function");
         }
-        U32 u32 = new U32(new byte[]{data[3], data[2], data[1], data[0]});
+        U32 u32 = U32.valueOf(new byte[]{data[3], data[2], data[1], data[0]});
         drop(4);
         return u32;
     }
@@ -150,25 +150,25 @@ public class WasmReader {
     public U32 readLeb128U32() {
         Leb128.Result r = Leb128.decodeVarUint(data, 32);
         drop(r.length);
-        return new U32(r.bytes);
+        return U32.valueOf(r.bytes);
     }
 
     public int readLeb128S32() {
         Leb128.Result r = Leb128.decodeVarInt(data, 32);
         drop(r.length);
-        return new U32(r.bytes).intValue();
+        return U32.valueOf(r.bytes).intValue();
     }
 
     public U64 readLeb128U64() {
         Leb128.Result r = Leb128.decodeVarInt(data, 64);
         drop(r.length);
-        return new U64(r.bytes);
+        return U64.valueOf(r.bytes);
     }
 
     public long readLeb128S64() {
         Leb128.Result r = Leb128.decodeVarInt(data, 64);
         drop(r.length);
-        return new U64(r.bytes).longValue();
+        return U64.valueOf(r.bytes).longValue();
     }
 
     public byte[] readBytes() {
@@ -585,7 +585,7 @@ public class WasmReader {
         } else {
             Leb128.Result s = Leb128.decodeVarInt(data, 33);
             drop(s.length);
-            s33 = new U64(s.bytes).longValue();
+            s33 = U64.valueOf(s.bytes).longValue();
         }
         return new BlockType(valueType, s33);
     }

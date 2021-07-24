@@ -6,7 +6,7 @@ import wasm.core2.instruction.Instruction;
 import wasm.core2.instruction.Operate;
 import wasm.core2.model.Dump;
 import wasm.core2.model.index.LabelIndex;
-import wasm.core2.numeric.U32;
+import wasm.core.numeric.U32;
 
 public class Return implements Operate {
 
@@ -21,6 +21,6 @@ public class Return implements Operate {
 
         mi.topCallFrame(index);
 
-        Instruction.BR.operate(mi, new LabelIndex(new U32(index[0])));
+        Instruction.BR.operate(mi, new LabelIndex(U32.valueOf(index[0])));
     }
 }
