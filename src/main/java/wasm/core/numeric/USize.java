@@ -30,6 +30,13 @@ public interface USize<T> extends Dump, Comparable<T> {
     String toBinaryString();
 
 
+    int clz();
+
+    int ctz();
+
+    int popcnt();
+
+
     /**
      * 将字符数组格式化对应长度字节数组
      */
@@ -41,7 +48,7 @@ public interface USize<T> extends Dump, Comparable<T> {
         byte[] bs = new byte[size];
 
         for (int i = size - 1; 0 <= i; i--) {
-            int index = bytes.length - 1 - i;
+            int index = bytes.length - size + i;
             if (index < 0) { break; }
             bs[i] = bytes[index];
         }
@@ -101,6 +108,52 @@ public interface USize<T> extends Dump, Comparable<T> {
      */
     static BigInteger parseUBigInteger(byte[] bytes, boolean bool) {
         return new BigInteger(bool ? 1 : 0, bytes);
+    }
+
+    /**
+     * 前置0计数
+     */
+    static int clz(byte[] bytes) {
+        String v = toBinaryArray(bytes);
+        int count = 0;
+        for (int i = 0; i < v.length(); i++) {
+            if (v.charAt(i) == '0') {
+                count++;
+            } else {
+                break;
+            }
+        }
+        return count;
+    }
+
+    /**
+     * 后置0计数
+     */
+    static int ctz(byte[] bytes) {
+        String v = toBinaryArray(bytes);
+        int count = 0;
+        for (int i = v.length() - 1; 0 <= i; i--) {
+            if (v.charAt(i) == '0') {
+                count++;
+            } else {
+                break;
+            }
+        }
+        return count;
+    }
+
+    /**
+     * 1计数
+     */
+    static int popcnt(byte[] bytes) {
+        String v = toBinaryArray(bytes);
+        int count = 0;
+        for (int i = 0; i < v.length(); i++) {
+            if (v.charAt(i) != '0') {
+                count++;
+            }
+        }
+        return count;
     }
 
 }
