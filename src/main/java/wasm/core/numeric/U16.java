@@ -127,7 +127,7 @@ public class U16 implements USize<U16> {
     }
 
     @Override
-    public int hashCode() {
+    public final int hashCode() {
         return Arrays.hashCode(bytes);
     }
 

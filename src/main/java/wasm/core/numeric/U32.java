@@ -132,7 +132,7 @@ public class U32 implements USize<U32> {
     }
 
     @Override
-    public int hashCode() {
+    public final int hashCode() {
         return Arrays.hashCode(bytes);
     }
 

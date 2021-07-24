@@ -112,7 +112,7 @@ public class U8 implements USize<U8> {
     }
 
     @Override
-    public boolean equals(Object o) {
+    public final boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         U8 u8 = (U8) o;
@@ -120,7 +120,7 @@ public class U8 implements USize<U8> {
     }
 
     @Override
-    public int hashCode() {
+    public final int hashCode() {
         return Arrays.hashCode(bytes);
     }
 
