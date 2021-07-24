@@ -3,7 +3,7 @@ package wasm.instruction2.control;
 import wasm.core2.instruction.Instruction;
 import wasm.core2.instruction.Operate;
 import wasm.core2.model.Dump;
-import wasm.core2.model.index.FunctionIndex;
+import wasm.core.model.index.FunctionIndex;
 import wasm.core2.model.section.CodeSection;
 import wasm.core.numeric.U64;
 import wasm.core2.structure.Function;

@@ -5,7 +5,7 @@ import wasm.core2.structure.WasmReader;
 import wasm.core2.instruction.Operate;
 import wasm.instruction2.dump.DumpMemory;
 import wasm.core2.model.Dump;
-import wasm.core2.model.index.MemoryIndex;
+import wasm.core.model.index.MemoryIndex;
 import wasm.core.numeric.U32;
 
 public class I32Load8S implements Operate {
@@ -22,7 +22,7 @@ public class I32Load8S implements Operate {
         DumpMemory a = (DumpMemory) args;
 
         // System.err.println("So, which memory ?");
-        byte[] bytes = mi.readBytes(new MemoryIndex(U32.valueOf(0)), a, 1);
+        byte[] bytes = mi.readBytes(MemoryIndex.of(U32.valueOf(0)), a, 1);
 
         mi.pushS32(bytes[0]);
     }

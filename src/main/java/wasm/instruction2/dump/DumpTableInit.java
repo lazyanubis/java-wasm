@@ -1,8 +1,8 @@
 package wasm.instruction2.dump;
 
 import wasm.core2.model.Dump;
-import wasm.core2.model.index.ElementIndex;
-import wasm.core2.model.index.TableIndex;
+import wasm.core.model.index.ElementIndex;
+import wasm.core.model.index.TableIndex;
 
 public class DumpTableInit implements Dump {
 

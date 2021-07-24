@@ -1,5 +1,6 @@
 package wasm;
 
+import wasm.core2.instance.Module;
 import wasm.core2.structure.ModuleInfo;
 import wasm.core2.structure.WasmReader;
 
@@ -85,6 +86,9 @@ public class Main {
 //        VirtualMachine.execStartFunction(WasmReader.readByName("ch01_hw2.wasm"));
 
 //        ModuleInstance.execStartFunction(WasmReader.readByName("ch09_calc.wasm"));
+
+        Module.newModule(WasmReader.readByName("ch09_calc.wasm"));
+        Module.newModule(WasmReader.readByName("hw_rust.wasm"));
 
     }
 

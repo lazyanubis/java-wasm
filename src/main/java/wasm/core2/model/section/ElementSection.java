@@ -3,8 +3,8 @@ package wasm.core2.model.section;
 import wasm.core2.model.Dump;
 import wasm.core2.structure.ModuleInstance;
 import wasm.core2.instruction.Expression;
-import wasm.core2.model.index.FunctionIndex;
-import wasm.core2.model.index.TableIndex;
+import wasm.core.model.index.FunctionIndex;
+import wasm.core.model.index.TableIndex;
 import wasm.core.numeric.U32;
 import wasm.core2.model.type.ReferenceType;
 
@@ -167,7 +167,7 @@ public class ElementSection {
                 mi.executeExpression(expressionsArray[i]);
                 U32 index = mi.popU32();
                 // 默认是0 从初始化的函数表中取出对应的函数
-                mi.getTable(TableIndex.of(0)).setElement(U32.valueOf(offset + i), mi.getFunction(new FunctionIndex(index)));
+                mi.getTable(TableIndex.of(0)).setElement(U32.valueOf(offset + i), mi.getFunction(FunctionIndex.of(index)));
             }
         }
     }

@@ -4,8 +4,8 @@ import wasm.core2.model.describe.ExportDescribe;
 
 public class ExportSection {
 
-    public String name;             // 导出名称
-    public ExportDescribe describe; // 导出描述信息
+    public final String name;             // 导出名称
+    public final ExportDescribe describe; // 导出描述信息
 
     public ExportSection(String name, ExportDescribe describe) {
         this.name = name;

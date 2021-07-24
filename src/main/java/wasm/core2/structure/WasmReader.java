@@ -10,12 +10,12 @@ import wasm.core2.instruction.Expression;
 import wasm.core2.instruction.Instruction;
 import wasm.core2.model.describe.ExportDescribe;
 import wasm.core2.model.describe.ImportDescribe;
-import wasm.core2.model.index.*;
+import wasm.core.model.index.*;
 import wasm.core.numeric.U32;
 import wasm.core.numeric.U64;
-import wasm.core2.model.tag.FunctionTypeTag;
-import wasm.core2.model.tag.LimitsTag;
-import wasm.core2.model.tag.PortTag;
+import wasm.core.model.tag.FunctionTypeTag;
+import wasm.core.model.tag.LimitsTag;
+import wasm.core.model.tag.PortTag;
 import wasm.core2.util.FileReader;
 import wasm.core2.util.Leb128;
 
@@ -99,9 +99,9 @@ public class WasmReader {
                 case SECTION_ID_MEMORY: moduleInfo.memorySections = this.readMemorySections(); break;
                 case SECTION_ID_GLOBAL: moduleInfo.globalSections = this.readGlobalSections(); break;
                 case SECTION_ID_EXPORT: moduleInfo.exportSections = this.readExportSections(); break;
-                case SECTION_ID_START: moduleInfo.startFunctionIndex = new FunctionIndex(this.readLeb128U32()); break;
+                case SECTION_ID_START: moduleInfo.startFunctionIndex = FunctionIndex.of(this.readLeb128U32()); break;
                 case SECTION_ID_ELEMENT: moduleInfo.elementSections = this.readElementSections(); break;
-                case SECTION_ID_DATA_COUNT: moduleInfo.dataCountIndex = new DataCountIndex(this.readLeb128U32()); break;
+                case SECTION_ID_DATA_COUNT: moduleInfo.dataCountIndex = DataCountIndex.of(this.readLeb128U32()); break;
                 case SECTION_ID_CODE: moduleInfo.codeSections = this.readCodeSections(); break;
                 case SECTION_ID_DATA: moduleInfo.dataSections = this.readDataSections(); break;
             }
@@ -246,7 +246,7 @@ public class WasmReader {
         ImportDescribe.Value value = null;
         switch (tag.value()) {
             case 0x00: // FUNCTION
-                value = new ImportDescribe.Function(new TypeIndex(readLeb128U32())); break;
+                value = new ImportDescribe.Function(TypeIndex.of(readLeb128U32())); break;
             case 0x01: // TABLE
                 value = new ImportDescribe.Table(readTableType()); break;
             case 0x02: // MEMORY
@@ -290,7 +290,7 @@ public class WasmReader {
         int n = readLeb128U32().intValue();
         TypeIndex[] indices = new TypeIndex[n];
         for (int i = 0; i < indices.length; i++) {
-            indices[i] = new TypeIndex(this.readLeb128U32());
+            indices[i] = TypeIndex.of(this.readLeb128U32());
         }
         return indices;
     }
@@ -365,11 +365,11 @@ public class WasmReader {
         switch (tag) {
             case 0x00: value = new ElementSection.Value0(readExpression(), readFunctionIndices()); break;
             case 0x01: value = new ElementSection.Value1(readByte(), readFunctionIndices()); break;
-            case 0x02: value = new ElementSection.Value2(new TableIndex(readLeb128U32()), readExpression(), readByte(), readFunctionIndices()); break;
+            case 0x02: value = new ElementSection.Value2(TableIndex.of(readLeb128U32()), readExpression(), readByte(), readFunctionIndices()); break;
             case 0x03: value = new ElementSection.Value3(readByte(), readFunctionIndices()); break;
             case 0x04: value = new ElementSection.Value4(readExpression(), readExpresses()); break;
             case 0x05: value = new ElementSection.Value5(ReferenceType.of(readByte()), readExpresses()); break;
-            case 0x06: value = new ElementSection.Value6(new TableIndex(readLeb128U32()), readExpression(), ReferenceType.of(readByte()), readExpresses()); break;
+            case 0x06: value = new ElementSection.Value6(TableIndex.of(readLeb128U32()), readExpression(), ReferenceType.of(readByte()), readExpresses()); break;
             case 0x07: value = new ElementSection.Value7(ReferenceType.of(readByte()), readExpresses()); break;
         }
 
@@ -380,7 +380,7 @@ public class WasmReader {
         int n = readLeb128U32().intValue();
         FunctionIndex[] indices = new FunctionIndex[n];
         for (int i = 0; i < n; i++) {
-            indices[i] = new FunctionIndex(readLeb128U32());
+            indices[i] = FunctionIndex.of(readLeb128U32());
         }
         return indices;
     }
@@ -441,7 +441,7 @@ public class WasmReader {
         switch (tag) {
             case 0x00: value = new DataSection.Value0(readExpression(), readBytes()); break;
             case 0x01: value = new DataSection.Value1(readBytes()); break;
-            case 0x02: value = new DataSection.Value2(new MemoryIndex(readLeb128U32()), readExpression(), readBytes()); break;
+            case 0x02: value = new DataSection.Value2(MemoryIndex.of(readLeb128U32()), readExpression(), readBytes()); break;
         }
 
         return new DataSection(tag, value);
@@ -519,27 +519,27 @@ public class WasmReader {
 
 
     public LocalIndex readLocalIndex() {
-        return new LocalIndex(this.readLeb128U32());
+        return LocalIndex.of(this.readLeb128U32());
     }
 
     public FunctionIndex readFunctionIndex() {
-        return new FunctionIndex(this.readLeb128U32());
+        return FunctionIndex.of(this.readLeb128U32());
     }
 
     public GlobalIndex readGlobalIndex() {
-        return new GlobalIndex(this.readLeb128U32());
+        return GlobalIndex.of(this.readLeb128U32());
     }
 
     public TableIndex readTableIndex() {
-        return new TableIndex(this.readLeb128U32());
+        return TableIndex.of(this.readLeb128U32());
     }
 
     public ElementIndex readElementIndex() {
-        return new ElementIndex(this.readLeb128U32());
+        return ElementIndex.of(this.readLeb128U32());
     }
 
     public DataIndex readDataIndex() {
-        return new DataIndex(this.readLeb128U32());
+        return DataIndex.of(this.readLeb128U32());
     }
 
     private byte readZero() {
@@ -551,7 +551,7 @@ public class WasmReader {
     }
 
     public TypeIndex readTypeIndex() {
-        return new TypeIndex(this.readLeb128U32());
+        return TypeIndex.of(this.readLeb128U32());
     }
 
     public BlockType readBlockType() {
@@ -591,7 +591,7 @@ public class WasmReader {
     }
 
     public LabelIndex readLabelIndex() {
-        return new LabelIndex(readLeb128U32());
+        return LabelIndex.of(readLeb128U32());
     }
 
     public LabelIndex[] readLabelIndices() {

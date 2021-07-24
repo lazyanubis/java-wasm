@@ -1,7 +1,7 @@
 package wasm.core2.model;
 
 import wasm.core.numeric.U32;
-import wasm.core2.model.tag.LimitsTag;
+import wasm.core.model.tag.LimitsTag;
 
 public class Limits {
 

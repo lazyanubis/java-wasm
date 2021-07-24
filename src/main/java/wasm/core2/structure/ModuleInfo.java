@@ -1,11 +1,11 @@
 package wasm.core2.structure;
 
 import wasm.core2.model.section.*;
-import wasm.core2.model.index.DataCountIndex;
-import wasm.core2.model.index.FunctionIndex;
-import wasm.core2.model.index.TypeIndex;
-import wasm.core2.model.tag.FunctionTypeTag;
-import wasm.core2.model.tag.PortTag;
+import wasm.core.model.index.DataCountIndex;
+import wasm.core.model.index.FunctionIndex;
+import wasm.core.model.index.TypeIndex;
+import wasm.core.model.tag.FunctionTypeTag;
+import wasm.core.model.tag.PortTag;
 import wasm.core2.model.type.BlockType;
 import wasm.core2.model.type.ValueType;
 
@@ -13,6 +13,10 @@ import java.util.stream.Stream;
 
 
 public class ModuleInfo {
+    
+    static  {
+        ModuleInstance.MODULES.put("env", new NativeInstance());
+    }
 
     public Magic magic;         // 魔数
     public Version version;     // 版本

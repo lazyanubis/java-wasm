@@ -19,11 +19,11 @@ public interface Function {
     /**
      * 是否内部函数
      */
-    boolean isInternal();
+    default boolean isInternal() { return false; }
 
     /**
      * 获取内部函数具体内容
      */
-    CodeSection getCodeSection();
+    default CodeSection getCodeSection() { return null; }
 
 }

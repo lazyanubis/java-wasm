@@ -4,7 +4,7 @@ import wasm.core2.model.Dump;
 import wasm.core2.util.NumberTransform;
 import wasm.core2.structure.ModuleInstance;
 import wasm.core2.instruction.Expression;
-import wasm.core2.model.index.MemoryIndex;
+import wasm.core.model.index.MemoryIndex;
 import wasm.core.numeric.U32;
 
 import static wasm.core2.util.NumberTransform.toHexArray;
@@ -38,7 +38,7 @@ public class DataSection {
             mi.executeExpression(expression);
             U32 offset = mi.popU32();
 
-            mi.write(new MemoryIndex(0), offset.u64(), bytes);
+            mi.write(MemoryIndex.of(0), offset.u64(), bytes);
         }
 
     }
@@ -83,7 +83,7 @@ public class DataSection {
             mi.executeExpression(expression);
             U32 offset = mi.popU32();
 
-            mi.write(new MemoryIndex(index), offset.u64(), bytes);
+            mi.write(MemoryIndex.of(index), offset.u64(), bytes);
         }
     }
 

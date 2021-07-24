@@ -5,7 +5,7 @@ import wasm.core2.structure.WasmReader;
 import wasm.core2.instruction.Instruction;
 import wasm.core2.instruction.Operate;
 import wasm.core2.model.Dump;
-import wasm.core2.model.index.LabelIndex;
+import wasm.core.model.index.LabelIndex;
 import wasm.core.numeric.U32;
 
 public class Return implements Operate {
@@ -21,6 +21,6 @@ public class Return implements Operate {
 
         mi.topCallFrame(index);
 
-        Instruction.BR.operate(mi, new LabelIndex(U32.valueOf(index[0])));
+        Instruction.BR.operate(mi, LabelIndex.of(U32.valueOf(index[0])));
     }
 }

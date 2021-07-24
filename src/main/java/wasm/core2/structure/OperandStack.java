@@ -48,4 +48,8 @@ public class OperandStack {
         return values;
     }
 
+    public void clear() {
+        slots.clear();
+    }
+
 }

@@ -1,7 +1,7 @@
 package wasm.core2.model.describe;
 
-import wasm.core2.model.index.TypeIndex;
-import wasm.core2.model.tag.PortTag;
+import wasm.core.model.index.TypeIndex;
+import wasm.core.model.tag.PortTag;
 import wasm.core2.model.type.GlobalType;
 import wasm.core2.model.section.MemoryType;
 import wasm.core2.model.section.TableType;

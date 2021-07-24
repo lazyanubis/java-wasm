@@ -4,7 +4,7 @@ import wasm.core2.structure.ModuleInstance;
 import wasm.core2.structure.WasmReader;
 import wasm.core2.instruction.Operate;
 import wasm.core2.model.Dump;
-import wasm.core2.model.index.GlobalIndex;
+import wasm.core.model.index.GlobalIndex;
 import wasm.core.numeric.U64;
 
 public class GlobalSet implements Operate {
@@ -23,7 +23,7 @@ public class GlobalSet implements Operate {
 
         U64 value = mi.popU64();
 
-        mi.setGlobal(a, value);
+        mi.getGlobal(a).set(value);
     }
 
 }

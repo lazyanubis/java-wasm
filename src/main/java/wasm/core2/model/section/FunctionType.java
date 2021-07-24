@@ -1,6 +1,6 @@
 package wasm.core2.model.section;
 
-import wasm.core2.model.tag.FunctionTypeTag;
+import wasm.core.model.tag.FunctionTypeTag;
 import wasm.core2.model.type.ValueType;
 
 import java.util.Arrays;

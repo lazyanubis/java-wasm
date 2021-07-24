@@ -1,20 +1,29 @@
 package wasm.core2.structure;
 
-import wasm.core2.instruction.Expression;
-import wasm.core2.instruction.Instruction;
-import wasm.core2.model.index.FunctionIndex;
-import wasm.core2.model.index.GlobalIndex;
-import wasm.core2.model.index.MemoryIndex;
-import wasm.core2.model.index.TableIndex;
-import wasm.core2.model.section.FunctionType;
+import wasm.core.model.index.FunctionIndex;
+import wasm.core.model.index.GlobalIndex;
+import wasm.core.model.index.MemoryIndex;
+import wasm.core.model.index.TableIndex;
 import wasm.core.numeric.U32;
 import wasm.core.numeric.U64;
+import wasm.core2.instruction.Action;
+import wasm.core2.instruction.Expression;
+import wasm.core2.instruction.Instruction;
+import wasm.core2.model.section.FunctionType;
 import wasm.instruction2.dump.DumpMemory;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 每一个模块都必须对外提供导出类型
  */
 public interface ModuleInstance {
+
+    Map<String, ModuleInstance> MODULES = new HashMap<>();
+
+    // =================== 模块操作 ===================
+
 
     /**
      * 取出指定名称的导出内容
@@ -25,7 +34,6 @@ public interface ModuleInstance {
      * 直接调用导出的函数
      */
     U64[] invoke(String name, U64... args);
-
 
 
     // =================== 操作数栈操作 ===================
@@ -85,6 +93,16 @@ public interface ModuleInstance {
     // =================== 内存操作 ===================
 
     /**
+     * 取出全局变量
+     */
+    Memory getMemory(MemoryIndex index);
+
+    /**
+     * 设置全局变量
+     */
+    void setMemory(MemoryIndex index, Memory value);
+
+    /**
      * 写入内存
      */
     void write(MemoryIndex index, U64 offset, byte[] data);
@@ -119,22 +137,12 @@ public interface ModuleInstance {
     /**
      * 取出全局变量
      */
-    U64 getGlobal(String name);
+    Global getGlobal(GlobalIndex index);
 
     /**
      * 设置全局变量
      */
-    void setGlobal(String name, U64 value);
-
-    /**
-     * 取出全局变量
-     */
-    U64 getGlobal(GlobalIndex index);
-
-    /**
-     * 设置全局变量
-     */
-    void setGlobal(GlobalIndex index, U64 value);
+    void setGlobal(GlobalIndex index, Global value);
 
     // =================== 函数集合操作 ===================
 
@@ -175,6 +183,11 @@ public interface ModuleInstance {
     void executeExpression(Expression expression);
 
     /**
+     * 执行单个指令
+     */
+    void executeAction(Action action);
+
+    /**
      * 进入块帧
      */
     void enterBlock(Instruction instruction, FunctionType type, Expression expression);
@@ -195,5 +208,39 @@ public interface ModuleInstance {
      * 获取模块信息
      */
     ModuleInfo getModuleInfo();
+
+
+
+    // =================== 模块初始化 ===================
+
+    /**
+     * 链接导入模块
+     */
+    void linkImports();
+
+    /**
+     * 初始化函数集合
+     */
+    void initFunctions();
+
+    /**
+     * 初始化表
+     */
+    void initTables();
+
+    /**
+     * 初始化内存
+     */
+    void initMemories();
+
+    /**
+     * 初始化全局变量
+     */
+    void initGlobals();
+
+    /**
+     * 执行启动函数
+     */
+    void execStartFunction();
 
 }
