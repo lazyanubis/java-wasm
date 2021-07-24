@@ -1,39 +1,35 @@
-package wasm.core;
+package wasm.core.structure;
 
-import wasm.model.*;
-import wasm.model.index.DataCountIndex;
-import wasm.model.index.FunctionIndex;
-import wasm.model.index.TypeIndex;
-import wasm.model.tag.FunctionTypeTag;
-import wasm.model.tag.PortTag;
-import wasm.model.type.BlockType;
-import wasm.model.type.ValueType;
+import wasm.core.model.section.*;
+import wasm.core.model.index.DataCountIndex;
+import wasm.core.model.index.FunctionIndex;
+import wasm.core.model.index.TypeIndex;
+import wasm.core.model.tag.FunctionTypeTag;
+import wasm.core.model.tag.PortTag;
+import wasm.core.model.type.BlockType;
+import wasm.core.model.type.ValueType;
 
 import java.util.stream.Stream;
 
 
 public class Module {
 
-    public Magic magic;      // 魔数
-    public Version version;    // 版本
+    public Magic magic;         // 魔数
+    public Version version;     // 版本
 
-    public Custom[] customSections; // 0 自定义段
-    public FunctionType[] typeSections = new FunctionType[0];     // 1 类型段 函数签名
-    public Import[] importSections = new Import[0];         // 2 导入 导入函数部分指向类型段的函数签名
-    public TypeIndex[] functionSections = new TypeIndex[0];    // 3 函数段 指向类型段函数索引
-    public TableType[] tableSections = new TableType[0];       // 4 表
-    public MemoryType[] memorySections = new MemoryType[0];     // 5 内存
-    public Global[] globalSections = new Global[0];     // 6 全局
-    public Export[] exportSections = new Export[0];     // 7 导出
-    public FunctionIndex startFunctionIndex;     // 8 起始函数索引 uint32 应当是函数段的索引
-
-    public Element[] elementSections = new Element[0];     // 9 元素
-
-    public Code[] codeSections = new Code[0];     // 10 代码
-
-    public Data[] dataSections = new Data[0];     // 11 数据
-
-    public DataCountIndex dataCountIndex;     // 12 数据计数段 由于引入 memory.init data.drop 需要数据
+    public CustomSection[] customSections;                          //  0 自定义段
+    public FunctionType[] typeSections = new FunctionType[0];       //  1 类型段 函数签名
+    public ImportSection[] importSections = new ImportSection[0];   //  2 导入 导入函数部分指向类型段的函数签名
+    public TypeIndex[] functionSections = new TypeIndex[0];         //  3 函数段 指向类型段函数索引
+    public TableType[] tableSections = new TableType[0];            //  4 表
+    public MemoryType[] memorySections = new MemoryType[0];         //  5 内存
+    public GlobalSection[] globalSections = new GlobalSection[0];   //  6 全局
+    public ExportSection[] exportSections = new ExportSection[0];   //  7 导出
+    public FunctionIndex startFunctionIndex;                        //  8 起始函数索引 uint32 应当是函数段的索引
+    public ElementSection[] elementSections = new ElementSection[0];//  9 元素
+    public DataCountIndex dataCountIndex;                           // 12 数据计数段 memory.init data.drop 需要数据
+    public CodeSection[] codeSections = new CodeSection[0];         // 10 代码
+    public DataSection[] dataSections = new DataSection[0];         // 11 数据
 
 
     public String dump() {
@@ -72,7 +68,7 @@ public class Module {
         }
 
         sb.append("Export[").append(exportSections.length).append("]:").append("\n");
-        for (Export exportSection : exportSections) {
+        for (ExportSection exportSection : exportSections) {
             sb.append("  ").append(exportSection.dump()).append("\n");
         }
 
@@ -105,18 +101,18 @@ public class Module {
     }
 
     public FunctionType getBlockType(BlockType blockType) {
-        if (null != blockType.valueType) {
-            switch (blockType.valueType.value()) {
+        if (null != blockType.type) {
+            switch (blockType.type.value()) {
                 case 0x40: // EMPTY
                     return new FunctionType(FunctionTypeTag.BLOCK_TYPE, new ValueType[0], new ValueType[0]);
                 case 0x7F: // I32
                     return new FunctionType(FunctionTypeTag.BLOCK_TYPE, new ValueType[0], new ValueType[]{ValueType.I32});
                 case 0x7E: // I64
                     return new FunctionType(FunctionTypeTag.BLOCK_TYPE, new ValueType[0], new ValueType[]{ValueType.I64});
-                case 0x7D: // F32
-                    return new FunctionType(FunctionTypeTag.BLOCK_TYPE, new ValueType[0], new ValueType[]{ValueType.F32});
-                case 0x7C: // F64
-                    return new FunctionType(FunctionTypeTag.BLOCK_TYPE, new ValueType[0], new ValueType[]{ValueType.F64});
+//                case 0x7D: // F32
+//                    return new FunctionType(FunctionTypeTag.BLOCK_TYPE, new ValueType[0], new ValueType[]{ValueType.F32});
+//                case 0x7C: // F64
+//                    return new FunctionType(FunctionTypeTag.BLOCK_TYPE, new ValueType[0], new ValueType[]{ValueType.F64});
 
                 case 0x70: // FUNCTION_REFERENCE
                     return new FunctionType(FunctionTypeTag.BLOCK_TYPE, new ValueType[0], new ValueType[]{ValueType.FUNCTION_REFERENCE});

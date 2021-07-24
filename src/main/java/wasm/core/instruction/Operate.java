@@ -1,7 +1,7 @@
 package wasm.core.instruction;
 
 import wasm.core2.VirtualMachine;
-import wasm.core2.WasmReader;
+import wasm.core.structure.WasmReader;
 import wasm.core.model.Dump;
 
 public interface Operate {
