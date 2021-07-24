@@ -1,18 +1,16 @@
-package wasm.model;
+package wasm.core.model.section;
 
-import wasm.model.tag.FunctionTypeTag;
-import wasm.model.type.ValueType;
+import wasm.core.model.tag.FunctionTypeTag;
+import wasm.core.model.type.ValueType;
 
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
 public class FunctionType {
 
-    public FunctionTypeTag tag;
-
-    public ValueType[] parameters;
-
-    public ValueType[] results;
+    public final FunctionTypeTag tag;       // 函数标识
+    public final ValueType[] parameters;    // 参数列表
+    public final ValueType[] results;       // 结果列表
 
     public FunctionType(FunctionTypeTag tag, ValueType[] parameters, ValueType[] results) {
         this.tag = tag;

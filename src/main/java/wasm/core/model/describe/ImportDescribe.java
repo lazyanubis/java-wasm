@@ -3,8 +3,8 @@ package wasm.core.model.describe;
 import wasm.core.model.index.TypeIndex;
 import wasm.core.model.tag.PortTag;
 import wasm.core.model.type.GlobalType;
-import wasm.model2.MemoryType;
-import wasm.model2.TableType;
+import wasm.core.model.section.MemoryType;
+import wasm.core.model.section.TableType;
 
 public class ImportDescribe {
 

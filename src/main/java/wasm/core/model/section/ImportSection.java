@@ -1,14 +1,14 @@
-package wasm.model;
+package wasm.core.model.section;
 
-import wasm.model.describe.ImportDescribe;
+import wasm.core.model.describe.ImportDescribe;
 
-public class Import {
+public class ImportSection {
 
-    public String module; // 导入模块名
-    public String name; // 导入成员名
-    public ImportDescribe describe; // 描述信息
+    public final String module;             // 导入模块名
+    public final String name;               // 导入成员名
+    public final ImportDescribe describe;   // 具体导入描述信息
 
-    public Import(String module, String name, ImportDescribe describe) {
+    public ImportSection(String module, String name, ImportDescribe describe) {
         this.module = module;
         this.name = name;
         this.describe = describe;

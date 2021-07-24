@@ -1,6 +1,7 @@
-package wasm.model;
+package wasm.core.model.section;
 
-import wasm.model.number.U32;
+import wasm.core.numeric.U16;
+import wasm.core.numeric.U32;
 
 /**
  * Wasm定义是一个U32数字
@@ -14,25 +15,26 @@ import wasm.model.number.U32;
  */
 public class Version {
 
-    private final U32 v1;
-    private final U32 v2;
+    private final U16 v1;
+    private final U16 v2;
 
-    private Version(U32 v1, U32 v2) {
+    private Version(U16 v1, U16 v2) {
         this.v1 = v1;
         this.v2 = v2;
     }
 
     public Version(U32 u32) {
-        this(new U32((byte) 0x0, (byte) 0x0, u32.getBytes()[0], u32.getBytes()[1]),
-             new U32((byte) 0x0, (byte) 0x0, u32.getBytes()[2], u32.getBytes()[3]));
+        this(new U16(new byte[]{ u32.getBytes()[0], u32.getBytes()[1]}),
+             new U16(new byte[]{ u32.getBytes()[2], u32.getBytes()[3]}));
     }
 
     public String value() {
-        return v1.toHexString() + v2.toHexString().substring(2);
+        return v1.toHexString() + v2.toHexString();
     }
 
     @Override
     public String toString() {
         return "Version: " + ("0".equals(v1.toString()) ? "" : v1.toString()) + v2;
     }
+
 }

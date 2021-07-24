@@ -1,4 +1,4 @@
-package wasm.model;
+package wasm.core.model.section;
 
 public class Magic {
 

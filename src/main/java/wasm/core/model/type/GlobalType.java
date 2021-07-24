@@ -2,9 +2,8 @@ package wasm.core.model.type;
 
 public class GlobalType {
 
-    public ValueType value;
-
-    public MutableType mutable;
+    public ValueType value;     // 值类型
+    public MutableType mutable; // 是否可变
 
     public GlobalType(ValueType value, MutableType mutable) {
         this.value = value;

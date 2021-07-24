@@ -1,15 +1,14 @@
-package wasm.model;
+package wasm.core.model.section;
 
-import wasm.instruction.Expressions;
-import wasm.model.type.GlobalType;
+import wasm.core.instruction.Expression;
+import wasm.core.model.type.GlobalType;
 
-public class Global {
+public class GlobalSection {
 
-    public GlobalType type;
+    public GlobalType type; // 变量类型
+    public Expression init; // 初始化表达式
 
-    public Expressions init;
-
-    public Global(GlobalType type, Expressions init) {
+    public GlobalSection(GlobalType type, Expression init) {
         this.type = type;
         this.init = init;
     }

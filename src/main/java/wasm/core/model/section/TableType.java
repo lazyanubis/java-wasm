@@ -1,12 +1,12 @@
-package wasm.model;
+package wasm.core.model.section;
 
-import wasm.model.type.ReferenceType;
+import wasm.core.model.type.ReferenceType;
+import wasm.core.model.Limits;
 
 public class TableType {
 
-    public ReferenceType type;
-
-    public Limits limits;
+    public final ReferenceType type;    // 引用类型
+    public final Limits limits;         // 表限制
 
     public TableType(ReferenceType type, Limits limits) {
         this.type = type;

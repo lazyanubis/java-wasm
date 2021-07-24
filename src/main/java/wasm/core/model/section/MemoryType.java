@@ -1,7 +1,8 @@
-package wasm.model;
+package wasm.core.model.section;
 
-import wasm.model.number.U32;
-import wasm.model.tag.LimitsTag;
+import wasm.core.numeric.U32;
+import wasm.core.model.tag.LimitsTag;
+import wasm.core.model.Limits;
 
 public class MemoryType extends Limits {
 

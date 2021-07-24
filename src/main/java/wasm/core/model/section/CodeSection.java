@@ -1,24 +1,23 @@
-package wasm.model;
+package wasm.core.model.section;
 
-import wasm.instruction.Expressions;
-import wasm.model.number.U32;
+import wasm.core.instruction.Expression;
+import wasm.core.model.Local;
+import wasm.core.numeric.U32;
 
 import java.util.Arrays;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class Code {
+public class CodeSection {
 
-    public U32 size;
+    public final U32 size;                // 代码大小？
+    public final Local[] locals;          // 本地变量组
+    public final Expression expression;   // 代码的表达式
 
-    public Local[] locals;
-
-    public Expressions expressions;
-
-    public Code(U32 size, Local[] locals, Expressions expressions) {
+    public CodeSection(U32 size, Local[] locals, Expression expression) {
         this.size = size;
         this.locals = locals;
-        this.expressions = expressions;
+        this.expression = expression;
     }
 
     public long localCount() {
@@ -31,10 +30,10 @@ public class Code {
 
     @Override
     public String toString() {
-        return "Code{" +
+        return "CodeSection{" +
                 "size=" + size +
                 ", locals=" + Arrays.toString(locals) +
-                ", express=" + expressions +
+                ", express=" + expression +
                 '}';
     }
 
@@ -44,14 +43,15 @@ public class Code {
         sb.append("func[").append(index).append("]: ")
                 .append("locals=[").append(Stream.of(locals).map(l -> l.type.name() + " x " + l.n).collect(Collectors.joining(", "))).append("]");
 
-        if (null != expressions && expressions.length() > 0) {
+        if (null != expression && expression.length() > 0) {
             sb.append("\n");
-            for (int i = 0; i < expressions.length(); i++) {
-                sb.append("    ").append(expressions.get(i).dump().replace("\n", "\n    ")).append("\n");
+            for (int i = 0; i < expression.length(); i++) {
+                sb.append("    ").append(expression.get(i).dump().replace("\n", "\n    ")).append("\n");
             }
             sb.deleteCharAt(sb.length() - 1);
         }
 
         return sb.toString();
     }
+
 }

@@ -1,13 +1,12 @@
-package wasm.model;
+package wasm.core.model;
 
-import wasm.model.number.U32;
-import wasm.model.type.ValueType;
+import wasm.core.numeric.U32;
+import wasm.core.model.type.ValueType;
 
 public class Local {
 
-    public U32 n;
-
-    public ValueType type;
+    public final U32 n;           // 本地变量长度
+    public final ValueType type;  // 本地变量类型
 
     public Local(U32 n, ValueType type) {
         this.n = n;
@@ -21,4 +20,5 @@ public class Local {
                 ", type=" + type +
                 '}';
     }
+
 }

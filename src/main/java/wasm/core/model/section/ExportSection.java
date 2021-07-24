@@ -1,13 +1,13 @@
-package wasm.model;
+package wasm.core.model.section;
 
-import wasm.model.describe.ExportDescribe;
+import wasm.core.model.describe.ExportDescribe;
 
-public class Export {
+public class ExportSection {
 
-    public String name;
-    public ExportDescribe describe;
+    public String name;             // 导出名称
+    public ExportDescribe describe; // 导出描述信息
 
-    public Export(String name, ExportDescribe describe) {
+    public ExportSection(String name, ExportDescribe describe) {
         this.name = name;
         this.describe = describe;
     }
@@ -38,4 +38,5 @@ public class Export {
 
         return sb.toString();
     }
+
 }

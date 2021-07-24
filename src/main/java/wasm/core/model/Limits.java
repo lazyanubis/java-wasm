@@ -1,15 +1,13 @@
-package wasm.model;
+package wasm.core.model;
 
-import wasm.model.number.U32;
-import wasm.model.tag.LimitsTag;
+import wasm.core.numeric.U32;
+import wasm.core.model.tag.LimitsTag;
 
 public class Limits {
 
-    private final LimitsTag tag; // 0x00 只有min  0x01 还有max
-
-    private final U32 min;
-
-    private final U32 max;
+    private final LimitsTag tag;    // 0x00 只有min  如果是 0x01 还要读取max值
+    private final U32 min;          // 最小值
+    private final U32 max;          // 最大值
 
     public Limits(LimitsTag tag, U32 min, U32 max) {
         this.tag = tag;
