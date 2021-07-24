@@ -88,9 +88,9 @@ public class Main {
 //        VirtualMachine.execStartFunction(WasmReader.readByName("ch09_calc.wasm"));
 
 
-        Module.newModule(WasmReader.readByName("ch09_calc.wasm"));
-        Module.newModule(WasmReader.readByName("hw_rust.wasm"));
+        Module.newModule(WasmReader.readByName("hw_rust.wasm")).invoke("main");
 
+        Module.newModule(WasmReader.readByName("ch01_hw2.wasm"));
 
         Module.newModule(WasmReader.readByName("ch05_cz.wasm"));
         Module.newModule(WasmReader.readByName("ch05_num2.wasm"));
@@ -116,8 +116,6 @@ public class Main {
         Module.newModule(WasmReader.readByName("ch08_eg7_br_if.wasm"));
         Module.newModule(WasmReader.readByName("ch08_eg8_br_table.wasm"));
         Module.newModule(WasmReader.readByName("ch08_eg9_return.wasm"));
-
-        Module.newModule(WasmReader.readByName("ch01_hw2.wasm"));
 
         Module.newModule(WasmReader.readByName("ch09_calc.wasm"));
 

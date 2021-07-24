@@ -35,6 +35,7 @@ public class WasmReader {
     }
 
     public static ModuleInfo readByName(String name) {
+        System.out.println("read file: " + name);
         WasmReader reader = new WasmReader(FileReader.readByName(name));
         return reader.readModuleInfo();
     }

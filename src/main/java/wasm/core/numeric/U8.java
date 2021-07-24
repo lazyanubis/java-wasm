@@ -1,37 +1,28 @@
-package wasm.core3.numeric;
+package wasm.core.numeric;
+
+import wasm.core3.numeric.U16;
+import wasm.core3.numeric.U32;
+import wasm.core3.numeric.U64;
 
 import java.math.BigInteger;
 import java.util.Arrays;
 
-import static wasm.core2.util.NumberTransform.toBinaryArray;
-import static wasm.core2.util.NumberTransform.toHexArray;
+import static wasm.core.util.NumberTransform.toBinaryArray;
+import static wasm.core.util.NumberTransform.toHexArray;
 
 public class U8 implements USize<U8> {
 
     private final byte[] bytes;
 
-    protected U8(byte[] bytes) {
-        this.bytes = USize.of(bytes, 1);
-    }
-
-    protected U8(String value, int radix) {
-        this.bytes = USize.of(value, radix, 1);
-    }
-
-    protected U8(int value) {
-        this.bytes = new byte[]{ (byte) value };
-    }
-
-    protected U8(long value) {
-        this.bytes = new byte[]{ (byte) value };
-    }
+    protected U8(byte[] bytes) { this.bytes = USize.of(bytes, 1); }
+    protected U8(String value, int radix) { this.bytes = USize.of(value, radix, 1); }
+    protected U8(int value) { this.bytes = new byte[]{ (byte) value }; }
+    protected U8(long value) { this.bytes = new byte[]{ (byte) value }; }
 
     protected U8(U8 value) {
         this(value.bytes);
     }
-    protected U8(U16 value) { this(value.getBytes()); }
-    protected U8(U32 value) { this(value.getBytes()); }
-    protected U8(U64 value) { this(value.getBytes()); }
+
 
     public static U8 valueOf(byte[] bytes) { return new U8(bytes); }
     public static U8 valueOf(String value, int radix) { return new U8(value, radix); }
@@ -123,5 +114,10 @@ public class U8 implements USize<U8> {
     public final int hashCode() {
         return Arrays.hashCode(bytes);
     }
+
+
+    protected U8(U16 value) { this(value.getBytes()); }
+    protected U8(U32 value) { this(value.getBytes()); }
+    protected U8(U64 value) { this(value.getBytes()); }
 
 }

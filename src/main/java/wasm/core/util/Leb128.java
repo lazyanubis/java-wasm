@@ -15,8 +15,6 @@ public class Leb128 {
         public final byte[] bytes;
         public final int length;
         private Result(byte[] bytes, int length) {
-            assert bytes.length == 8;
-
             this.bytes = bytes;
             this.length = length;
         }
@@ -28,7 +26,6 @@ public class Leb128 {
             }
             return new Result(bytes, length);
         }
-
     }
 
     /**

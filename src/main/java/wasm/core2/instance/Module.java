@@ -73,6 +73,11 @@ public class Module implements ModuleInstance {
         Object member = getMember(name);
         if (member instanceof Function) {
             Function f = (Function) member;
+
+            if (args.length != f.type().parameters.length) {
+                throw new RuntimeException("args is mismatch.");
+            }
+
             return f.call(args);
         }
         throw new RuntimeException("can not find function: " + name);
@@ -283,6 +288,7 @@ public class Module implements ModuleInstance {
 
     @Override
     public void executeAction(Action action) {
+        System.out.println(action.getInstruction().name + " " + (null == action.getArgs() ? "" : action.getArgs().dump()));
         action.getInstruction().operate(this, action.getArgs());
     }
 

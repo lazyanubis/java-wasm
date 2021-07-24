@@ -1,6 +1,7 @@
 package wasm.core3.numeric;
 
 import wasm.core.numeric.U8;
+import wasm.core.numeric.USize;
 
 import java.math.BigInteger;
 import java.util.Arrays;

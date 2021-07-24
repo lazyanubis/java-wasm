@@ -1,11 +1,11 @@
-package wasm.core2.util;
+package wasm.core.util;
 
 import wasm.core3.numeric.U32;
 import wasm.core3.numeric.U64;
 
 import java.math.BigInteger;
 
-import static wasm.core2.util.NumberTransform.*;
+import static wasm.core.util.NumberTransform.*;
 
 /**
  * 数字符号工具
