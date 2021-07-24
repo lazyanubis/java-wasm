@@ -1,6 +1,6 @@
 package wasm.core.instruction;
 
-import wasm.core2.VirtualMachine;
+import wasm.core.structure.ModuleInstance;
 import wasm.core.structure.WasmReader;
 import wasm.instruction2.control.*;
 import wasm.instruction2.memory.*;
@@ -244,9 +244,9 @@ public enum Instruction {
         this.operate = operate;
     }
 
-    public void operate(VirtualMachine vm, Dump args) {
+    public void operate(ModuleInstance mi, Dump args) {
         assert null != operate;
-        operate.operate(vm, args);
+        operate.operate(mi, args);
     }
 
     public Dump readArgs(WasmReader reader) {

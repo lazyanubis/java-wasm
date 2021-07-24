@@ -1,8 +1,7 @@
 package wasm;
 
-import wasm.core.Module;
-import wasm.core.VirtualMachine;
-import wasm.core.WasmReader;
+import wasm.core.structure.ModuleInfo;
+import wasm.core.structure.WasmReader;
 
 public class Main {
 
@@ -54,8 +53,8 @@ public class Main {
         };
         for (String n : names) {
             System.out.println("=============== " + n + " ===============");
-            Module module = WasmReader.readByName(n);
-            System.out.print(module.dump());
+            ModuleInfo moduleInfo = WasmReader.readByName(n);
+            System.out.print(moduleInfo.dump());
         }
 
 //        VirtualMachine.execStartFunction(WasmReader.readByName("ch05_cz.wasm"));
@@ -85,7 +84,7 @@ public class Main {
 
 //        VirtualMachine.execStartFunction(WasmReader.readByName("ch01_hw2.wasm"));
 
-        VirtualMachine.execStartFunction(WasmReader.readByName("ch09_calc.wasm"));
+//        ModuleInstance.execStartFunction(WasmReader.readByName("ch09_calc.wasm"));
 
     }
 

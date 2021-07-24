@@ -34,36 +34,36 @@ public class WasmReader {
         this.data = data;
     }
 
-    public static Module readByName(String name) {
+    public static ModuleInfo readByName(String name) {
         WasmReader reader = new WasmReader(FileReader.readByName(name));
-        return reader.readModule();
+        return reader.readModuleInfo();
     }
 
-    public static Module read(byte[] data) {
-        return (new WasmReader(data)).readModule();
+    public static ModuleInfo read(byte[] data) {
+        return (new WasmReader(data)).readModuleInfo();
     }
 
 
-    public Module readModule() {
-        Module module = new Module();
+    public ModuleInfo readModuleInfo() {
+        ModuleInfo moduleInfo = new ModuleInfo();
 
-        module.magic = new Magic(readByte(), readByte(), readByte(), readByte());
-        module.version = new Version(readU32());
-        module.customSections = new CustomSection[0];
+        moduleInfo.magic = new Magic(readByte(), readByte(), readByte(), readByte());
+        moduleInfo.version = new Version(readU32());
+        moduleInfo.customSections = new CustomSection[0];
 
         byte previousSectionId = 0;
         while (this.remaining() > 0) {
             byte sectionId = this.readByte();
 
             if (sectionId == SECTION_ID_CUSTOM) {
-                CustomSection[] customSections = new CustomSection[module.customSections.length + 1];
-                System.arraycopy(module.customSections, 0, customSections, 0, module.customSections.length);
+                CustomSection[] customSections = new CustomSection[moduleInfo.customSections.length + 1];
+                System.arraycopy(moduleInfo.customSections, 0, customSections, 0, moduleInfo.customSections.length);
                 int size = readLeb128U32().intValue();
                 byte[] data = new byte[size];
                 System.arraycopy(this.data, 0, data, 0, size);
                 drop(size);
                 customSections[customSections.length - 1] = new WasmReader(data).readCustomSection();
-                module.customSections = customSections;
+                moduleInfo.customSections = customSections;
                 continue;
             }
 
@@ -92,18 +92,18 @@ public class WasmReader {
             int remaining = this.remaining();
 
             switch (sectionId) {
-                case SECTION_ID_TYPE: module.typeSections = this.readTypeSections(); break;
-                case SECTION_ID_IMPORT: module.importSections = this.readImportSections(); break;
-                case SECTION_ID_FUNCTION: module.functionSections = this.readFunctionSections(); break;
-                case SECTION_ID_TABLE: module.tableSections = this.readTableSections(); break;
-                case SECTION_ID_MEMORY: module.memorySections = this.readMemorySections(); break;
-                case SECTION_ID_GLOBAL: module.globalSections = this.readGlobalSections(); break;
-                case SECTION_ID_EXPORT: module.exportSections = this.readExportSections(); break;
-                case SECTION_ID_START: module.startFunctionIndex = new FunctionIndex(this.readLeb128U32()); break;
-                case SECTION_ID_ELEMENT: module.elementSections = this.readElementSections(); break;
-                case SECTION_ID_DATA_COUNT: module.dataCountIndex = new DataCountIndex(this.readLeb128U32()); break;
-                case SECTION_ID_CODE: module.codeSections = this.readCodeSections(); break;
-                case SECTION_ID_DATA: module.dataSections = this.readDataSections(); break;
+                case SECTION_ID_TYPE: moduleInfo.typeSections = this.readTypeSections(); break;
+                case SECTION_ID_IMPORT: moduleInfo.importSections = this.readImportSections(); break;
+                case SECTION_ID_FUNCTION: moduleInfo.functionSections = this.readFunctionSections(); break;
+                case SECTION_ID_TABLE: moduleInfo.tableSections = this.readTableSections(); break;
+                case SECTION_ID_MEMORY: moduleInfo.memorySections = this.readMemorySections(); break;
+                case SECTION_ID_GLOBAL: moduleInfo.globalSections = this.readGlobalSections(); break;
+                case SECTION_ID_EXPORT: moduleInfo.exportSections = this.readExportSections(); break;
+                case SECTION_ID_START: moduleInfo.startFunctionIndex = new FunctionIndex(this.readLeb128U32()); break;
+                case SECTION_ID_ELEMENT: moduleInfo.elementSections = this.readElementSections(); break;
+                case SECTION_ID_DATA_COUNT: moduleInfo.dataCountIndex = new DataCountIndex(this.readLeb128U32()); break;
+                case SECTION_ID_CODE: moduleInfo.codeSections = this.readCodeSections(); break;
+                case SECTION_ID_DATA: moduleInfo.dataSections = this.readDataSections(); break;
             }
 
             if (this.remaining() + n != remaining) {
@@ -112,7 +112,7 @@ public class WasmReader {
             }
         }
 
-        return module;
+        return moduleInfo;
     }
 
     // =========================== tool ===========================

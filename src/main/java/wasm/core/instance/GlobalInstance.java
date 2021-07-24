@@ -1,0 +1,37 @@
+package wasm.core.instance;
+
+import wasm.core.numeric.U64;
+import wasm.core.model.type.GlobalType;
+import wasm.core.model.type.MutableType;
+import wasm.core.structure.Global;
+
+public class GlobalInstance implements Global {
+
+    public final GlobalType type;
+
+    public U64 value;
+
+    public GlobalInstance(GlobalType type, U64 value) {
+        this.type = type;
+        this.value = value;
+    }
+
+    @Override
+    public GlobalType type() {
+        return type;
+    }
+
+    @Override
+    public U64 get() {
+        return value;
+    }
+
+    @Override
+    public void set(U64 value) {
+        if (type.mutable != MutableType.MUTABLE) {
+            throw new RuntimeException("immutable global");
+        }
+        this.value = value;
+    }
+
+}

@@ -18,7 +18,7 @@ public interface Table {
     /**
      * 表扩容
      */
-    void grow(U32 value);
+    void grow(U32 grow);
 
     /**
      * 获取表中元素

@@ -1,7 +1,7 @@
 package wasm.core.model.section;
 
 import wasm.core.model.Dump;
-import wasm.core2.VirtualMachine;
+import wasm.core.structure.ModuleInstance;
 import wasm.core.instruction.Expression;
 import wasm.core.model.index.FunctionIndex;
 import wasm.core.model.index.TableIndex;
@@ -23,7 +23,7 @@ public class ElementSection {
 
     public static abstract class Value implements Dump {
         public abstract boolean isActive();
-        public abstract void init(VirtualMachine vm);
+        public abstract void init(ModuleInstance mi);
     }
 
     public static class Value0 extends Value {
@@ -47,15 +47,15 @@ public class ElementSection {
         }
 
         @Override
-        public void init(VirtualMachine vm) {
+        public void init(ModuleInstance mi) {
             // 计算偏移
-            vm.executeExpressions(expression);
-            int offset = vm.operandStack.popU32().intValue();
+            mi.executeExpression(expression);
+            int offset = mi.popU32().intValue();
 
             // 初始化
             for (int i = 0; i < functionIndices.length; i++) {
                 // 默认是0 从初始化的函数表中取出对应的函数
-                vm.tables[0].setElement(offset + i, vm.functions[functionIndices[i].intValue()]);
+                mi.getTable(TableIndex.of(0)).setElement(new U32(offset + i), mi.getFunction(functionIndices[i]));
             }
         }
     }
@@ -80,7 +80,7 @@ public class ElementSection {
         }
 
         @Override
-        public void init(VirtualMachine vm) {
+        public void init(ModuleInstance mi) {
             throw new RuntimeException("how to init?");
         }
     }
@@ -109,7 +109,7 @@ public class ElementSection {
         }
 
         @Override
-        public void init(VirtualMachine vm) {
+        public void init(ModuleInstance mi) {
             throw new RuntimeException("how to init?");
         }
     }
@@ -133,7 +133,7 @@ public class ElementSection {
         }
 
         @Override
-        public void init(VirtualMachine vm) {
+        public void init(ModuleInstance mi) {
             throw new RuntimeException("how to init?");
         }
     }
@@ -157,17 +157,17 @@ public class ElementSection {
         }
 
         @Override
-        public void init(VirtualMachine vm) {
+        public void init(ModuleInstance mi) {
             // 计算偏移
-            vm.executeExpressions(expression);
-            int offset = vm.operandStack.popU32().intValue();
+            mi.executeExpression(expression);
+            int offset = mi.popU32().intValue();
 
             // 初始化
             for (int i = 0; i < expressionsArray.length; i++) {
-                vm.executeExpressions(expressionsArray[i]);
-                int index = vm.operandStack.popU32().intValue();
+                mi.executeExpression(expressionsArray[i]);
+                U32 index = mi.popU32();
                 // 默认是0 从初始化的函数表中取出对应的函数
-                vm.tables[0].setElement(offset + i, vm.functions[index]);
+                mi.getTable(TableIndex.of(0)).setElement(new U32(offset + i), mi.getFunction(new FunctionIndex(index)));
             }
         }
     }
@@ -191,7 +191,7 @@ public class ElementSection {
         }
 
         @Override
-        public void init(VirtualMachine vm) {
+        public void init(ModuleInstance mi) {
             throw new RuntimeException("how to init?");
         }
     }
@@ -219,7 +219,7 @@ public class ElementSection {
         }
 
         @Override
-        public void init(VirtualMachine vm) {
+        public void init(ModuleInstance mi) {
             throw new RuntimeException("how to init?");
         }
     }
@@ -243,7 +243,7 @@ public class ElementSection {
         }
 
         @Override
-        public void init(VirtualMachine vm) {
+        public void init(ModuleInstance mi) {
             throw new RuntimeException("how to init?");
         }
     }

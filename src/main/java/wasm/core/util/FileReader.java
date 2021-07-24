@@ -12,7 +12,7 @@ public class FileReader {
         if (null == url) {
             throw new RuntimeException("can not find file");
         }
-        File file = new File(url.getFile() + "../../../../../resources/main/" + name);
+        File file = new File(url.getFile() + "../../../../../../resources/main/" + name);
 
         byte[] bytes = new byte[(int)file.length()];
 

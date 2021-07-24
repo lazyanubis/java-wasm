@@ -2,7 +2,7 @@ package wasm.core.model.section;
 
 import wasm.core.model.Dump;
 import wasm.core.util.NumberTransform;
-import wasm.core2.VirtualMachine;
+import wasm.core.structure.ModuleInstance;
 import wasm.core.instruction.Expression;
 import wasm.core.model.index.MemoryIndex;
 import wasm.core.numeric.U32;
@@ -15,7 +15,7 @@ public class DataSection {
     public Value value; // 数据内容
 
     public static abstract class Value implements Dump {
-        public abstract void initMemory(VirtualMachine vm);
+        public abstract void initMemory(ModuleInstance mi);
     }
 
     public static class Value0 extends Value {
@@ -34,11 +34,11 @@ public class DataSection {
         }
 
         @Override
-        public void initMemory(VirtualMachine vm) {
-            vm.executeExpressions(expression);
-            U32 offset = vm.operandStack.popU32();
+        public void initMemory(ModuleInstance mi) {
+            mi.executeExpression(expression);
+            U32 offset = mi.popU32();
 
-            vm.getMemory(0).write(offset, bytes);
+            mi.write(new MemoryIndex(0), offset.u64(), bytes);
         }
 
     }
@@ -57,7 +57,7 @@ public class DataSection {
 
         // 非主动初始化内存
         @Override
-        public void initMemory(VirtualMachine vm) { }
+        public void initMemory(ModuleInstance mi) { }
     }
     public static class Value2 extends Value {
         // 𝟶𝚡𝟶𝟸  𝑥:𝚖𝚎𝚖𝚒𝚍𝚡  𝑒:𝚎𝚡𝚙𝚛  𝑏∗:𝚟𝚎𝚌(𝚋𝚢𝚝𝚎) => {𝗂𝗇𝗂𝗍 𝑏∗,𝗆𝗈𝖽𝖾 𝖺𝖼𝗍𝗂𝗏𝖾 {𝗆𝖾𝗆𝗈𝗋𝗒 𝑥,𝗈𝖿𝖿𝗌𝖾𝗍 𝑒}}
@@ -77,13 +77,13 @@ public class DataSection {
         }
 
         @Override
-        public void initMemory(VirtualMachine vm) {
+        public void initMemory(ModuleInstance mi) {
             int index = memoryIndex.intValue();
 
-            vm.executeExpressions(expression);
-            U32 offset = vm.operandStack.popU32();
+            mi.executeExpression(expression);
+            U32 offset = mi.popU32();
 
-            vm.getMemory(index).write(offset, bytes);
+            mi.write(new MemoryIndex(index), offset.u64(), bytes);
         }
     }
 

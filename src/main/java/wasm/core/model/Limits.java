@@ -27,6 +27,13 @@ public class Limits {
         return max;
     }
 
+    public boolean check(int wanna) {
+        if (null == max) {
+            return true;
+        }
+        return 0 <= wanna && wanna <= max.intValue();
+    }
+
     @Override
     public String toString() {
         return "Limits{" +
