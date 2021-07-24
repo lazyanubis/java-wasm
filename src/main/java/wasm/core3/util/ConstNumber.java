@@ -1,4 +1,4 @@
-package wasm.core.util;
+package wasm.core3.util;
 
 /**
  * 一些需要用到的数字

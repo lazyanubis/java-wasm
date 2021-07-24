@@ -1,11 +1,12 @@
 package wasm.core2.structure;
 
-import wasm.core.model.index.FunctionIndex;
-import wasm.core.model.index.GlobalIndex;
-import wasm.core.model.index.MemoryIndex;
-import wasm.core.model.index.TableIndex;
-import wasm.core.numeric.U32;
-import wasm.core.numeric.U64;
+import wasm.core3.model.index.FunctionIndex;
+import wasm.core3.model.index.GlobalIndex;
+import wasm.core3.model.index.MemoryIndex;
+import wasm.core3.model.index.TableIndex;
+import wasm.core3.numeric.U32;
+import wasm.core3.numeric.U64;
+import wasm.core3.structure.Function;
 import wasm.core2.instruction.Action;
 import wasm.core2.instruction.Expression;
 import wasm.core2.instruction.Instruction;

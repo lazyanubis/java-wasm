@@ -1,11 +1,11 @@
 package wasm.core2.structure;
 
 import wasm.core2.model.section.*;
-import wasm.core.model.index.DataCountIndex;
-import wasm.core.model.index.FunctionIndex;
-import wasm.core.model.index.TypeIndex;
-import wasm.core.model.tag.FunctionTypeTag;
-import wasm.core.model.tag.PortTag;
+import wasm.core3.model.index.DataCountIndex;
+import wasm.core3.model.index.FunctionIndex;
+import wasm.core3.model.index.TypeIndex;
+import wasm.core3.model.tag.FunctionTypeTag;
+import wasm.core3.model.tag.PortTag;
 import wasm.core2.model.type.BlockType;
 import wasm.core2.model.type.ValueType;
 
@@ -72,16 +72,18 @@ public class ModuleInfo {
         }
 
         sb.append("Export[").append(exportSections.length).append("]:").append("\n");
-        for (ExportSection exportSection : exportSections) {
-            sb.append("  ").append(exportSection.dump()).append("\n");
+        for (int i = 0; i < exportSections.length; i++) {
+            sb.append("  ").append(exportSections[i].dump(i)).append("\n");
         }
 
-        sb.append("Start: ").append(null == startFunctionIndex ? "none" : startFunctionIndex).append("\n");
+        sb.append("Start: ").append(null == startFunctionIndex ? "none" : startFunctionIndex.dump()).append("\n");
 
         sb.append("Element[").append(elementSections.length).append("]:").append("\n");
         for (int i = 0; i < elementSections.length; i++) {
             sb.append("  ").append(elementSections[i].dump(i).replace("\n", "\n  ")).append("\n");
         }
+
+        sb.append("DataCount: ").append(null == dataCountIndex ? "none" : dataCountIndex.dump()).append("\n");
 
         int importFunctionCount = (int) Stream.of(importSections).filter(i -> i.describe.tag == PortTag.FUNCTION).count();
         sb.append("Code[").append(codeSections.length).append("]:").append("\n");
@@ -98,8 +100,6 @@ public class ModuleInfo {
         for (int i = 0; i < customSections.length; i++) {
             sb.append("  ").append(customSections[i].dump(i)).append("\n");
         }
-
-        sb.append("DataCount: ").append(null == dataCountIndex ? "none" : dataCountIndex).append("\n");
 
         return sb.toString();
     }

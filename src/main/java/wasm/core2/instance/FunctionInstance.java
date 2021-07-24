@@ -3,8 +3,8 @@ package wasm.core2.instance;
 import wasm.core2.instruction.Instruction;
 import wasm.core2.model.section.CodeSection;
 import wasm.core2.model.section.FunctionType;
-import wasm.core.numeric.U64;
-import wasm.core2.structure.Function;
+import wasm.core3.numeric.U64;
+import wasm.core3.structure.Function;
 import wasm.core2.structure.ModuleInstance;
 import wasm.instruction2.control.Call;
 

@@ -1,7 +1,8 @@
 package wasm.core2.model.describe;
 
-import wasm.core.model.index.TypeIndex;
-import wasm.core.model.tag.PortTag;
+import wasm.core2.model.Dump;
+import wasm.core3.model.index.TypeIndex;
+import wasm.core3.model.tag.PortTag;
 import wasm.core2.model.type.GlobalType;
 import wasm.core2.model.section.MemoryType;
 import wasm.core2.model.section.TableType;
@@ -12,7 +13,7 @@ public class ImportDescribe {
 
     public final Value value;
 
-    public static abstract class Value { }
+    public static abstract class Value implements Dump { }
 
     public static class Function extends Value {
         public TypeIndex typeIndex; // 如果是导入函数 指向类型段的函数索引
@@ -22,7 +23,7 @@ public class ImportDescribe {
         }
 
         @Override
-        public String toString() { return typeIndex.toString(); }
+        public String dump() { return typeIndex.dump(); }
 
     }
     public static class Table extends Value {
@@ -33,7 +34,7 @@ public class ImportDescribe {
         }
 
         @Override
-        public String toString() { return table.toString(); }
+        public String dump() { return table.dump(); }
 
     }
     public static class Memory extends Value {
@@ -44,7 +45,7 @@ public class ImportDescribe {
         }
 
         @Override
-        public String toString() { return memory.toString(); }
+        public String dump() { return memory.dump(); }
 
     }
     public static class Global extends Value {
@@ -55,7 +56,7 @@ public class ImportDescribe {
         }
 
         @Override
-        public String toString() { return global.toString(); }
+        public String dump() { return global.dump(); }
 
     }
 

@@ -1,11 +1,11 @@
 package wasm.instruction2.memory;
 
-import wasm.core.model.index.MemoryIndex;
+import wasm.core3.model.index.MemoryIndex;
 import wasm.core2.structure.ModuleInstance;
 import wasm.core2.structure.WasmReader;
 import wasm.core2.instruction.Operate;
 import wasm.core2.model.Dump;
-import wasm.core.numeric.U32;
+import wasm.core3.numeric.U32;
 
 public class MemoryGrow implements Operate {
 

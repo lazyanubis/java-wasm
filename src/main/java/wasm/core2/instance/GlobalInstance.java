@@ -1,6 +1,6 @@
 package wasm.core2.instance;
 
-import wasm.core.numeric.U64;
+import wasm.core3.numeric.U64;
 import wasm.core2.model.type.GlobalType;
 import wasm.core2.model.type.MutableType;
 import wasm.core2.structure.Global;

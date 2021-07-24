@@ -1,10 +1,10 @@
-package wasm.core.nav.function;
+package wasm.core3.nav.function;
 
-import wasm.core.model.tag.FunctionTypeTag;
-import wasm.core.numeric.U64;
+import wasm.core3.model.tag.FunctionTypeTag;
+import wasm.core3.numeric.U64;
 import wasm.core2.model.section.FunctionType;
 import wasm.core2.model.type.ValueType;
-import wasm.core2.structure.Function;
+import wasm.core3.structure.Function;
 
 class PrintChar implements Function {
 

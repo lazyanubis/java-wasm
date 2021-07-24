@@ -1,8 +1,8 @@
 package wasm.core2.instance;
 
 import wasm.core2.model.section.TableType;
-import wasm.core.numeric.U32;
-import wasm.core2.structure.Function;
+import wasm.core3.numeric.U32;
+import wasm.core3.structure.Function;
 import wasm.core2.structure.Table;
 
 public class TableInstance implements Table {

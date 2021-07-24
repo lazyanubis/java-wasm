@@ -1,8 +1,9 @@
 package wasm.core2.instance;
 
-import wasm.core.model.index.*;
-import wasm.core.numeric.U32;
-import wasm.core.numeric.U64;
+import wasm.core3.model.index.*;
+import wasm.core3.numeric.U32;
+import wasm.core3.numeric.U64;
+import wasm.core3.structure.Function;
 import wasm.core2.instruction.Action;
 import wasm.core2.instruction.Expression;
 import wasm.core2.instruction.Instruction;
@@ -420,61 +421,15 @@ public class Module implements ModuleInstance {
         module.initMemories();
         module.initGlobals();
 
+        System.out.println("========================= ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ =========================");
+        System.out.print(info.dump());
+        System.out.println("========================= ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ =========================");
+
         module.execStartFunction();
+
+        System.out.println();
 
         return module;
     }
-
-
-
-//    private void linkNativeFunctions() {
-//        for (int i = 0; i < moduleInfo.importSections.length; i++) {
-//            ImportSection importSection = moduleInfo.importSections[i];
-//
-//            if (importSection.describe.tag.value() == 0x00) {
-//                // 导入类型是函数 FUNCTION
-//                if (importSection.module.equals("env")) {
-//                    // 导入环境 本地函数
-//                    FunctionType type = moduleInfo.typeSections[i];
-//                    switch (importSection.name) {
-//                        // env模块的哪个函数
-//                        case "print_char": functions[i] = new FunctionInstance(type, NativeFunction.PRINT_CHAR); break;
-//                        case "assert_true": functions[i] = new FunctionInstance(type, NativeFunction.ASSERT_TRUE); break;
-//                        case "assert_false": functions[i] = new FunctionInstance(type, NativeFunction.ASSERT_FALSE); break;
-//                        case "assert_eq_i32": functions[i] = new FunctionInstance(type, NativeFunction.ASSERT_EQUAL_INT); break;
-//                        case "assert_eq_i64": functions[i] = new FunctionInstance(type, NativeFunction.ASSERT_EQUAL_LONG); break;
-//                        default:
-//                            throw new RuntimeException("what a function: " + importSection.name + " for module env.");
-//                    }
-//                } else {
-//                    throw new RuntimeException("what a module: " + moduleInfo);
-//                }
-//            } else {
-//                throw new RuntimeException("what a import tag: " + importSection.describe.tag.value());
-//            }
-//        }
-//    }
-
-
-//    public static void execStartFunction(ModuleInfo moduleInfo) {
-//        System.out.println("========================= ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ =========================");
-//        System.out.print(moduleInfo.dump());
-//        System.out.println("========================= ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ =========================");
-//
-//        if (null == moduleInfo.startFunctionIndex) {
-//            throw new RuntimeException("no start function");
-//        }
-//
-//        ModuleInstance mi = new ModuleInstance(moduleInfo);
-//        mi.initMemory();
-//        mi.initGlobals();
-//        mi.initFunctions();
-//        mi.initTable();
-//        Instruction.CALL.operate(mi, moduleInfo.startFunctionIndex); // 执行启动段指定的函数
-//        mi.loop();
-//
-//        System.out.println();
-//    }
-
 
 }

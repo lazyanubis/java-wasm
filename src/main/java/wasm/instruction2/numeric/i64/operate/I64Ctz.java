@@ -1,7 +1,7 @@
 package wasm.instruction2.numeric.i64.operate;
 
 import wasm.core2.model.Dump;
-import wasm.core.numeric.U64;
+import wasm.core3.numeric.U64;
 import wasm.core2.structure.ModuleInstance;
 import wasm.core2.structure.WasmReader;
 import wasm.core2.instruction.Operate;

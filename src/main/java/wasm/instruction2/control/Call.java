@@ -3,10 +3,10 @@ package wasm.instruction2.control;
 import wasm.core2.instruction.Instruction;
 import wasm.core2.instruction.Operate;
 import wasm.core2.model.Dump;
-import wasm.core.model.index.FunctionIndex;
+import wasm.core3.model.index.FunctionIndex;
 import wasm.core2.model.section.CodeSection;
-import wasm.core.numeric.U64;
-import wasm.core2.structure.Function;
+import wasm.core3.numeric.U64;
+import wasm.core3.structure.Function;
 import wasm.core2.structure.ModuleInstance;
 import wasm.core2.structure.WasmReader;
 

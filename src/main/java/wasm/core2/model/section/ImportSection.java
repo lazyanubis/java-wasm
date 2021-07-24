@@ -30,7 +30,7 @@ public class ImportSection {
             case 0x00: // FUNCTION
                 sb.append("func[").append(index).append("]: ")
                         .append(module).append(".").append(name)
-                        .append(", sig=").append(describe.value.toString());
+                        .append(", sig=").append(describe.value.dump());
                 break;
             case 0x01: // TABLE
                 sb.append("table[").append(index).append("]: ")

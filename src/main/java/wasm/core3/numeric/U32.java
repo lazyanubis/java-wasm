@@ -1,4 +1,4 @@
-package wasm.core.numeric;
+package wasm.core3.numeric;
 
 import java.math.BigInteger;
 import java.util.Arrays;
@@ -6,62 +6,66 @@ import java.util.Arrays;
 import static wasm.core2.util.NumberTransform.toBinaryArray;
 import static wasm.core2.util.NumberTransform.toHexArray;
 
-public class U16 implements USize<U16> {
+public class U32 implements USize<U32> {
 
     private final byte[] bytes;
 
-    protected U16(byte[] bytes) {
-        this.bytes = USize.of(bytes, 2);
+    protected U32(byte[] bytes) {
+        this.bytes = USize.of(bytes, 4);
     }
 
-    protected U16(String value, int radix) {
-        this.bytes = USize.of(value, radix, 2);
+    protected U32(String value, int radix) {
+        this.bytes = USize.of(value, radix, 4);
     }
 
-    protected U16(int value) {
+    protected U32(int value) {
         this.bytes = new byte[]{
-            (byte) ((value & 0xFF00) >> 8),
+            (byte) ((value & 0xFF000000) >> 24),
+            (byte) ((value & 0x00FF0000) >> 16),
+            (byte) ((value & 0x0000FF00) >>  8),
             (byte) value
         };
     }
 
-    protected U16(long value) {
+    protected U32(long value) {
         this.bytes = new byte[]{
-            (byte) ((value & 0xFF00) >> 8),
+            (byte) ((value & 0xFF000000) >> 24),
+            (byte) ((value & 0x00FF0000) >> 16),
+            (byte) ((value & 0x0000FF00) >>  8),
             (byte) value
         };
     }
 
-    protected U16(U8 value) { this(value.getBytes()); }
-    protected U16(U16 value) { this(value.bytes); }
-    protected U16(U32 value) { this(value.getBytes()); }
-    protected U16(U64 value) { this(value.getBytes()); }
+    protected U32(U8 value) { this(value.getBytes()); }
+    protected U32(U16 value) { this(value.getBytes()); }
+    protected U32(U32 value) { this(value.bytes); }
+    protected U32(U64 value) { this(value.getBytes()); }
 
-    public static U16 valueOf(byte[] bytes) { return new U16(bytes); }
-    public static U16 valueOf(String value, int radix) { return new U16(value, radix); }
-    public static U16 valueOf(int value) { return new U16(value); }
-    public static U16 valueOf(long value) { return new U16(value); }
-    public static U16 valueOf(U8 value) { return new U16(value); }
-    public static U16 valueOf(U16 value) { return new U16(value); }
-    public static U16 valueOf(U32 value) { return new U16(value); }
-    public static U16 valueOf(U64 value) { return new U16(value); }
+    public static U32 valueOf(byte[] bytes) { return new U32(bytes); }
+    public static U32 valueOf(String value, int radix) { return new U32(value, radix); }
+    public static U32 valueOf(int value) { return new U32(value); }
+    public static U32 valueOf(long value) { return new U32(value); }
+    public static U32 valueOf(U8 value) { return new U32(value); }
+    public static U32 valueOf(U16 value) { return new U32(value); }
+    public static U32 valueOf(U32 value) { return new U32(value); }
+    public static U32 valueOf(U64 value) { return new U32(value); }
 
     @Override
     public final int intValue() {
-        return this.bytes[0] << 8
-             | this.bytes[1];
+        return Integer.parseUnsignedInt(toHexArray(bytes), 16);
     }
 
     @Override
     public final long longValue() {
-        return this.bytes[0] << 8
-             | this.bytes[1];
+        return Integer.parseUnsignedInt(toHexArray(bytes), 16);
     }
 
     @Override
     public final boolean boolValue() {
         return this.bytes[0] != 0
-            || this.bytes[1] != 0;
+            || this.bytes[1] != 0
+            || this.bytes[2] != 0
+            || this.bytes[3] != 0;
     }
 
     @Override
@@ -80,7 +84,7 @@ public class U16 implements USize<U16> {
     }
 
     public final U8 u8() { return U8.valueOf(this.bytes); }
-    public final U32 u32() { return U32.valueOf(this.bytes); }
+    public final U16 u16() { return U16.valueOf(this.bytes); }
     public final U64 u64() { return U64.valueOf(this.bytes); }
 
     @Override
@@ -109,7 +113,7 @@ public class U16 implements USize<U16> {
     }
 
     @Override
-    public final int compareTo(U16 o) {
+    public final int compareTo(U32 o) {
         return uBidInteger().compareTo(o.uBidInteger());
     }
 
@@ -118,12 +122,13 @@ public class U16 implements USize<U16> {
         return uBidInteger().toString();
     }
 
+
     @Override
     public final boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        U16 u16 = (U16) o;
-        return Arrays.equals(bytes, u16.bytes);
+        U32 u32 = (U32) o;
+        return Arrays.equals(bytes, u32.bytes);
     }
 
     @Override

@@ -1,7 +1,7 @@
 package wasm.core2.model;
 
-import wasm.core.numeric.U32;
-import wasm.core.model.tag.LimitsTag;
+import wasm.core3.numeric.U32;
+import wasm.core3.model.tag.LimitsTag;
 
 public class Limits {
 
@@ -44,7 +44,7 @@ public class Limits {
     }
 
     public String dump() {
-        return "{min: " + min + ", max: " + (null == max ? "0" : max.toString()) + "}";
+        return "{min: " + min.dump() + ", max: " + (null == max ? "0" : max.dump()) + "}";
     }
 
 }

@@ -2,7 +2,7 @@ package wasm.core2.model.section;
 
 import wasm.core2.instruction.Expression;
 import wasm.core2.model.Local;
-import wasm.core.numeric.U32;
+import wasm.core3.numeric.U32;
 
 import java.util.Arrays;
 import java.util.stream.Collectors;
@@ -41,7 +41,7 @@ public class CodeSection {
         StringBuilder sb = new StringBuilder();
 
         sb.append("func[").append(index).append("]: ")
-                .append("locals=[").append(Stream.of(locals).map(l -> l.type.name() + " x " + l.n).collect(Collectors.joining(", "))).append("]");
+                .append("locals=[").append(Stream.of(locals).map(l -> l.type.name() + " x " + l.n.dump()).collect(Collectors.joining(", "))).append("]");
 
         if (null != expression && expression.length() > 0) {
             sb.append("\n");

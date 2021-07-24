@@ -1,6 +1,6 @@
-package wasm.core.model.index;
+package wasm.core3.model.index;
 
-import wasm.core.numeric.U32;
+import wasm.core3.numeric.U32;
 
 public class TypeIndex extends U32 {
 
@@ -11,7 +11,7 @@ public class TypeIndex extends U32 {
     public static TypeIndex of(U32 value) { return new TypeIndex(value); }
 
     public String dump(int index) {
-        return "func[" + index + "]: " + "value=" + super.toString();
+        return "func[" + index + "]: " + "value=" + super.dump();
     }
 
 }

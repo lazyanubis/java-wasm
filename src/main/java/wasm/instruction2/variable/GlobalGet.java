@@ -4,8 +4,8 @@ import wasm.core2.structure.ModuleInstance;
 import wasm.core2.structure.WasmReader;
 import wasm.core2.instruction.Operate;
 import wasm.core2.model.Dump;
-import wasm.core.model.index.GlobalIndex;
-import wasm.core.numeric.U64;
+import wasm.core3.model.index.GlobalIndex;
+import wasm.core3.numeric.U64;
 
 public class GlobalGet implements Operate {
 

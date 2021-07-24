@@ -85,10 +85,41 @@ public class Main {
 
 //        VirtualMachine.execStartFunction(WasmReader.readByName("ch01_hw2.wasm"));
 
-//        ModuleInstance.execStartFunction(WasmReader.readByName("ch09_calc.wasm"));
+//        VirtualMachine.execStartFunction(WasmReader.readByName("ch09_calc.wasm"));
+
 
         Module.newModule(WasmReader.readByName("ch09_calc.wasm"));
         Module.newModule(WasmReader.readByName("hw_rust.wasm"));
+
+
+        Module.newModule(WasmReader.readByName("ch05_cz.wasm"));
+        Module.newModule(WasmReader.readByName("ch05_num2.wasm"));
+        Module.newModule(WasmReader.readByName("ch05_param.wasm"));
+
+        Module.newModule(WasmReader.readByName("ch06_mem2.wasm"));
+
+        Module.newModule(WasmReader.readByName("ch07_fib.wasm"));
+        Module.newModule(WasmReader.readByName("ch07_global2.wasm"));
+        Module.newModule(WasmReader.readByName("ch07_local.wasm"));
+        Module.newModule(WasmReader.readByName("ch07_max.wasm"));
+
+        Module.newModule(WasmReader.readByName("ch08_cmp.wasm"));
+        Module.newModule(WasmReader.readByName("ch08_fac.wasm"));
+        Module.newModule(WasmReader.readByName("ch08_sum.wasm"));
+        Module.newModule(WasmReader.readByName("ch08_test.wasm"));
+        Module.newModule(WasmReader.readByName("ch08_eg1_labels.wasm"));
+        Module.newModule(WasmReader.readByName("ch08_eg2_nested_labels.wasm"));
+        Module.newModule(WasmReader.readByName("ch08_eg3_label_names.wasm"));
+        Module.newModule(WasmReader.readByName("ch08_eg4_add.wasm"));
+        Module.newModule(WasmReader.readByName("ch08_eg5_calc.wasm"));
+        Module.newModule(WasmReader.readByName("ch08_eg6_br.wasm"));
+        Module.newModule(WasmReader.readByName("ch08_eg7_br_if.wasm"));
+        Module.newModule(WasmReader.readByName("ch08_eg8_br_table.wasm"));
+        Module.newModule(WasmReader.readByName("ch08_eg9_return.wasm"));
+
+        Module.newModule(WasmReader.readByName("ch01_hw2.wasm"));
+
+        Module.newModule(WasmReader.readByName("ch09_calc.wasm"));
 
     }
 

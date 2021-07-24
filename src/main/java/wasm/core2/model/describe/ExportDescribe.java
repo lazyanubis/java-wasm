@@ -1,7 +1,7 @@
 package wasm.core2.model.describe;
 
-import wasm.core.numeric.U32;
-import wasm.core.model.tag.PortTag;
+import wasm.core3.numeric.U32;
+import wasm.core3.model.tag.PortTag;
 
 public class ExportDescribe {
 

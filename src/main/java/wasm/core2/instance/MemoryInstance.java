@@ -1,12 +1,12 @@
 package wasm.core2.instance;
 
 import wasm.core2.model.section.MemoryType;
-import wasm.core.numeric.U32;
-import wasm.core.numeric.U64;
+import wasm.core3.numeric.U32;
+import wasm.core3.numeric.U64;
 import wasm.core2.structure.Memory;
 
-import static wasm.core.util.ConstNumber.MEMORY_MAX_PAGE_COUNT;
-import static wasm.core.util.ConstNumber.MEMORY_PAGE_SIZE;
+import static wasm.core3.util.ConstNumber.MEMORY_MAX_PAGE_COUNT;
+import static wasm.core3.util.ConstNumber.MEMORY_PAGE_SIZE;
 
 /**
  * 由于标准中每个内存页64KB，每次增加太大了，特别是每增加一页就多64KB

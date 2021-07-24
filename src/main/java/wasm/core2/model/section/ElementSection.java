@@ -3,9 +3,9 @@ package wasm.core2.model.section;
 import wasm.core2.model.Dump;
 import wasm.core2.structure.ModuleInstance;
 import wasm.core2.instruction.Expression;
-import wasm.core.model.index.FunctionIndex;
-import wasm.core.model.index.TableIndex;
-import wasm.core.numeric.U32;
+import wasm.core3.model.index.FunctionIndex;
+import wasm.core3.model.index.TableIndex;
+import wasm.core3.numeric.U32;
 import wasm.core2.model.type.ReferenceType;
 
 import java.util.stream.Collectors;
@@ -38,7 +38,7 @@ public class ElementSection {
 
         @Override
         public String dump() {
-            return "0x00 " + expression.dump() + " [" + Stream.of(functionIndices).map(U32::toString).collect(Collectors.joining(",")) + "]";
+            return "0x00 " + expression.dump() + " [" + Stream.of(functionIndices).map(U32::dump).collect(Collectors.joining(",")) + "]";
         }
 
         @Override
@@ -71,7 +71,7 @@ public class ElementSection {
 
         @Override
         public String dump() {
-            return "0x01 " + toHex(elementKind) + " [" + Stream.of(functionIndices).map(U32::toString).collect(Collectors.joining(",")) + "]";
+            return "0x01 " + toHex(elementKind) + " [" + Stream.of(functionIndices).map(U32::dump).collect(Collectors.joining(",")) + "]";
         }
 
         @Override
@@ -100,7 +100,7 @@ public class ElementSection {
 
         @Override
         public String dump() {
-            return "0x02 " + tableIndex + " " + expression.dump() + " " + toHex(elementKind) + " [" + Stream.of(functionIndices).map(U32::toString).collect(Collectors.joining(",")) + "]";
+            return "0x02 " + tableIndex + " " + expression.dump() + " " + toHex(elementKind) + " [" + Stream.of(functionIndices).map(U32::dump).collect(Collectors.joining(",")) + "]";
         }
 
         @Override
@@ -124,7 +124,7 @@ public class ElementSection {
         }
         @Override
         public String dump() {
-            return "0x03 " + toHex(elementKind) + " [" + Stream.of(functionIndices).map(U32::toString).collect(Collectors.joining(",")) + "]";
+            return "0x03 " + toHex(elementKind) + " [" + Stream.of(functionIndices).map(U32::dump).collect(Collectors.joining(",")) + "]";
         }
 
         @Override

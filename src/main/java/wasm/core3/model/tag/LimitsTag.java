@@ -1,4 +1,4 @@
-package wasm.core.model.tag;
+package wasm.core3.model.tag;
 
 import wasm.core2.model.Type;
 

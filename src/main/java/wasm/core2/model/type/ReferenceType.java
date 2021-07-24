@@ -47,6 +47,6 @@ public class ReferenceType implements Type, Dump {
 
     @Override
     public String dump() {
-        return "0x" + toHex(value) + " " + name;
+        return name + "[0x" + toHex(value) + "]";
     }
 }

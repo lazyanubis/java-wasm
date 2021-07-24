@@ -20,21 +20,21 @@ public class ExportSection {
                 '}';
     }
 
-    public String dump() {
+    public String dump(int index) {
         StringBuilder sb = new StringBuilder();
 
         switch (describe.tag.value()) {
             case 0x00: // FUNCTION
-                sb.append("func[").append(describe.index.toString()).append("]: "); break;
+                sb.append("func[").append(index).append("]: sig=").append(describe.index.dump()); break;
             case 0x01: // TABLE
-                sb.append("table[").append(describe.index.toString()).append("]: "); break;
+                sb.append("table[").append(index).append("]: sig=").append(describe.index.dump()); break;
             case 0x02: // MEMORY
-                sb.append("memory[").append(describe.index.toString()).append("]: "); break;
+                sb.append("memory[").append(index).append("]: sig=").append(describe.index.dump()); break;
             case 0x03: // GLOBAL
-                sb.append("global[").append(describe.index.toString()).append("]: "); break;
+                sb.append("global[").append(index).append("]: sig=").append(describe.index.dump()); break;
             default:
         }
-        sb.append("name=").append(name);
+        sb.append(" name=").append(name);
 
         return sb.toString();
     }

@@ -1,6 +1,6 @@
-package wasm.core.nav.function;
+package wasm.core3.nav.function;
 
-import wasm.core2.structure.Function;
+import wasm.core3.structure.Function;
 
 public class NativeFunctions {
 

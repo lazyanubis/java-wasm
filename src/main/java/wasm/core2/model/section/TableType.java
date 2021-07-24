@@ -1,9 +1,10 @@
 package wasm.core2.model.section;
 
+import wasm.core2.model.Dump;
 import wasm.core2.model.type.ReferenceType;
 import wasm.core2.model.Limits;
 
-public class TableType {
+public class TableType implements Dump {
 
     public final ReferenceType type;    // 引用类型
     public final Limits limits;         // 表限制
@@ -22,7 +23,11 @@ public class TableType {
     }
 
     public String dump(int index) {
-        return "table[" + index + "]: " + limits.dump();
+        return "table[" + index + "]: " + dump();
     }
 
+    @Override
+    public String dump() {
+        return type.dump() + " " + limits.dump();
+    }
 }

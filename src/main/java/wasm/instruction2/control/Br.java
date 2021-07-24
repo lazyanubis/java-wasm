@@ -6,7 +6,7 @@ import wasm.core2.structure.WasmReader;
 import wasm.core2.instruction.Instruction;
 import wasm.core2.instruction.Operate;
 import wasm.core2.model.Dump;
-import wasm.core.model.index.LabelIndex;
+import wasm.core3.model.index.LabelIndex;
 
 public class Br implements Operate {
 

@@ -1,7 +1,7 @@
 package wasm.instruction2.dump;
 
 import wasm.core2.model.Dump;
-import wasm.core.numeric.U32;
+import wasm.core3.numeric.U32;
 
 public class DumpMemory implements Dump {
 
@@ -19,11 +19,12 @@ public class DumpMemory implements Dump {
 
     @Override
     public String dump() {
-        return String.format("{align: %s, offset: %s}", align.toString(), offset.toString());
+        return String.format("{align: %s, offset: %s}", align.dump(), offset.dump());
     }
 
     @Override
     public String toString() {
-        return String.format("{align: %s, offset: %s}", align.toString(), offset.toString());
+        return dump();
     }
+
 }

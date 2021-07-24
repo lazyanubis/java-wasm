@@ -10,19 +10,19 @@ import wasm.core2.instruction.Expression;
 import wasm.core2.instruction.Instruction;
 import wasm.core2.model.describe.ExportDescribe;
 import wasm.core2.model.describe.ImportDescribe;
-import wasm.core.model.index.*;
-import wasm.core.numeric.U32;
-import wasm.core.numeric.U64;
-import wasm.core.model.tag.FunctionTypeTag;
-import wasm.core.model.tag.LimitsTag;
-import wasm.core.model.tag.PortTag;
+import wasm.core3.model.index.*;
+import wasm.core3.numeric.U32;
+import wasm.core3.numeric.U64;
+import wasm.core3.model.tag.FunctionTypeTag;
+import wasm.core3.model.tag.LimitsTag;
+import wasm.core3.model.tag.PortTag;
 import wasm.core2.util.FileReader;
 import wasm.core2.util.Leb128;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static wasm.core.util.ConstNumber.*;
+import static wasm.core3.util.ConstNumber.*;
 
 public class WasmReader {
 

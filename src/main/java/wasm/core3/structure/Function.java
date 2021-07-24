@@ -1,8 +1,8 @@
-package wasm.core2.structure;
+package wasm.core3.structure;
 
 import wasm.core2.model.section.CodeSection;
 import wasm.core2.model.section.FunctionType;
-import wasm.core.numeric.U64;
+import wasm.core3.numeric.U64;
 
 public interface Function {
 
