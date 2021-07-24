@@ -1,27 +1,28 @@
-package wasm.core2.model.tag;
+package wasm.core.model.tag;
 
 import wasm.core2.model.Type;
 
 import static wasm.core2.util.NumberTransform.toHex;
 
-public class LimitsTag implements Type {
+public class FunctionTypeTag implements Type {
 
     private final byte value;
 
     private final String name;
 
-    private LimitsTag(byte value, String name) {
+    private FunctionTypeTag(byte value, String name) {
         this.value = value;
         this.name = name;
     }
 
-    public static final LimitsTag ZERO = new LimitsTag((byte) 0x00, "0x00");
-    public static final LimitsTag ONE  = new LimitsTag((byte) 0x01, "0x01");
+    // 块没有标签
+    public static final FunctionTypeTag BLOCK_TYPE = new FunctionTypeTag((byte) 0x00, "blocktype");
 
-    public static LimitsTag of(byte value) {
+    public static final FunctionTypeTag FUNCTION_TYPE = new FunctionTypeTag((byte) 0x60, "functype");
+
+    public static FunctionTypeTag of(byte value) {
         switch (value) {
-            case 0x00: return ZERO;
-            case 0x01: return ONE;
+            case 0x60: return FUNCTION_TYPE;
         }
         throw new RuntimeException("wrong value: 0x" + toHex(value));
     }
@@ -38,12 +39,12 @@ public class LimitsTag implements Type {
 
     @Override
     public String dump() {
-        return name;
+        return "0x" + toHex(value) + " " + name;
     }
 
     @Override
     public String toString() {
-        return "LimitsTag{" +
+        return "FunctionTypeTag{" +
                 "value=" + value +
                 ", name='" + name + '\'' +
                 '}';
