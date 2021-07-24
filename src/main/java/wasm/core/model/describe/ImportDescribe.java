@@ -1,10 +1,10 @@
-package wasm.model.describe;
+package wasm.core.model.describe;
 
-import wasm.model.MemoryType;
-import wasm.model.TableType;
-import wasm.model.number.U32;
-import wasm.model.tag.PortTag;
-import wasm.model.type.GlobalType;
+import wasm.core.model.index.TypeIndex;
+import wasm.core.model.tag.PortTag;
+import wasm.core.model.type.GlobalType;
+import wasm.model2.MemoryType;
+import wasm.model2.TableType;
 
 public class ImportDescribe {
 
@@ -12,17 +12,17 @@ public class ImportDescribe {
 
     public final Value value;
 
-    public static abstract class Value  { }
+    public static abstract class Value { }
 
     public static class Function extends Value {
-        public U32 functionTypeIndex; // 如果是导入函数 指向类型段的函数索引
+        public TypeIndex typeIndex; // 如果是导入函数 指向类型段的函数索引
 
-        public Function(U32 functionTypeIndex) {
-            this.functionTypeIndex = functionTypeIndex;
+        public Function(TypeIndex typeIndex) {
+            this.typeIndex = typeIndex;
         }
 
         @Override
-        public String toString() { return functionTypeIndex.toString(); }
+        public String toString() { return typeIndex.toString(); }
 
     }
     public static class Table extends Value {
@@ -72,4 +72,5 @@ public class ImportDescribe {
                 ", value=" + value +
                 '}';
     }
+
 }

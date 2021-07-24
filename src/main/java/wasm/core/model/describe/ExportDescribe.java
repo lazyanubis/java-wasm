@@ -1,13 +1,13 @@
-package wasm.model.describe;
+package wasm.core.model.describe;
 
-import wasm.model.number.U32;
-import wasm.model.tag.PortTag;
+import wasm.core.numeric.U32;
+import wasm.core.model.tag.PortTag;
 
 public class ExportDescribe {
 
-    public PortTag tag;
+    public final PortTag tag;
 
-    public U32 index; // funcidx tableidx memidx globalidx
+    public final U32 index; // funcidx tableidx memidx globalidx
 
     public ExportDescribe(PortTag tag, U32 index) {
         this.tag = tag;
@@ -21,4 +21,5 @@ public class ExportDescribe {
                 ", index=" + index +
                 '}';
     }
+
 }
