@@ -5,7 +5,7 @@ import wasm.core2.structure.WasmReader;
 import wasm.core2.instruction.Operate;
 import wasm.core2.model.Dump;
 import wasm.core3.numeric.U64;
-import wasm.core2.util.NumberUtil;
+import wasm.core.util.NumberUtil;
 
 public class I64Or implements Operate {
 

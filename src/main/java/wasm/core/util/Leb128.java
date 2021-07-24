@@ -1,7 +1,7 @@
-package wasm.core2.util;
+package wasm.core.util;
 
-import static wasm.core2.util.NumberTransform.parseByteByBinary;
-import static wasm.core2.util.NumberTransform.toBinary;
+import static wasm.core.util.NumberTransform.parseByteByBinary;
+import static wasm.core.util.NumberTransform.toBinary;
 
 /**
  * Leb128编码解析

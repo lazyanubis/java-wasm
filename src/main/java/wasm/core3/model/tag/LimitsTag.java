@@ -2,7 +2,7 @@ package wasm.core3.model.tag;
 
 import wasm.core2.model.Type;
 
-import static wasm.core2.util.NumberTransform.toHex;
+import static wasm.core.util.NumberTransform.toHex;
 
 public class LimitsTag implements Type {
 

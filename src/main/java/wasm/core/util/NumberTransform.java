@@ -1,4 +1,4 @@
-package wasm.core2.util;
+package wasm.core.util;
 
 import java.math.BigInteger;
 import java.util.HashMap;
@@ -37,6 +37,7 @@ public class NumberTransform {
         assert length <= 64;
         return ONES.get(length);
     }
+
 
     /**
      * 将Hex字符转化为对应的二进制数字

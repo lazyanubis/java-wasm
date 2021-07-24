@@ -4,7 +4,7 @@ import wasm.core2.model.Dump;
 
 import java.math.BigInteger;
 
-import static wasm.core2.util.NumberTransform.*;
+import static wasm.core.util.NumberTransform.*;
 
 /**
  * 数字接口
@@ -48,7 +48,7 @@ public interface USize<T> extends Dump, Comparable<T> {
         byte[] bs = new byte[size];
 
         for (int i = size - 1; 0 <= i; i--) {
-            int index = bytes.length - size + i;
+            int index = bytes.length - size + i; // 从后往前保存
             if (index < 0) { break; }
             bs[i] = bytes[index];
         }

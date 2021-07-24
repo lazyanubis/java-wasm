@@ -21,7 +21,7 @@ import wasm.instruction2.table.*;
 import wasm.instruction2.variable.*;
 import wasm.core2.model.Dump;
 
-import static wasm.core2.util.NumberTransform.toHex;
+import static wasm.core.util.NumberTransform.toHex;
 
 public enum Instruction {
 

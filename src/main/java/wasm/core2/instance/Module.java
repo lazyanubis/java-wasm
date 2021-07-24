@@ -10,7 +10,7 @@ import wasm.core2.instruction.Instruction;
 import wasm.core2.model.describe.ExportDescribe;
 import wasm.core2.model.section.*;
 import wasm.core2.structure.*;
-import wasm.core2.util.NumberUtil;
+import wasm.core.util.NumberUtil;
 import wasm.instruction2.dump.DumpMemory;
 
 import java.util.ArrayList;

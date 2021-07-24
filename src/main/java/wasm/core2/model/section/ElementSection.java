@@ -11,7 +11,7 @@ import wasm.core2.model.type.ReferenceType;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static wasm.core2.util.NumberTransform.toHex;
+import static wasm.core.util.NumberTransform.toHex;
 
 /**
  * 这部分貌似有更新，以后再修改

@@ -1,13 +1,13 @@
 package wasm.core2.model.section;
 
 import wasm.core2.model.Dump;
-import wasm.core2.util.NumberTransform;
+import wasm.core.util.NumberTransform;
 import wasm.core2.structure.ModuleInstance;
 import wasm.core2.instruction.Expression;
 import wasm.core3.model.index.MemoryIndex;
 import wasm.core3.numeric.U32;
 
-import static wasm.core2.util.NumberTransform.toHexArray;
+import static wasm.core.util.NumberTransform.toHexArray;
 
 public class DataSection {
 

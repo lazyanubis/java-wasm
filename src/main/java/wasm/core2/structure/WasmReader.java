@@ -16,8 +16,8 @@ import wasm.core3.numeric.U64;
 import wasm.core3.model.tag.FunctionTypeTag;
 import wasm.core3.model.tag.LimitsTag;
 import wasm.core3.model.tag.PortTag;
-import wasm.core2.util.FileReader;
-import wasm.core2.util.Leb128;
+import wasm.core.util.FileReader;
+import wasm.core.util.Leb128;
 
 import java.util.ArrayList;
 import java.util.List;

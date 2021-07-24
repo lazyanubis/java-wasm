@@ -1,4 +1,4 @@
-package wasm.core2.util;
+package wasm.core.util;
 
 import java.io.File;
 import java.io.FileInputStream;

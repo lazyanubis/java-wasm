@@ -1,10 +1,12 @@
 package wasm.core3.numeric;
 
+import wasm.core.numeric.U8;
+
 import java.math.BigInteger;
 import java.util.Arrays;
 
-import static wasm.core2.util.NumberTransform.toBinaryArray;
-import static wasm.core2.util.NumberTransform.toHexArray;
+import static wasm.core.util.NumberTransform.toBinaryArray;
+import static wasm.core.util.NumberTransform.toHexArray;
 
 public class U16 implements USize<U16> {
 

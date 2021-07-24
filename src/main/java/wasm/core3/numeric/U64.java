@@ -1,9 +1,11 @@
 package wasm.core3.numeric;
 
+import wasm.core.numeric.U8;
+
 import java.math.BigInteger;
 import java.util.Arrays;
 
-import static wasm.core2.util.NumberTransform.*;
+import static wasm.core.util.NumberTransform.*;
 
 public class U64 implements USize<U64> {
 
