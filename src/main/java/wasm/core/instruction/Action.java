@@ -1,14 +1,14 @@
-package wasm.instruction;
+package wasm.core.instruction;
 
-import wasm.model.Dump;
+import wasm.core.model.Dump;
 
-public class Expression implements Dump {
+public class Action implements Dump {
 
     private final Instruction instruction;
 
     private final Dump args;
 
-    public Expression(Instruction instruction, Dump args) {
+    public Action(Instruction instruction, Dump args) {
         this.instruction = instruction;
         this.args = args;
     }

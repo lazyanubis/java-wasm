@@ -1,8 +1,8 @@
-package wasm.instruction;
+package wasm.core.instruction;
 
-import wasm.core.VirtualMachine;
-import wasm.core.WasmReader;
-import wasm.model.Dump;
+import wasm.core2.VirtualMachine;
+import wasm.core2.WasmReader;
+import wasm.core.model.Dump;
 
 public interface Operate {
 

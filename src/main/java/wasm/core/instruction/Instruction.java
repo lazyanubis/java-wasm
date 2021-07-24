@@ -1,27 +1,27 @@
-package wasm.instruction;
+package wasm.core.instruction;
 
-import wasm.core.VirtualMachine;
-import wasm.core.WasmReader;
-import wasm.instruction.control.*;
-import wasm.instruction.memory.*;
-import wasm.instruction.numeric.*;
-import wasm.instruction.numeric.i32.I32Const;
-import wasm.instruction.numeric.i32.compare.*;
-import wasm.instruction.numeric.i32.operate.*;
-import wasm.instruction.numeric.i64.I64Const;
-import wasm.instruction.numeric.i64.compare.*;
-import wasm.instruction.numeric.i64.operate.*;
-import wasm.instruction.parametric.Drop;
-import wasm.instruction.parametric.Select;
-import wasm.instruction.parametric.SelectC;
-import wasm.instruction.reference.RefFunc;
-import wasm.instruction.reference.RefIsNull;
-import wasm.instruction.reference.RefNull;
-import wasm.instruction.table.*;
-import wasm.instruction.variable.*;
-import wasm.model.Dump;
+import wasm.core2.VirtualMachine;
+import wasm.core2.WasmReader;
+import wasm.instruction2.control.*;
+import wasm.instruction2.memory.*;
+import wasm.instruction2.numeric.*;
+import wasm.instruction2.numeric.i32.I32Const;
+import wasm.instruction2.numeric.i32.compare.*;
+import wasm.instruction2.numeric.i32.operate.*;
+import wasm.instruction2.numeric.i64.I64Const;
+import wasm.instruction2.numeric.i64.compare.*;
+import wasm.instruction2.numeric.i64.operate.*;
+import wasm.instruction2.parametric.Drop;
+import wasm.instruction2.parametric.Select;
+import wasm.instruction2.parametric.SelectC;
+import wasm.instruction2.reference.RefFunc;
+import wasm.instruction2.reference.RefIsNull;
+import wasm.instruction2.reference.RefNull;
+import wasm.instruction2.table.*;
+import wasm.instruction2.variable.*;
+import wasm.core.model.Dump;
 
-import static wasm.util.NumberUtil.toHex;
+import static wasm.core.util.NumberTransform.toHex;
 
 public enum Instruction {
 
