@@ -1,7 +1,7 @@
 package wasm.core2.structure;
 
-import wasm.core3.numeric.U32;
-import wasm.core3.numeric.U64;
+import wasm.core.numeric.U32;
+import wasm.core.numeric.U64;
 
 import java.util.ArrayList;
 import java.util.List;

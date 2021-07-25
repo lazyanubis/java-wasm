@@ -6,7 +6,7 @@ import wasm.core2.instruction.Instruction;
 import wasm.core2.instruction.Operate;
 import wasm.core2.model.Dump;
 import wasm.core3.model.index.LabelIndex;
-import wasm.core3.numeric.U32;
+import wasm.core.numeric.U32;
 
 public class Return implements Operate {
 

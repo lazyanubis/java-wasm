@@ -2,7 +2,7 @@ package wasm.core2.model.section;
 
 import wasm.core2.model.Limits;
 import wasm.core3.model.tag.LimitsTag;
-import wasm.core3.numeric.U32;
+import wasm.core.numeric.U32;
 
 public class MemoryType extends Limits {
 

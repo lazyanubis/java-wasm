@@ -1,8 +1,8 @@
 package wasm.core2.instance;
 
 import wasm.core3.model.index.*;
-import wasm.core3.numeric.U32;
-import wasm.core3.numeric.U64;
+import wasm.core.numeric.U32;
+import wasm.core.numeric.U64;
 import wasm.core3.structure.Function;
 import wasm.core2.instruction.Action;
 import wasm.core2.instruction.Expression;

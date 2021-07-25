@@ -1,7 +1,7 @@
 package wasm.core2.structure;
 
 import wasm.core2.model.type.GlobalType;
-import wasm.core3.numeric.U64;
+import wasm.core.numeric.U64;
 
 public interface Global {
 

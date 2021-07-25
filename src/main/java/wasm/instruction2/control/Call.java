@@ -5,7 +5,7 @@ import wasm.core2.instruction.Operate;
 import wasm.core2.model.Dump;
 import wasm.core3.model.index.FunctionIndex;
 import wasm.core2.model.section.CodeSection;
-import wasm.core3.numeric.U64;
+import wasm.core.numeric.U64;
 import wasm.core3.structure.Function;
 import wasm.core2.structure.ModuleInstance;
 import wasm.core2.structure.WasmReader;

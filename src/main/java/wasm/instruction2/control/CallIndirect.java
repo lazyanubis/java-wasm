@@ -6,7 +6,7 @@ import wasm.core2.model.Dump;
 import wasm.core3.model.index.TableIndex;
 import wasm.core3.model.index.TypeIndex;
 import wasm.core2.model.section.FunctionType;
-import wasm.core3.numeric.U32;
+import wasm.core.numeric.U32;
 import wasm.core3.structure.Function;
 import wasm.core2.structure.ModuleInstance;
 import wasm.core2.structure.WasmReader;

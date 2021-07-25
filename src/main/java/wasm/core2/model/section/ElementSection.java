@@ -5,7 +5,7 @@ import wasm.core2.structure.ModuleInstance;
 import wasm.core2.instruction.Expression;
 import wasm.core3.model.index.FunctionIndex;
 import wasm.core3.model.index.TableIndex;
-import wasm.core3.numeric.U32;
+import wasm.core.numeric.U32;
 import wasm.core2.model.type.ReferenceType;
 
 import java.util.stream.Collectors;

@@ -1,7 +1,7 @@
 package wasm.core2.model.section;
 
-import wasm.core3.numeric.U16;
-import wasm.core3.numeric.U32;
+import wasm.core.numeric.U16;
+import wasm.core.numeric.U32;
 
 /**
  * Wasm定义是一个U32数字

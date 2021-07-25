@@ -1,6 +1,6 @@
 package wasm.core3.model.index;
 
-import wasm.core3.numeric.U32;
+import wasm.core.numeric.U32;
 
 public class LabelIndex extends U32 {
 

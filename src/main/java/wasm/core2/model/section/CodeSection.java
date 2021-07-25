@@ -2,7 +2,7 @@ package wasm.core2.model.section;
 
 import wasm.core2.instruction.Expression;
 import wasm.core2.model.Local;
-import wasm.core3.numeric.U32;
+import wasm.core.numeric.U32;
 
 import java.util.Arrays;
 import java.util.stream.Collectors;

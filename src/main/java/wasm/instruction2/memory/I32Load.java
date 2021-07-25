@@ -6,7 +6,7 @@ import wasm.core2.instruction.Operate;
 import wasm.instruction2.dump.DumpMemory;
 import wasm.core2.model.Dump;
 import wasm.core3.model.index.MemoryIndex;
-import wasm.core3.numeric.U32;
+import wasm.core.numeric.U32;
 
 public class I32Load implements Operate {
 

@@ -1,8 +1,8 @@
 package wasm.core2.structure;
 
 import wasm.core2.model.section.MemoryType;
-import wasm.core3.numeric.U32;
-import wasm.core3.numeric.U64;
+import wasm.core.numeric.U32;
+import wasm.core.numeric.U64;
 
 public interface Memory {
 

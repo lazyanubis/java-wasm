@@ -5,7 +5,7 @@ import wasm.core.util.NumberTransform;
 import wasm.core2.structure.ModuleInstance;
 import wasm.core2.instruction.Expression;
 import wasm.core3.model.index.MemoryIndex;
-import wasm.core3.numeric.U32;
+import wasm.core.numeric.U32;
 
 import static wasm.core.util.NumberTransform.toHexArray;
 

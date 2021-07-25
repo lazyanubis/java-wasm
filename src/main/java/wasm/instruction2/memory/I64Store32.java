@@ -6,8 +6,8 @@ import wasm.core2.instruction.Operate;
 import wasm.instruction2.dump.DumpMemory;
 import wasm.core2.model.Dump;
 import wasm.core3.model.index.MemoryIndex;
-import wasm.core3.numeric.U32;
-import wasm.core3.numeric.U64;
+import wasm.core.numeric.U32;
+import wasm.core.numeric.U64;
 
 public class I64Store32 implements Operate {
 
