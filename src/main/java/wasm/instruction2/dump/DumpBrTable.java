@@ -20,6 +20,6 @@ public class DumpBrTable implements Dump {
 
     @Override
     public String dump() {
-        return "[" + Stream.of(labelIndices).map(U32::toString).collect(Collectors.joining(",")) + "] " + omit;
+        return "[" + Stream.of(labelIndices).map(U32::dump).collect(Collectors.joining(",")) + "] " + omit;
     }
 }

@@ -38,18 +38,27 @@ public interface USize<T> extends Dump, Comparable<T> {
 
 
     /**
-     * 将字符数组格式化对应长度字节数组
+     * 将字符数组格式化对应长度字节数组，如果未能提供满足长度的字节，则按照最顶位填充 全0 或 全1
      */
     static byte[] of(byte[] bytes, int size) {
         if (null == bytes) { return new byte[size]; }
 
         assert size == 1 || size == 2 || size == 4 || size == 8;
 
+        if (bytes.length == size) { return bytes; }
+
         byte[] bs = new byte[size];
 
         for (int i = size - 1; 0 <= i; i--) {
             int index = bytes.length - size + i; // 从后往前保存
-            if (index < 0) { break; }
+            if (index < 0) {
+                if ((bytes[0] & 0x80) != 0) { // 顶位是1
+                    for (int j = 0; j <= i; j++) {
+                        bs[j] = -1;
+                    }
+                }
+                break;
+            }
             bs[i] = bytes[index];
         }
 
@@ -99,6 +108,23 @@ public interface USize<T> extends Dump, Comparable<T> {
         byte[] bs = new byte[bytes.length];
 
         System.arraycopy(bytes, 0, bs, 0, bytes.length);
+
+        return bs;
+    }
+
+    /**
+     * 复制数组
+     */
+    static byte[] copy(byte[] bytes, int size) {
+        assert null != bytes;
+
+        byte[] bs = new byte[size];
+
+        if (size <= bytes.length) {
+            System.arraycopy(bytes, bytes.length - size, bs, 0, size);
+        } else {
+            System.arraycopy(bytes, 0, bs, size - bytes.length, bytes.length);
+        }
 
         return bs;
     }

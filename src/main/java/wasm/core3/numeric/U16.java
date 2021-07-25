@@ -36,7 +36,7 @@ public class U16 implements USize<U16> {
     }
 
     protected U16(U8 value) { this(value.getBytes()); }
-    protected U16(U16 value) { this(value.bytes); }
+    protected U16(U16 value) { this.bytes = USize.copy(value.bytes); }
     protected U16(U32 value) { this(value.getBytes()); }
     protected U16(U64 value) { this(value.getBytes()); }
 
@@ -132,6 +132,11 @@ public class U16 implements USize<U16> {
     @Override
     public final int hashCode() {
         return Arrays.hashCode(bytes);
+    }
+
+    @Override
+    public String toString() {
+        return dump();
     }
 
 }

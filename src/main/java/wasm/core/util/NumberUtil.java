@@ -48,11 +48,11 @@ public class NumberUtil {
     }
 
     public static U32 divU(U32 a, U32 b) {
-        return U32.valueOf(parse(a.sBidInteger().divide(b.sBidInteger()), 4));
+        return U32.valueOf(parse(a.uBidInteger().divide(b.uBidInteger()), 4));
     }
 
     public static U64 divU(U64 a, U64 b) {
-        return U64.valueOf(parse(a.sBidInteger().divide(b.sBidInteger()), 8));
+        return U64.valueOf(parse(a.uBidInteger().divide(b.uBidInteger()), 8));
     }
 
     public static int remS(int a, int b) {
@@ -65,11 +65,11 @@ public class NumberUtil {
 
 
     public static U32 remU(U32 a, U32 b) {
-        return U32.valueOf(parse(a.sBidInteger().remainder(b.sBidInteger()), 4));
+        return U32.valueOf(parse(a.uBidInteger().remainder(b.uBidInteger()), 4));
     }
 
     public static U64 remU(U64 a, U64 b) {
-        return U64.valueOf(parse(a.sBidInteger().remainder(b.sBidInteger()), 8));
+        return U64.valueOf(parse(a.uBidInteger().remainder(b.uBidInteger()), 8));
     }
 
     public static U32 and(U32 a, U32 b) {

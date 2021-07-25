@@ -18,11 +18,12 @@ public class U8 implements USize<U8> {
     protected U8(String value, int radix) { this.bytes = USize.of(value, radix, 1); }
     protected U8(int value) { this.bytes = new byte[]{ (byte) value }; }
     protected U8(long value) { this.bytes = new byte[]{ (byte) value }; }
-
     protected U8(U8 value) {
-        this(value.bytes);
+        this.bytes = USize.copy(value.bytes);
     }
-
+    protected U8(U16 value) { this(value.getBytes()); }
+    protected U8(U32 value) { this(value.getBytes()); }
+    protected U8(U64 value) { this(value.getBytes()); }
 
     public static U8 valueOf(byte[] bytes) { return new U8(bytes); }
     public static U8 valueOf(String value, int radix) { return new U8(value, radix); }
@@ -115,9 +116,9 @@ public class U8 implements USize<U8> {
         return Arrays.hashCode(bytes);
     }
 
-
-    protected U8(U16 value) { this(value.getBytes()); }
-    protected U8(U32 value) { this(value.getBytes()); }
-    protected U8(U64 value) { this(value.getBytes()); }
+    @Override
+    public String toString() {
+        return dump();
+    }
 
 }

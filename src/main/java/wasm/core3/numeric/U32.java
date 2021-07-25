@@ -41,7 +41,7 @@ public class U32 implements USize<U32> {
 
     protected U32(U8 value) { this(value.getBytes()); }
     protected U32(U16 value) { this(value.getBytes()); }
-    protected U32(U32 value) { this(value.bytes); }
+    protected U32(U32 value) { this.bytes = USize.copy(value.bytes); }
     protected U32(U64 value) { this(value.getBytes()); }
 
     public static U32 valueOf(byte[] bytes) { return new U32(bytes); }
@@ -137,6 +137,11 @@ public class U32 implements USize<U32> {
     @Override
     public final int hashCode() {
         return Arrays.hashCode(bytes);
+    }
+
+    @Override
+    public String toString() {
+        return dump();
     }
 
 }

@@ -288,7 +288,7 @@ public class Module implements ModuleInstance {
 
     @Override
     public void executeAction(Action action) {
-        System.out.println(action.getInstruction().name + " " + (null == action.getArgs() ? "" : action.getArgs().dump()));
+//        System.out.println(action.getInstruction().name + " " + (null == action.getArgs() ? "" : action.getArgs().dump()));
         action.getInstruction().operate(this, action.getArgs());
     }
 

@@ -21,8 +21,9 @@ public class U64 implements USize<U64> {
     }
 
     protected U64(int value) {
+        byte b = value < 0 ? (byte) -1 : 0;
         this.bytes = new byte[]{
-            0, 0, 0, 0,
+                b, b, b, b,
             (byte) ((value & 0xFF000000) >> 24),
             (byte) ((value & 0x00FF0000) >> 16),
             (byte) ((value & 0x0000FF00) >>  8),
@@ -60,7 +61,7 @@ public class U64 implements USize<U64> {
     protected U64(U8 value) { this(value.getBytes()); }
     protected U64(U16 value) { this(value.getBytes()); }
     protected U64(U32 value) { this(value.getBytes()); }
-    protected U64(U64 value) { this(value.bytes); }
+    protected U64(U64 value) { this.bytes = USize.copy(value.bytes); }
 
     public static U64 valueOf(byte[] bytes) { return new U64(bytes); }
     public static U64 valueOf(String value, int radix) { return new U64(value, radix); }
@@ -159,6 +160,11 @@ public class U64 implements USize<U64> {
     @Override
     public final int hashCode() {
         return Arrays.hashCode(bytes);
+    }
+
+    @Override
+    public String toString() {
+        return dump();
     }
 
 }
