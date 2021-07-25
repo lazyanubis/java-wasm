@@ -1,14 +1,17 @@
 package wasm.instruction2.control;
 
-import wasm.core2.structure.ModuleInstance;
-import wasm.core2.structure.WasmReader;
+import wasm.core.exception.Check;
 import wasm.core2.instruction.Expression;
 import wasm.core2.instruction.Instruction;
 import wasm.core2.instruction.Operate;
-import wasm.instruction2.dump.DumpIfBlock;
 import wasm.core2.model.Dump;
 import wasm.core2.model.section.FunctionType;
 import wasm.core2.model.type.BlockType;
+import wasm.core2.structure.ModuleInstance;
+import wasm.core2.structure.WasmReader;
+import wasm.instruction2.dump.DumpIfBlock;
+
+import java.util.Objects;
 
 import static wasm.core3.util.ConstNumber.EXPRESSION_ELSE;
 
@@ -30,8 +33,8 @@ public class IfBlock implements Operate {
 
     @Override
     public void operate(ModuleInstance mi, Dump args) {
-        assert null != args;
-        assert args instanceof DumpIfBlock;
+        Objects.requireNonNull(args);
+        Check.require(args, DumpIfBlock.class);
 
         DumpIfBlock b = (DumpIfBlock) args;
 

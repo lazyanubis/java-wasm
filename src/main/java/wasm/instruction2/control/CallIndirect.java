@@ -1,16 +1,19 @@
 package wasm.instruction2.control;
 
+import wasm.core.exception.Check;
+import wasm.core.numeric.U32;
 import wasm.core2.instruction.Instruction;
 import wasm.core2.instruction.Operate;
 import wasm.core2.model.Dump;
-import wasm.core3.model.index.TableIndex;
-import wasm.core3.model.index.TypeIndex;
 import wasm.core2.model.section.FunctionType;
-import wasm.core.numeric.U32;
-import wasm.core3.structure.Function;
 import wasm.core2.structure.ModuleInstance;
 import wasm.core2.structure.WasmReader;
+import wasm.core3.model.index.TableIndex;
+import wasm.core3.model.index.TypeIndex;
+import wasm.core3.structure.Function;
 import wasm.instruction2.dump.DumpCallIndirect;
+
+import java.util.Objects;
 
 public class CallIndirect implements Operate {
 
@@ -21,8 +24,8 @@ public class CallIndirect implements Operate {
 
     @Override
     public void operate(ModuleInstance mi, Dump args) {
-        assert null != args;
-        assert args instanceof DumpCallIndirect;
+        Objects.requireNonNull(args);
+        Check.require(args, DumpCallIndirect.class);
 
         DumpCallIndirect d = (DumpCallIndirect) args;
 

@@ -1,10 +1,13 @@
 package wasm.instruction2.table;
 
-import wasm.core2.structure.ModuleInstance;
-import wasm.core2.structure.WasmReader;
+import wasm.core.exception.Check;
 import wasm.core2.instruction.Operate;
 import wasm.core2.model.Dump;
+import wasm.core2.structure.ModuleInstance;
+import wasm.core2.structure.WasmReader;
 import wasm.core3.model.index.TableIndex;
+
+import java.util.Objects;
 
 public class TableSize implements Operate {
 
@@ -15,8 +18,8 @@ public class TableSize implements Operate {
 
     @Override
     public void operate(ModuleInstance mi, Dump args) {
-        assert null != args;
-        assert args instanceof TableIndex;
+        Objects.requireNonNull(args);
+        Check.require(args, TableIndex.class);
 
         TableIndex a = (TableIndex) args;
 

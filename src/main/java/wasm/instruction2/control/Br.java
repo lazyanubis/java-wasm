@@ -1,12 +1,15 @@
 package wasm.instruction2.control;
 
-import wasm.core2.structure.ControlFrame;
-import wasm.core2.structure.ModuleInstance;
-import wasm.core2.structure.WasmReader;
+import wasm.core.exception.Check;
 import wasm.core2.instruction.Instruction;
 import wasm.core2.instruction.Operate;
 import wasm.core2.model.Dump;
+import wasm.core2.structure.ControlFrame;
+import wasm.core2.structure.ModuleInstance;
+import wasm.core2.structure.WasmReader;
 import wasm.core3.model.index.LabelIndex;
+
+import java.util.Objects;
 
 public class Br implements Operate {
 
@@ -17,8 +20,8 @@ public class Br implements Operate {
 
     @Override
     public void operate(ModuleInstance mi, Dump args) {
-        assert null != args;
-        assert args instanceof LabelIndex;
+        Objects.requireNonNull(args);
+        Check.require(args, LabelIndex.class);
 
         int index = ((LabelIndex) args).intValue();
 

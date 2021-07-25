@@ -1,8 +1,11 @@
 package wasm.core.util;
 
+import wasm.core.exception.Check;
+
 import java.math.BigInteger;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -24,8 +27,8 @@ public class NumberTransform {
      * 取得全0字符串
      */
     public static String zeros(int length) {
-        assert 0 <= length;
-        assert length <= 64;
+        Check.require(0 <= length);
+        Check.require(length <= 64);
         return ZEROS.get(length);
     }
 
@@ -33,8 +36,8 @@ public class NumberTransform {
      * 取得全1字符串
      */
     public static String ones(int length) {
-        assert 0 <= length;
-        assert length <= 64;
+        Check.require(0 <= length);
+        Check.require(length <= 64);
         return ONES.get(length);
     }
 
@@ -68,7 +71,8 @@ public class NumberTransform {
      * 二进制字符解析byte
      */
     public static byte parseByteByBinary(String v) {
-        assert v.matches("[0|1]{8}");
+        Objects.requireNonNull(v);
+        Check.require(v.matches("[0|1]{8}"));
 
         if (v.charAt(0) == '0') {
             return (byte) Integer.parseInt(v, 2);
@@ -81,7 +85,9 @@ public class NumberTransform {
      * 16进制字符解析byte
      */
     public static byte parseByteByHex(String v) {
-        assert v.matches("[0-7]{2}");
+        Objects.requireNonNull(v);
+        v = v.toUpperCase();
+        Check.require(v.matches("[0-9A-F]{2}"));
 
         if (v.charAt(0) < '8') {
             return (byte) Integer.parseInt(v, 16);

@@ -1,10 +1,13 @@
 package wasm.instruction2.numeric.i64;
 
+import wasm.core.exception.Check;
+import wasm.core2.instruction.Operate;
+import wasm.core2.model.Dump;
 import wasm.core2.structure.ModuleInstance;
 import wasm.core2.structure.WasmReader;
-import wasm.core2.instruction.Operate;
 import wasm.instruction2.dump.DumpI64;
-import wasm.core2.model.Dump;
+
+import java.util.Objects;
 
 public class I64Const implements Operate {
 
@@ -15,8 +18,8 @@ public class I64Const implements Operate {
 
     @Override
     public void operate(ModuleInstance mi, Dump args) {
-        assert null != args;
-        assert args instanceof DumpI64;
+        Objects.requireNonNull(args);
+        Check.require(args, DumpI64.class);
 
         DumpI64 a = (DumpI64) args;
 

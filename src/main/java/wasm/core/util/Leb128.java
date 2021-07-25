@@ -1,5 +1,9 @@
 package wasm.core.util;
 
+import wasm.core.exception.Check;
+
+import java.util.Objects;
+
 import static wasm.core.util.NumberTransform.parseByteByBinary;
 import static wasm.core.util.NumberTransform.toBinary;
 
@@ -32,8 +36,8 @@ public class Leb128 {
      * 读取无符号数字
      */
     public static Result decodeVarUint(byte[] data, int size) {
-        assert null != data;
-        assert size == 32 || size == 64;
+        Objects.requireNonNull(data);
+        Check.require(size, 32, 64);
 
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < data.length; i++) {
@@ -69,8 +73,8 @@ public class Leb128 {
      * 读取有符号数字
      */
     public static Result decodeVarInt(byte[] data, int size) {
-        assert null != data;
-        assert size == 32 || size == 64;
+        Objects.requireNonNull(data);
+        Check.require(size, 32, 64);
 
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < data.length; i++) {

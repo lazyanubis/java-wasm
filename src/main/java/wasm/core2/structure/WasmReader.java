@@ -1,26 +1,28 @@
 package wasm.core2.structure;
 
-import wasm.core2.model.Dump;
-import wasm.core2.model.Limits;
-import wasm.core2.model.Local;
-import wasm.core2.model.section.*;
-import wasm.core2.model.type.*;
+import wasm.core.exception.Check;
+import wasm.core.numeric.U32;
+import wasm.core.numeric.U64;
+import wasm.core.util.FileReader;
+import wasm.core.util.Leb128;
 import wasm.core2.instruction.Action;
 import wasm.core2.instruction.Expression;
 import wasm.core2.instruction.Instruction;
+import wasm.core2.model.Dump;
+import wasm.core2.model.Limits;
+import wasm.core2.model.Local;
 import wasm.core2.model.describe.ExportDescribe;
 import wasm.core2.model.describe.ImportDescribe;
+import wasm.core2.model.section.*;
+import wasm.core2.model.type.*;
 import wasm.core3.model.index.*;
-import wasm.core.numeric.U32;
-import wasm.core.numeric.U64;
 import wasm.core3.model.tag.FunctionTypeTag;
 import wasm.core3.model.tag.LimitsTag;
 import wasm.core3.model.tag.PortTag;
-import wasm.core.util.FileReader;
-import wasm.core.util.Leb128;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import static wasm.core3.util.ConstNumber.*;
 
@@ -29,7 +31,7 @@ public class WasmReader {
     private byte[] data;
 
     public WasmReader(byte[] data) {
-        assert null != data;
+        Objects.requireNonNull(data);
 
         this.data = data;
     }
@@ -119,7 +121,7 @@ public class WasmReader {
     // =========================== tool ===========================
 
     private void drop(int length) {
-        assert length < data.length;
+        Check.require(length <= data.length);
 
         byte[] d = new byte[data.length - length];
         System.arraycopy(data, length, d, 0, d.length);

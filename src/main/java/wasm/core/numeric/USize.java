@@ -1,8 +1,10 @@
 package wasm.core.numeric;
 
+import wasm.core.exception.Check;
 import wasm.core2.model.Dump;
 
 import java.math.BigInteger;
+import java.util.Objects;
 
 import static wasm.core.util.NumberTransform.*;
 
@@ -43,7 +45,7 @@ public interface USize<T> extends Dump, Comparable<T> {
     static byte[] of(byte[] bytes, int size) {
         if (null == bytes) { return new byte[size]; }
 
-        assert size == 1 || size == 2 || size == 4 || size == 8;
+        Check.require(size, 1, 2, 4, 8);
 
         if (bytes.length == size) { return bytes; }
 
@@ -71,11 +73,11 @@ public interface USize<T> extends Dump, Comparable<T> {
     static byte[] of(String value, int radix, int size) {
         if (null == value) { return new byte[size]; }
 
-        assert radix == 2 || radix == 16;
-        assert size == 1 || size == 2 || size == 4 || size == 8;
+        Check.require(radix, 2, 16);
+        Check.require(size, 1, 2, 4, 8);
 
         if (radix == 2) {
-            assert value.matches("[0|1]*");
+            Check.require(value.matches("[0|1]*"));
 
             if (value.length() < 8 * size) { value = zeros(8 * size - value.length()) + value; }
             byte[] bytes = new byte[size];
@@ -87,7 +89,7 @@ public interface USize<T> extends Dump, Comparable<T> {
         } else {
             value = value.toUpperCase();
 
-            assert value.matches("[0-9A-F]*");
+            Check.require(value.matches("[0-9A-F]*"));
 
             if (value.length() < 2 * size) { value = zeros(2 * size - value.length()) + value; }
             byte[] bytes = new byte[size];
@@ -103,7 +105,7 @@ public interface USize<T> extends Dump, Comparable<T> {
      * 复制数组
      */
     static byte[] copy(byte[] bytes) {
-        assert null != bytes;
+        Objects.requireNonNull(bytes);
 
         byte[] bs = new byte[bytes.length];
 
@@ -116,7 +118,7 @@ public interface USize<T> extends Dump, Comparable<T> {
      * 复制数组
      */
     static byte[] copy(byte[] bytes, int size) {
-        assert null != bytes;
+        Objects.requireNonNull(bytes);
 
         byte[] bs = new byte[size];
 

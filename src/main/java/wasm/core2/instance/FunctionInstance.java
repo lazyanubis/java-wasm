@@ -1,5 +1,6 @@
 package wasm.core2.instance;
 
+import wasm.core.exception.Check;
 import wasm.core2.instruction.Instruction;
 import wasm.core2.model.section.CodeSection;
 import wasm.core2.model.section.FunctionType;
@@ -61,7 +62,7 @@ public class FunctionInstance implements Function {
     }
 
     private void pushArgs(ModuleInstance instance, U64[] args) {
-        assert args.length == type.parameters.length;
+        Check.require(args.length == type.parameters.length);
 
         for (U64 arg : args) {
             instance.pushU64(arg);

@@ -1,11 +1,14 @@
 package wasm.instruction2.variable;
 
-import wasm.core2.structure.ModuleInstance;
-import wasm.core2.structure.WasmReader;
+import wasm.core.exception.Check;
+import wasm.core.numeric.U64;
 import wasm.core2.instruction.Operate;
 import wasm.core2.model.Dump;
+import wasm.core2.structure.ModuleInstance;
+import wasm.core2.structure.WasmReader;
 import wasm.core3.model.index.LocalIndex;
-import wasm.core.numeric.U64;
+
+import java.util.Objects;
 
 public class LocalSet implements Operate {
 
@@ -16,8 +19,8 @@ public class LocalSet implements Operate {
 
     @Override
     public void operate(ModuleInstance mi, Dump args) {
-        assert null != args;
-        assert args instanceof LocalIndex;
+        Objects.requireNonNull(args);
+        Check.require(args, LocalIndex.class);
 
         LocalIndex a = (LocalIndex) args;
 

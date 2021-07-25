@@ -1,9 +1,11 @@
 package wasm.core2.instance;
 
-import wasm.core2.model.section.MemoryType;
 import wasm.core.numeric.U32;
 import wasm.core.numeric.U64;
+import wasm.core2.model.section.MemoryType;
 import wasm.core2.structure.Memory;
+
+import java.util.Objects;
 
 import static wasm.core3.util.ConstNumber.MEMORY_MAX_PAGE_COUNT;
 import static wasm.core3.util.ConstNumber.MEMORY_PAGE_SIZE;
@@ -61,7 +63,7 @@ public class MemoryInstance implements Memory {
 
     @Override
     public void read(U64 offset, byte[] buffer) {
-        assert null != buffer;
+        Objects.requireNonNull(buffer);
         if (buffer.length == 0) { return; }
 
         int max = this.data.length;
@@ -83,7 +85,7 @@ public class MemoryInstance implements Memory {
 
     @Override
     public void write(U64 offset, byte[] data) {
-        assert null != data;
+        Objects.requireNonNull(data);
         if (data.length == 0) { return; }
 
         int max = this.data.length;

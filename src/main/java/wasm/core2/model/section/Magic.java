@@ -1,5 +1,7 @@
 package wasm.core2.model.section;
 
+import wasm.core.exception.Check;
+
 public class Magic {
 
     private static final byte b0 = 0x00;
@@ -10,10 +12,10 @@ public class Magic {
     private final String value;
 
     public Magic(byte b0, byte b1, byte b2, byte b3) {
-        assert Magic.b0 == b0;
-        assert Magic.b1 == b1;
-        assert Magic.b2 == b2;
-        assert Magic.b3 == b3;
+        Check.require(Magic.b0, b0);
+        Check.require(Magic.b1, b1);
+        Check.require(Magic.b2, b2);
+        Check.require(Magic.b3, b3);
 
         this.value = new String(new byte[]{ b0, b1, b2, b3 });
     }

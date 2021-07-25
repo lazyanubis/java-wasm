@@ -1,11 +1,14 @@
 package wasm.instruction2.control;
 
-import wasm.core2.structure.ModuleInstance;
-import wasm.core2.structure.WasmReader;
+import wasm.core.exception.Check;
 import wasm.core2.instruction.Instruction;
 import wasm.core2.instruction.Operate;
-import wasm.instruction2.dump.DumpBrTable;
 import wasm.core2.model.Dump;
+import wasm.core2.structure.ModuleInstance;
+import wasm.core2.structure.WasmReader;
+import wasm.instruction2.dump.DumpBrTable;
+
+import java.util.Objects;
 
 public class BrTable implements Operate {
 
@@ -16,8 +19,8 @@ public class BrTable implements Operate {
 
     @Override
     public void operate(ModuleInstance mi, Dump args) {
-        assert null != args;
-        assert args instanceof DumpBrTable;
+        Objects.requireNonNull(args);
+        Check.require(args, DumpBrTable.class);
 
         DumpBrTable t = (DumpBrTable) args;
 

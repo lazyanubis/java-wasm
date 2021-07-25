@@ -1,14 +1,17 @@
 package wasm.instruction2.control;
 
+import wasm.core.exception.Check;
+import wasm.core.numeric.U64;
 import wasm.core2.instruction.Instruction;
 import wasm.core2.instruction.Operate;
 import wasm.core2.model.Dump;
-import wasm.core3.model.index.FunctionIndex;
 import wasm.core2.model.section.CodeSection;
-import wasm.core.numeric.U64;
-import wasm.core3.structure.Function;
 import wasm.core2.structure.ModuleInstance;
 import wasm.core2.structure.WasmReader;
+import wasm.core3.model.index.FunctionIndex;
+import wasm.core3.structure.Function;
+
+import java.util.Objects;
 
 public class Call implements Operate {
 
@@ -19,8 +22,8 @@ public class Call implements Operate {
 
     @Override
     public void operate(ModuleInstance mi, Dump args) {
-        assert null != args;
-        assert args instanceof FunctionIndex;
+        Objects.requireNonNull(args);
+        Check.require(args, FunctionIndex.class);
 
         FunctionIndex index = ((FunctionIndex) args);
 

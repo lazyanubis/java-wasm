@@ -1,5 +1,6 @@
 package wasm.core2.structure;
 
+import wasm.core.exception.Check;
 import wasm.core.numeric.U32;
 import wasm.core.numeric.U64;
 
@@ -27,12 +28,12 @@ public class OperandStack {
     }
 
     public U64 getOperand(int index) {
-        assert index < slots.size();
+        Check.require(index < slots.size());
         return slots.get(index);
     }
 
     public void setOperand(int index, U64 value) {
-        assert index < slots.size();
+        Check.require(index < slots.size());
         slots.set(index, value);
     }
 
