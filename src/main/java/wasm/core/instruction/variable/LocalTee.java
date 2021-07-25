@@ -1,12 +1,12 @@
 package wasm.core.instruction.variable;
 
 import wasm.core.exception.Check;
-import wasm.core.numeric.U64;
 import wasm.core.instruction.Operate;
 import wasm.core.model.Dump;
+import wasm.core.model.index.LocalIndex;
+import wasm.core.numeric.USize;
 import wasm.core.structure.ModuleInstance;
 import wasm.core.structure.WasmReader;
-import wasm.core.model.index.LocalIndex;
 
 public class LocalTee implements Operate {
 
@@ -24,9 +24,9 @@ public class LocalTee implements Operate {
 
         int index = mi.getFrameOffset() + a.intValue();
 
-        U64 value = mi.popU64();
+        USize value = mi.popUSize();
 
-        mi.pushU64(value); // 再压回去
+        mi.pushUSize(value); // 再压回去
 
         mi.setOperand(index, value);
     }

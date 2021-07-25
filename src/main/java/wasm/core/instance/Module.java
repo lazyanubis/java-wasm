@@ -326,7 +326,7 @@ public class Module implements ModuleInstance {
 
     @Override
     public void executeAction(Action action) {
-        System.out.println(action.getInstruction().name + " " + (null == action.getArgs() ? "" : action.getArgs().dump()));
+//        System.out.println(action.getInstruction().name + " " + (null == action.getArgs() ? "" : action.getArgs().dump()));
         action.getInstruction().operate(this, action.getArgs());
     }
 
@@ -456,6 +456,8 @@ public class Module implements ModuleInstance {
 
 
     public static ModuleInstance newModule(ModuleInfo info) {
+        // TODO 应当先验证下info结构
+
         Module module = new Module(info);
 
         module.linkImports();

@@ -21,6 +21,9 @@ public class NativeInstance implements ModuleInstance {
 
     static {
         EXPORTS.put("print_char", NativeFunctions.PRINT_CHAR);
+        EXPORTS.put("print_i64", NativeFunctions.PRINT_I64);
+        EXPORTS.put("print_i32", NativeFunctions.PRINT_I32);
+
         EXPORTS.put("assert_true", NativeFunctions.ASSERT_TRUE);
         EXPORTS.put("assert_false", NativeFunctions.ASSERT_FALSE);
         EXPORTS.put("assert_eq_i32", NativeFunctions.ASSERT_EQUAL_INT);
