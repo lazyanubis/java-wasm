@@ -18,7 +18,7 @@ public class RefNull implements Operate {
 
     @Override
     public void operate(ModuleInstance mi, Dump args) {
-        Objects.requireNonNull(args);
+        Check.requireNonNull(args);
         Check.require(args, ReferenceType.class);
 
         ReferenceType a = (ReferenceType) args;

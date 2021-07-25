@@ -19,7 +19,7 @@ public class BrTable implements Operate {
 
     @Override
     public void operate(ModuleInstance mi, Dump args) {
-        Objects.requireNonNull(args);
+        Check.requireNonNull(args);
         Check.require(args, DumpBrTable.class);
 
         DumpBrTable t = (DumpBrTable) args;

@@ -36,7 +36,7 @@ public class Leb128 {
      * 读取无符号数字
      */
     public static Result decodeVarUint(byte[] data, int size) {
-        Objects.requireNonNull(data);
+        Check.requireNonNull(data);
         Check.require(size, 32, 64);
 
         StringBuilder sb = new StringBuilder();
@@ -73,7 +73,7 @@ public class Leb128 {
      * 读取有符号数字
      */
     public static Result decodeVarInt(byte[] data, int size) {
-        Objects.requireNonNull(data);
+        Check.requireNonNull(data);
         Check.require(size, 32, 64);
 
         StringBuilder sb = new StringBuilder();

@@ -1,5 +1,6 @@
 package wasm.instruction2.memory;
 
+import wasm.core.exception.Check;
 import wasm.core.numeric.U32;
 import wasm.core2.instruction.Operate;
 import wasm.core2.model.Dump;
@@ -7,8 +8,6 @@ import wasm.core2.structure.ModuleInstance;
 import wasm.core2.structure.WasmReader;
 import wasm.core3.model.index.MemoryIndex;
 import wasm.instruction2.dump.DumpMemory;
-
-import java.util.Objects;
 
 public class I32Store8 implements Operate {
 
@@ -19,7 +18,7 @@ public class I32Store8 implements Operate {
 
     @Override
     public void operate(ModuleInstance mi, Dump args) {
-        Objects.requireNonNull(args);
+        Check.requireNonNull(args);
 
         DumpMemory a = (DumpMemory) args;
 

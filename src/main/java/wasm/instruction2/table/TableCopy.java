@@ -18,7 +18,7 @@ public class TableCopy implements Operate {
 
     @Override
     public void operate(ModuleInstance mi, Dump args) {
-        Objects.requireNonNull(args);
+        Check.requireNonNull(args);
         Check.require(args, DumpTableCopy.class);
 
         DumpTableCopy a = (DumpTableCopy) args;

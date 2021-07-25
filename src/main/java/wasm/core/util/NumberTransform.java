@@ -5,7 +5,6 @@ import wasm.core.exception.Check;
 import java.math.BigInteger;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -71,7 +70,7 @@ public class NumberTransform {
      * 二进制字符解析byte
      */
     public static byte parseByteByBinary(String v) {
-        Objects.requireNonNull(v);
+        Check.requireNonNull(v);
         Check.require(v.matches("[0|1]{8}"));
 
         if (v.charAt(0) == '0') {
@@ -85,7 +84,7 @@ public class NumberTransform {
      * 16进制字符解析byte
      */
     public static byte parseByteByHex(String v) {
-        Objects.requireNonNull(v);
+        Check.requireNonNull(v);
         v = v.toUpperCase();
         Check.require(v.matches("[0-9A-F]{2}"));
 

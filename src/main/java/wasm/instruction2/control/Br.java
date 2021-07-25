@@ -20,7 +20,7 @@ public class Br implements Operate {
 
     @Override
     public void operate(ModuleInstance mi, Dump args) {
-        Objects.requireNonNull(args);
+        Check.requireNonNull(args);
         Check.require(args, LabelIndex.class);
 
         int index = ((LabelIndex) args).intValue();

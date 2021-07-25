@@ -18,7 +18,7 @@ public class TableSet implements Operate {
 
     @Override
     public void operate(ModuleInstance mi, Dump args) {
-        Objects.requireNonNull(args);
+        Check.requireNonNull(args);
         Check.require(args, TableIndex.class);
 
         TableIndex a = (TableIndex) args;

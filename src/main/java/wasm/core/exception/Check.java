@@ -1,5 +1,7 @@
 package wasm.core.exception;
 
+import java.util.Objects;
+
 public class Check {
 
     public static void require(Object args, Class<?> c) {
@@ -28,6 +30,10 @@ public class Check {
         if (!value) {
             throw new WasmException("false");
         }
+    }
+
+    public static void requireNonNull(Object v) {
+        Objects.requireNonNull(v);
     }
 
 }

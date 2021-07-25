@@ -105,7 +105,7 @@ public interface USize<T> extends Dump, Comparable<T> {
      * 复制数组
      */
     static byte[] copy(byte[] bytes) {
-        Objects.requireNonNull(bytes);
+        Check.requireNonNull(bytes);
 
         byte[] bs = new byte[bytes.length];
 
@@ -118,7 +118,7 @@ public interface USize<T> extends Dump, Comparable<T> {
      * 复制数组
      */
     static byte[] copy(byte[] bytes, int size) {
-        Objects.requireNonNull(bytes);
+        Check.requireNonNull(bytes);
 
         byte[] bs = new byte[size];
 

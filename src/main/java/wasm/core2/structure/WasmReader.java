@@ -31,7 +31,7 @@ public class WasmReader {
     private byte[] data;
 
     public WasmReader(byte[] data) {
-        Objects.requireNonNull(data);
+        Check.requireNonNull(data);
 
         this.data = data;
     }

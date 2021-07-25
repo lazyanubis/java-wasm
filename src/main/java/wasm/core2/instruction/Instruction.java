@@ -1,5 +1,6 @@
 package wasm.core2.instruction;
 
+import wasm.core.exception.Check;
 import wasm.core2.model.Dump;
 import wasm.core2.structure.ModuleInstance;
 import wasm.core2.structure.WasmReader;
@@ -20,8 +21,6 @@ import wasm.instruction2.reference.RefIsNull;
 import wasm.instruction2.reference.RefNull;
 import wasm.instruction2.table.*;
 import wasm.instruction2.variable.*;
-
-import java.util.Objects;
 
 import static wasm.core.util.NumberTransform.toHex;
 
@@ -247,12 +246,12 @@ public enum Instruction {
     }
 
     public void operate(ModuleInstance mi, Dump args) {
-        Objects.requireNonNull(operate);
+        Check.requireNonNull(operate);
         operate.operate(mi, args);
     }
 
     public Dump readArgs(WasmReader reader) {
-        Objects.requireNonNull(operate);
+        Check.requireNonNull(operate);
         return operate.read(reader);
     }
 

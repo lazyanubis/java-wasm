@@ -13,7 +13,7 @@ public class Loop extends Block {
 
     @Override
     public void operate(ModuleInstance mi, Dump args) {
-        Objects.requireNonNull(args);
+        Check.requireNonNull(args);
         Check.require(args, DumpBlock.class);
 
         DumpBlock b = (DumpBlock) args;

@@ -33,7 +33,7 @@ public class IfBlock implements Operate {
 
     @Override
     public void operate(ModuleInstance mi, Dump args) {
-        Objects.requireNonNull(args);
+        Check.requireNonNull(args);
         Check.require(args, DumpIfBlock.class);
 
         DumpIfBlock b = (DumpIfBlock) args;
