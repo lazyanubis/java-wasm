@@ -1,4 +1,4 @@
-package wasm.core3.model.index;
+package wasm.core.model.index;
 
 import wasm.core.numeric.U32;
 

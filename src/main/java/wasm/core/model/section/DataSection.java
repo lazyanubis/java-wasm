@@ -2,7 +2,7 @@ package wasm.core.model.section;
 
 import wasm.core.model.Dump;
 import wasm.core.util.NumberTransform;
-import wasm.core2.structure.ModuleInstance;
+import wasm.core.structure.ModuleInstance;
 import wasm.core.instruction.Expression;
 import wasm.core.model.index.MemoryIndex;
 import wasm.core.numeric.U32;

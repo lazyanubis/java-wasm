@@ -26,7 +26,7 @@ public class I32Load16U implements Operate {
         // System.err.println("So, which memory ?");
         byte[] bytes = mi.readBytes(MemoryIndex.of(U32.valueOf(0)), a, 2);
 
-        mi.pushU16(U16.valueOfU(new byte[]{ bytes[1], bytes[0] }));
+        mi.pushU32(U16.valueOfU(new byte[]{ bytes[1], bytes[0] }).u32());
     }
 
 }
