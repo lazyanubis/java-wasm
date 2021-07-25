@@ -26,7 +26,7 @@ public class I64Load32U implements Operate {
         // System.err.println("So, which memory ?");
         byte[] bytes = mi.readBytes(MemoryIndex.of(U32.valueOf(0)), a, 4);
 
-        mi.pushU64(U64.valueOf(new byte[] {
+        mi.pushU64(U64.valueOfU(new byte[] {
             bytes[3],
             bytes[2],
             bytes[1],

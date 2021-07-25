@@ -24,8 +24,8 @@ public class Version {
     }
 
     public Version(U32 u32) {
-        this( U16.valueOf(new byte[]{ u32.getBytes()[0], u32.getBytes()[1]}),
-              U16.valueOf(new byte[]{ u32.getBytes()[2], u32.getBytes()[3]}));
+        this( U16.valueOfU(new byte[]{ u32.getBytes()[0], u32.getBytes()[1]}),
+              U16.valueOfU(new byte[]{ u32.getBytes()[2], u32.getBytes()[3]}));
     }
 
     public String value() {

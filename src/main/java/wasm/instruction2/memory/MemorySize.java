@@ -16,7 +16,7 @@ public class MemorySize implements Operate {
     @Override
     public void operate(ModuleInstance mi, Dump args) {
         // System.err.println("The memory.size instruction returns the current size of a memory. So, which memory ?");
-        mi.pushU32(mi.size(MemoryIndex.of(0)));
+        mi.pushU32U(mi.memorySize(MemoryIndex.of(0)));
     }
 
 }

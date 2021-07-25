@@ -78,6 +78,10 @@ public class Module implements ModuleInstance {
                 throw new RuntimeException("args is mismatch.");
             }
 
+            // 启动一个新的函数，清除栈
+            this.clearOperandStack();
+            this.clearControlStack();
+
             return f.call(args);
         }
         throw new RuntimeException("can not find function: " + name);
@@ -99,8 +103,13 @@ public class Module implements ModuleInstance {
     }
 
     @Override
-    public void pushU32(U32 value) {
-        operandStack.pushU32(value);
+    public void pushU32U(U32 value) {
+        operandStack.pushU32U(value);
+    }
+
+    @Override
+    public void pushU32S(U32 value) {
+        operandStack.pushU32S(value);
     }
 
     @Override
@@ -164,6 +173,11 @@ public class Module implements ModuleInstance {
     }
 
     @Override
+    public void clearControlStack() {
+        controlStack.clear();
+    }
+
+    @Override
     public ControlFrame popFrame() {
         return controlStack.pop();
     }
@@ -203,7 +217,7 @@ public class Module implements ModuleInstance {
     private U64 getOffset(DumpMemory args) {
         U32 offset = args.getOffset();
         U32 immediate = popU32();
-        return NumberUtil.add(U64.valueOf(offset), U64.valueOf(immediate));
+        return NumberUtil.add(U64.valueOfU(offset), U64.valueOfU(immediate));
     }
 
     @Override
@@ -221,12 +235,12 @@ public class Module implements ModuleInstance {
     }
 
     @Override
-    public U32 size(MemoryIndex index) {
+    public U32 memorySize(MemoryIndex index) {
         return memories.get(index.intValue()).size();
     }
 
     @Override
-    public U32 grow(MemoryIndex index, U32 grow) {
+    public U32 memoryGrow(MemoryIndex index, U32 grow) {
         return memories.get(index.intValue()).grow(grow);
     }
 
@@ -288,7 +302,7 @@ public class Module implements ModuleInstance {
 
     @Override
     public void executeAction(Action action) {
-//        System.out.println(action.getInstruction().name + " " + (null == action.getArgs() ? "" : action.getArgs().dump()));
+        System.out.println(action.getInstruction().name + " " + (null == action.getArgs() ? "" : action.getArgs().dump()));
         action.getInstruction().operate(this, action.getArgs());
     }
 

@@ -15,7 +15,8 @@ public class OperandStack {
     public U64 popU64() { return slots.remove(slots.size() - 1); }
 
     public void pushS64(long value) { pushU64(U64.valueOf(value)); }
-    public void pushU32(U32 value) { pushU64(U64.valueOf(value)); }
+    public void pushU32U(U32 value) { pushU64(U64.valueOfU(value)); }
+    public void pushU32S(U32 value) { pushU64(U64.valueOfS(value)); }
     public void pushS32(int value) { pushU64(U64.valueOf(value)); }
     public void pushBool(boolean value) { pushU64(U64.valueOf(value ? 1 : 0)); }
     public long popS64() { return popU64().longValue(); }

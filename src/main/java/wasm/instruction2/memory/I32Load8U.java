@@ -25,7 +25,7 @@ public class I32Load8U implements Operate {
         // System.err.println("So, which memory ?");
         byte[] bytes = mi.readBytes(MemoryIndex.of(U32.valueOf(0)), a, 1);
 
-        mi.pushU32(U32.valueOf(bytes[0] & 0x00FF));
+        mi.pushU32S(U32.valueOfU(new byte[]{ bytes[0] }));
     }
 
 }

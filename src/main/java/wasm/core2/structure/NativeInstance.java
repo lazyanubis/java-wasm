@@ -55,7 +55,12 @@ public class NativeInstance implements ModuleInstance {
     }
 
     @Override
-    public void pushU32(U32 value) {
+    public void pushU32U(U32 value) {
+        throw new RuntimeException("not for native module");
+    }
+
+    @Override
+    public void pushU32S(U32 value) {
         throw new RuntimeException("not for native module");
     }
 
@@ -120,6 +125,11 @@ public class NativeInstance implements ModuleInstance {
     }
 
     @Override
+    public void clearControlStack() {
+        throw new RuntimeException("not for native module");
+    }
+
+    @Override
     public ControlFrame popFrame() {
         throw new RuntimeException("not for native module");
     }
@@ -165,12 +175,12 @@ public class NativeInstance implements ModuleInstance {
     }
 
     @Override
-    public U32 size(MemoryIndex index) {
+    public U32 memorySize(MemoryIndex index) {
         throw new RuntimeException("not for native module");
     }
 
     @Override
-    public U32 grow(MemoryIndex index, U32 grow) {
+    public U32 memoryGrow(MemoryIndex index, U32 grow) {
         throw new RuntimeException("not for native module");
     }
 

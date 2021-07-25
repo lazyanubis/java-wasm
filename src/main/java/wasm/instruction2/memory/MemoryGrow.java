@@ -18,8 +18,8 @@ public class MemoryGrow implements Operate {
     public void operate(ModuleInstance mi, Dump args) {
         U32 grow = mi.popU32();
         // System.err.println("So, which memory ?");
-        U32 old = mi.grow(MemoryIndex.of(0), grow);
-        mi.pushU32(old);
+        U32 old = mi.memoryGrow(MemoryIndex.of(0), grow);
+        mi.pushU32U(old);
     }
     
 }

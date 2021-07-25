@@ -47,7 +47,8 @@ public interface ModuleInstance {
     /** 向栈上推入值 */
     void pushU64(U64 value);
     void pushS64(long value);
-    void pushU32(U32 value);
+    void pushU32U(U32 value);
+    void pushU32S(U32 value);
     void pushS32(int value);
     void pushBool(boolean value);
     void pushU64s(U64[] values);
@@ -75,6 +76,11 @@ public interface ModuleInstance {
     int getFrameOffset();
 
     // =================== 控制栈操作 ===================
+
+    /**
+     * 清除栈上所有值
+     */
+    void clearControlStack();
 
     /**
      * 弹出顶部帧
@@ -126,12 +132,12 @@ public interface ModuleInstance {
     /**
      * 内存页大小
      */
-    U32 size(MemoryIndex index);
+    U32 memorySize(MemoryIndex index);
 
     /**
      * 内存扩页
      */
-    U32 grow(MemoryIndex index, U32 grow);
+    U32 memoryGrow(MemoryIndex index, U32 grow);
 
     // =================== 全局变量操作 ===================
 

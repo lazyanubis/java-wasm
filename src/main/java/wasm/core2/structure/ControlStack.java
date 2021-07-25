@@ -36,4 +36,8 @@ public class ControlStack {
         return null;
     }
 
+    public void clear() {
+        this.frames.clear();
+    }
+
 }

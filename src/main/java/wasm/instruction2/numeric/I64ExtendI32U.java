@@ -19,8 +19,7 @@ public class I64ExtendI32U implements Operate {
         U32 value = mi.popU32();
         byte[] bytes = value.getBytes();
         // 无符号拓展，内置方法都是有符号的
-        U64 u64 = U64.valueOf(new byte[] {
-            0, 0, 0, 0,
+        U64 u64 = U64.valueOfU(new byte[] {
             bytes[0], bytes[1], bytes[2], bytes[3]
         });
         mi.pushU64(u64);

@@ -16,10 +16,7 @@ public class I64Extend32S implements Operate {
     public void operate(ModuleInstance mi, Dump args) {
         byte[] bytes = mi.popU64().getBytes();
 
-        byte sign = ((bytes[4] & 0x80) == 0) ? 0 : (byte)0xFF;
-
-        mi.pushS64(U64.valueOf(new byte[]{
-            sign, sign, sign, sign,
+        mi.pushS64(U64.valueOfS(new byte[]{
             bytes[4], bytes[5], bytes[6], bytes[7]
         }).longValue());
     }

@@ -15,27 +15,27 @@ public class NumberUtil {
 
 
     public static U32 add(U32 a, U32 b) {
-        return U32.valueOf(parse(a.sBidInteger().add(b.sBidInteger()), 4));
+        return U32.valueOfU(parse(a.sBidInteger().add(b.sBidInteger()), 4));
     }
 
     public static U64 add(U64 a, U64 b) {
-        return U64.valueOf(parse(a.sBidInteger().add(b.sBidInteger()), 8));
+        return U64.valueOfU(parse(a.sBidInteger().add(b.sBidInteger()), 8));
     }
 
     public static U32 sub(U32 a, U32 b) {
-        return U32.valueOf(parse(a.sBidInteger().subtract(b.sBidInteger()), 4));
+        return U32.valueOfU(parse(a.sBidInteger().subtract(b.sBidInteger()), 4));
     }
 
     public static U64 sub(U64 a, U64 b) {
-        return U64.valueOf(parse(a.sBidInteger().subtract(b.sBidInteger()), 8));
+        return U64.valueOfU(parse(a.sBidInteger().subtract(b.sBidInteger()), 8));
     }
 
     public static U32 mul(U32 a, U32 b) {
-        return U32.valueOf(parse(a.sBidInteger().multiply(b.sBidInteger()), 4));
+        return U32.valueOfU(parse(a.sBidInteger().multiply(b.sBidInteger()), 4));
     }
 
     public static U64 mul(U64 a, U64 b) {
-        return U64.valueOf(parse(a.sBidInteger().multiply(b.sBidInteger()), 8));
+        return U64.valueOfU(parse(a.sBidInteger().multiply(b.sBidInteger()), 8));
     }
 
 
@@ -48,11 +48,11 @@ public class NumberUtil {
     }
 
     public static U32 divU(U32 a, U32 b) {
-        return U32.valueOf(parse(a.uBidInteger().divide(b.uBidInteger()), 4));
+        return U32.valueOfU(parse(a.uBidInteger().divide(b.uBidInteger()), 4));
     }
 
     public static U64 divU(U64 a, U64 b) {
-        return U64.valueOf(parse(a.uBidInteger().divide(b.uBidInteger()), 8));
+        return U64.valueOfU(parse(a.uBidInteger().divide(b.uBidInteger()), 8));
     }
 
     public static int remS(int a, int b) {
@@ -65,15 +65,15 @@ public class NumberUtil {
 
 
     public static U32 remU(U32 a, U32 b) {
-        return U32.valueOf(parse(a.uBidInteger().remainder(b.uBidInteger()), 4));
+        return U32.valueOfU(parse(a.uBidInteger().remainder(b.uBidInteger()), 4));
     }
 
     public static U64 remU(U64 a, U64 b) {
-        return U64.valueOf(parse(a.uBidInteger().remainder(b.uBidInteger()), 8));
+        return U64.valueOfU(parse(a.uBidInteger().remainder(b.uBidInteger()), 8));
     }
 
     public static U32 and(U32 a, U32 b) {
-        return U32.valueOf(new byte[] {
+        return U32.valueOfU(new byte[] {
             (byte) (a.getBytes()[0] & b.getBytes()[0]),
             (byte) (a.getBytes()[1] & b.getBytes()[1]),
             (byte) (a.getBytes()[2] & b.getBytes()[2]),
@@ -82,7 +82,7 @@ public class NumberUtil {
     }
 
     public static U64 and(U64 a, U64 b) {
-        return U64.valueOf(new byte[] {
+        return U64.valueOfU(new byte[] {
             (byte) (a.getBytes()[0] & b.getBytes()[0]),
             (byte) (a.getBytes()[1] & b.getBytes()[1]),
             (byte) (a.getBytes()[2] & b.getBytes()[2]),
@@ -95,7 +95,7 @@ public class NumberUtil {
     }
 
     public static U32 or(U32 a, U32 b) {
-        return U32.valueOf(new byte[] {
+        return U32.valueOfU(new byte[] {
                 (byte) (a.getBytes()[0] | b.getBytes()[0]),
                 (byte) (a.getBytes()[1] | b.getBytes()[1]),
                 (byte) (a.getBytes()[2] | b.getBytes()[2]),
@@ -104,7 +104,7 @@ public class NumberUtil {
     }
 
     public static U64 or(U64 a, U64 b) {
-        return U64.valueOf(new byte[] {
+        return U64.valueOfU(new byte[] {
                 (byte) (a.getBytes()[0] | b.getBytes()[0]),
                 (byte) (a.getBytes()[1] | b.getBytes()[1]),
                 (byte) (a.getBytes()[2] | b.getBytes()[2]),
@@ -118,7 +118,7 @@ public class NumberUtil {
 
 
     public static U32 xor(U32 a, U32 b) {
-        return U32.valueOf(new byte[] {
+        return U32.valueOfU(new byte[] {
                 (byte) (a.getBytes()[0] ^ b.getBytes()[0]),
                 (byte) (a.getBytes()[1] ^ b.getBytes()[1]),
                 (byte) (a.getBytes()[2] ^ b.getBytes()[2]),
@@ -127,7 +127,7 @@ public class NumberUtil {
     }
 
     public static U64 xor(U64 a, U64 b) {
-        return U64.valueOf(new byte[] {
+        return U64.valueOfU(new byte[] {
                 (byte) (a.getBytes()[0] ^ b.getBytes()[0]),
                 (byte) (a.getBytes()[1] ^ b.getBytes()[1]),
                 (byte) (a.getBytes()[2] ^ b.getBytes()[2]),

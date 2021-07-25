@@ -18,7 +18,7 @@ public class I32Sub implements Operate {
     public void operate(ModuleInstance mi, Dump args) {
         U32 v2 = mi.popU32();
         U32 v1 = mi.popU32();
-        mi.pushU32(NumberUtil.sub(v1, v2));
+        mi.pushU32S(NumberUtil.sub(v1, v2));
     }
 
 }

@@ -17,10 +17,8 @@ public class I32Extend16S implements Operate {
     public void operate(ModuleInstance mi, Dump args) {
         byte[] bytes = mi.popU32().getBytes();
 
-        byte sign = ((bytes[2] & 0x80) == 0) ? 0 : (byte)0xFF;
-
-        mi.pushS32(U32.valueOf(new byte[]{
-            sign, sign, bytes[2], bytes[3]
+        mi.pushS32(U32.valueOfS(new byte[]{
+            bytes[2], bytes[3]
         }).intValue());
     }
 

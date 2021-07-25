@@ -10,7 +10,7 @@ public class U8 implements USize<U8> {
 
     private final byte[] bytes;
 
-    protected U8(byte[] bytes) { this.bytes = USize.of(bytes, 1); }
+    protected U8(byte[] bytes) { this.bytes = USize.of(bytes, 1, false); }
     protected U8(String value, int radix) { this.bytes = USize.of(value, radix, 1); }
     protected U8(int value) { this.bytes = new byte[]{ (byte) value }; }
     protected U8(long value) { this.bytes = new byte[]{ (byte) value }; }
@@ -28,9 +28,13 @@ public class U8 implements USize<U8> {
     public static U8 valueOf(U32 value) { return new U8(value); }
     public static U8 valueOf(U64 value) { return new U8(value); }
 
-    public final U16 u16() { return U16.valueOf(this.bytes); }
-    public final U32 u32() { return U32.valueOf(this.bytes); }
-    public final U64 u64() { return U64.valueOf(this.bytes); }
+
+    public final U16 u16() { return U16.valueOfU(this.bytes); }
+    public final U32 u32() { return U32.valueOfU(this.bytes); }
+    public final U64 u64() { return U64.valueOfU(this.bytes); }
+    public final U16 s16() { return U16.valueOfS(this.bytes); }
+    public final U32 s32() { return U32.valueOfS(this.bytes); }
+    public final U64 s64() { return U64.valueOfS(this.bytes); }
 
     @Override
     public final int intValue() {

@@ -9,8 +9,8 @@ public class U64 implements USize<U64> {
 
     private final byte[] bytes;
 
-    protected U64(byte[] bytes) {
-        this.bytes = USize.of(bytes, 8);
+    protected U64(byte[] bytes, boolean sign) {
+        this.bytes = USize.of(bytes, 8, sign);
     }
     protected U64(String value, int radix) {
         this.bytes = USize.of(value, radix, 8);
@@ -51,23 +51,30 @@ public class U64 implements USize<U64> {
             bytes[i] = parseByteByHex(s.substring(2 * i, 2 * i + 2));
         }
     }
-    protected U64(U8 value) { this(value.getBytes()); }
-    protected U64(U16 value) { this(value.getBytes()); }
-    protected U64(U32 value) { this(value.getBytes()); }
+    protected U64(U8 value, boolean sign) { this(value.getBytes(), sign); }
+    protected U64(U16 value, boolean sign) { this(value.getBytes(), sign); }
+    protected U64(U32 value, boolean sign) { this(value.getBytes(), sign); }
     protected U64(U64 value) { this.bytes = USize.copy(value.bytes); }
 
-    public static U64 valueOf(byte[] bytes) { return new U64(bytes); }
+    public static U64 valueOfU(byte[] bytes) { return new U64(bytes, false); }
+    public static U64 valueOfS(byte[] bytes) { return new U64(bytes, true); }
     public static U64 valueOf(String value, int radix) { return new U64(value, radix); }
     public static U64 valueOf(int value) { return new U64(value); }
     public static U64 valueOf(long value) { return new U64(value); }
-    public static U64 valueOf(U8 value) { return new U64(value); }
-    public static U64 valueOf(U16 value) { return new U64(value); }
-    public static U64 valueOf(U32 value) { return new U64(value); }
+    public static U64 valueOfU(U8 value) { return new U64(value, false); }
+    public static U64 valueOfS(U8 value) { return new U64(value, true); }
+    public static U64 valueOfU(U16 value) { return new U64(value, false); }
+    public static U64 valueOfS(U16 value) { return new U64(value, true); }
+    public static U64 valueOfU(U32 value) { return new U64(value, false); }
+    public static U64 valueOfS(U32 value) { return new U64(value, true); }
     public static U64 valueOf(U64 value) { return new U64(value); }
 
     public final U8 u8() { return U8.valueOf(this.bytes); }
-    public final U16 u16() { return U16.valueOf(this.bytes); }
-    public final U32 u32() { return U32.valueOf(this.bytes); }
+    public final U16 u16() { return U16.valueOfU(this.bytes); }
+    public final U32 u32() { return U32.valueOfU(this.bytes); }
+    public final U8 s8() { return U8.valueOf(this.bytes); }
+    public final U16 s16() { return U16.valueOfS(this.bytes); }
+    public final U32 s32() { return U32.valueOfS(this.bytes); }
 
     @Override
     public final int intValue() {

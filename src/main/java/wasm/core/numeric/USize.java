@@ -4,7 +4,6 @@ import wasm.core.exception.Check;
 import wasm.core2.model.Dump;
 
 import java.math.BigInteger;
-import java.util.Objects;
 
 import static wasm.core.util.NumberTransform.*;
 
@@ -42,10 +41,11 @@ public interface USize<T> extends Dump, Comparable<T> {
     /**
      * 将字符数组格式化对应长度字节数组，如果未能提供满足长度的字节，则按照最顶位填充 全0 或 全1
      */
-    static byte[] of(byte[] bytes, int size) {
+    static byte[] of(byte[] bytes, int size, boolean sign) {
+        Check.require(size, 1, 2, 4, 8);
+
         if (null == bytes) { return new byte[size]; }
 
-        Check.require(size, 1, 2, 4, 8);
 
         if (bytes.length == size) { return bytes; }
 
@@ -54,9 +54,11 @@ public interface USize<T> extends Dump, Comparable<T> {
         for (int i = size - 1; 0 <= i; i--) {
             int index = bytes.length - size + i; // 从后往前保存
             if (index < 0) {
-                if ((bytes[0] & 0x80) != 0) { // 顶位是1
-                    for (int j = 0; j <= i; j++) {
-                        bs[j] = -1;
+                if (sign) {
+                    if ((bytes[0] & 0x80) != 0) { // 顶位是1
+                        for (int j = 0; j <= i; j++) {
+                            bs[j] = -1;
+                        }
                     }
                 }
                 break;
@@ -77,9 +79,8 @@ public interface USize<T> extends Dump, Comparable<T> {
         Check.require(size, 1, 2, 4, 8);
 
         if (radix == 2) {
-            Check.require(value.matches("[0|1]*"));
+            Check.require(value.matches("[0|1]{" + (8 * size) + "}"));
 
-            if (value.length() < 8 * size) { value = zeros(8 * size - value.length()) + value; }
             byte[] bytes = new byte[size];
             int length = value.length();
             for (int i = 0; i < bytes.length; i++) {
@@ -89,9 +90,8 @@ public interface USize<T> extends Dump, Comparable<T> {
         } else {
             value = value.toUpperCase();
 
-            Check.require(value.matches("[0-9A-F]*"));
+            Check.require(value.matches("[0-9A-F]{" + (2 * size) + "}"));
 
-            if (value.length() < 2 * size) { value = zeros(2 * size - value.length()) + value; }
             byte[] bytes = new byte[size];
             int length = value.length();
             for (int i = 0; i < bytes.length; i++) {

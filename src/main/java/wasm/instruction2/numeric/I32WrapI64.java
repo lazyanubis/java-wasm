@@ -14,6 +14,6 @@ public class I32WrapI64 implements Operate {
 
     @Override
     public void operate(ModuleInstance mi, Dump args) {
-        mi.pushU32(mi.popU64().u32());
+        mi.pushU32S(mi.popU64().u32());
     }
 }
