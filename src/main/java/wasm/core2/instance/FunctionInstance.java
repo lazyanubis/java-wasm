@@ -1,6 +1,7 @@
 package wasm.core2.instance;
 
 import wasm.core.exception.Check;
+import wasm.core.numeric.USize;
 import wasm.core2.instruction.Instruction;
 import wasm.core2.model.section.CodeSection;
 import wasm.core2.model.section.FunctionType;
@@ -37,7 +38,7 @@ public class FunctionInstance implements Function {
         return type;
     }
 
-    public U64[] call(U64... args) {
+    public USize[] call(USize... args) {
         if (null != function) {
             return function.call(args);
         }
@@ -54,18 +55,18 @@ public class FunctionInstance implements Function {
         return codeSection;
     }
 
-    protected U64[] safeCall(ModuleInstance instance, U64[] args) {
+    protected USize[] safeCall(ModuleInstance instance, USize[] args) {
         pushArgs(instance, args);
         ((Call) Instruction.CALL.operate).callFunction(instance, this);
         if (null == function) { instance.loop(); }
         return popResults(instance);
     }
 
-    private void pushArgs(ModuleInstance instance, U64[] args) {
+    private void pushArgs(ModuleInstance instance, USize[] args) {
         Check.require(args.length == type.parameters.length);
 
-        for (U64 arg : args) {
-            instance.pushU64(arg);
+        for (USize arg : args) {
+            instance.pushUSize(arg);
         }
     }
 

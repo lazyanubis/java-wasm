@@ -6,7 +6,7 @@ import java.util.Arrays;
 import static wasm.core.util.NumberTransform.toBinaryArray;
 import static wasm.core.util.NumberTransform.toHexArray;
 
-public class U32 implements USize<U32> {
+public class U32 implements USize, Comparable<U32> {
 
     private final byte[] bytes;
 

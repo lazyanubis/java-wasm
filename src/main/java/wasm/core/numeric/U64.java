@@ -5,7 +5,7 @@ import java.util.Arrays;
 
 import static wasm.core.util.NumberTransform.*;
 
-public class U64 implements USize<U64> {
+public class U64 implements USize, Comparable<U64> {
 
     private final byte[] bytes;
 

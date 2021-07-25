@@ -1,12 +1,11 @@
 package wasm.core2.structure;
 
+import wasm.core.numeric.*;
 import wasm.core3.model.index.FunctionIndex;
 import wasm.core3.model.index.GlobalIndex;
 import wasm.core3.model.index.MemoryIndex;
 import wasm.core3.model.index.TableIndex;
 import wasm.core3.nav.function.NativeFunctions;
-import wasm.core.numeric.U32;
-import wasm.core.numeric.U64;
 import wasm.core3.structure.Function;
 import wasm.core2.instruction.Action;
 import wasm.core2.instruction.Expression;
@@ -35,7 +34,7 @@ public class NativeInstance implements ModuleInstance {
     }
 
     @Override
-    public U64[] invoke(String name, U64... args) {
+    public USize[] invoke(String name, USize... args) {
         throw new RuntimeException("not for native module");
     }
 
@@ -45,27 +44,27 @@ public class NativeInstance implements ModuleInstance {
     }
 
     @Override
+    public void pushUSize(USize value) {
+        throw new RuntimeException("not for native module");
+    }
+
+    @Override
+    public void pushU8(U8 value) {
+        throw new RuntimeException("not for native module");
+    }
+
+    @Override
+    public void pushU16(U16 value) {
+        throw new RuntimeException("not for native module");
+    }
+
+    @Override
+    public void pushU32(U32 value) {
+        throw new RuntimeException("not for native module");
+    }
+
+    @Override
     public void pushU64(U64 value) {
-        throw new RuntimeException("not for native module");
-    }
-
-    @Override
-    public void pushS64(long value) {
-        throw new RuntimeException("not for native module");
-    }
-
-    @Override
-    public void pushU32U(U32 value) {
-        throw new RuntimeException("not for native module");
-    }
-
-    @Override
-    public void pushU32S(U32 value) {
-        throw new RuntimeException("not for native module");
-    }
-
-    @Override
-    public void pushS32(int value) {
         throw new RuntimeException("not for native module");
     }
 
@@ -75,17 +74,32 @@ public class NativeInstance implements ModuleInstance {
     }
 
     @Override
-    public void pushU64s(U64[] values) {
+    public void pushS32(int value) {
         throw new RuntimeException("not for native module");
     }
 
     @Override
-    public U64 popU64() {
+    public void pushS64(long value) {
         throw new RuntimeException("not for native module");
     }
 
     @Override
-    public long popS64() {
+    public void pushUSizes(USize[] values) {
+        throw new RuntimeException("not for native module");
+    }
+
+    @Override
+    public USize popUSize() {
+        throw new RuntimeException("not for native module");
+    }
+
+    @Override
+    public U8 popU8() {
+        throw new RuntimeException("not for native module");
+    }
+
+    @Override
+    public U16 popU16() {
         throw new RuntimeException("not for native module");
     }
 
@@ -95,7 +109,7 @@ public class NativeInstance implements ModuleInstance {
     }
 
     @Override
-    public int popS32() {
+    public U64 popU64() {
         throw new RuntimeException("not for native module");
     }
 
@@ -105,17 +119,28 @@ public class NativeInstance implements ModuleInstance {
     }
 
     @Override
-    public U64[] popU64s(int size) {
+    public int popS32() {
         throw new RuntimeException("not for native module");
     }
 
     @Override
-    public U64 getOperand(int index) {
+    public long popS64() {
+        throw new RuntimeException("not for native module");
+    }
+
+
+    @Override
+    public USize[] popUSizes(int size) {
         throw new RuntimeException("not for native module");
     }
 
     @Override
-    public void setOperand(int index, U64 value) {
+    public <T extends USize> T getOperand(int index, Class<T> c) {
+        throw new RuntimeException("not for native module");
+    }
+
+    @Override
+    public void setOperand(int index, USize value) {
         throw new RuntimeException("not for native module");
     }
 

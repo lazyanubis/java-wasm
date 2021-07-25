@@ -16,7 +16,7 @@ public class I32Ctz implements Operate {
     @Override
     public void operate(ModuleInstance mi, Dump args) {
         U32 v = mi.popU32();
-        mi.pushU32S(U32.valueOf(v.ctz()));
+        mi.pushU32(U32.valueOf(v.ctz()));
     }
 
 }

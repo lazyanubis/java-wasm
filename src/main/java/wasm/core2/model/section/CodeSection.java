@@ -20,14 +20,6 @@ public class CodeSection {
         this.expression = expression;
     }
 
-    public long localCount() {
-        long count = 0;
-        for (Local local : locals) {
-            count += local.n.intValue();
-        }
-        return count;
-    }
-
     @Override
     public String toString() {
         return "CodeSection{" +

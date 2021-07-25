@@ -2,6 +2,7 @@ package wasm.instruction2.memory;
 
 import wasm.core.exception.Check;
 import wasm.core.numeric.U32;
+import wasm.core.numeric.U8;
 import wasm.core2.instruction.Operate;
 import wasm.core2.model.Dump;
 import wasm.core2.structure.ModuleInstance;
@@ -25,7 +26,7 @@ public class I32Load8U implements Operate {
         // System.err.println("So, which memory ?");
         byte[] bytes = mi.readBytes(MemoryIndex.of(U32.valueOf(0)), a, 1);
 
-        mi.pushU32S(U32.valueOfU(new byte[]{ bytes[0] }));
+        mi.pushU8(U8.valueOf(new byte[]{ bytes[0] }));
     }
 
 }

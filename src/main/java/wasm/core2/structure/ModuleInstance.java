@@ -1,16 +1,15 @@
 package wasm.core2.structure;
 
-import wasm.core3.model.index.FunctionIndex;
-import wasm.core3.model.index.GlobalIndex;
-import wasm.core3.model.index.MemoryIndex;
-import wasm.core3.model.index.TableIndex;
-import wasm.core.numeric.U32;
-import wasm.core.numeric.U64;
-import wasm.core3.structure.Function;
+import wasm.core.numeric.*;
 import wasm.core2.instruction.Action;
 import wasm.core2.instruction.Expression;
 import wasm.core2.instruction.Instruction;
 import wasm.core2.model.section.FunctionType;
+import wasm.core3.model.index.FunctionIndex;
+import wasm.core3.model.index.GlobalIndex;
+import wasm.core3.model.index.MemoryIndex;
+import wasm.core3.model.index.TableIndex;
+import wasm.core3.structure.Function;
 import wasm.instruction2.dump.DumpMemory;
 
 import java.util.HashMap;
@@ -34,7 +33,7 @@ public interface ModuleInstance {
     /**
      * 直接调用导出的函数
      */
-    U64[] invoke(String name, U64... args);
+    USize[] invoke(String name, USize... args);
 
 
     // =================== 操作数栈操作 ===================
@@ -45,30 +44,35 @@ public interface ModuleInstance {
     void clearOperandStack();
 
     /** 向栈上推入值 */
+    void pushUSize(USize value);
+    void pushU8(U8 value);
+    void pushU16(U16 value);
+    void pushU32(U32 value);
     void pushU64(U64 value);
-    void pushS64(long value);
-    void pushU32U(U32 value);
-    void pushU32S(U32 value);
-    void pushS32(int value);
     void pushBool(boolean value);
-    void pushU64s(U64[] values);
+    void pushS32(int value);
+    void pushS64(long value);
+    void pushUSizes(USize[] values);
 
     /** 弹出值 */
-    U64 popU64();
-    long popS64();
+    USize popUSize();
+    U8 popU8();
+    U16 popU16();
     U32 popU32();
-    int popS32();
+    U64 popU64();
     boolean popBool();
-    U64[] popU64s(int size);
+    int popS32();
+    long popS64();
+    USize[] popUSizes(int size);
 
     /**
      * 获取操作数栈某个值
      */
-    U64 getOperand(int index);
+    <T extends USize> T getOperand(int index, Class<T> c);
     /**
      * 设置操作数栈某个值
      */
-    void setOperand(int index, U64 value);
+    void setOperand(int index, USize value);
 
     /**
      * 获取当前控制栈帧操作数起始位置，也就是第一个函数参数位置

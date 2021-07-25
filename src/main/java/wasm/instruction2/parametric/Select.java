@@ -1,10 +1,10 @@
 package wasm.instruction2.parametric;
 
-import wasm.core2.structure.ModuleInstance;
-import wasm.core2.structure.WasmReader;
+import wasm.core.numeric.USize;
 import wasm.core2.instruction.Operate;
 import wasm.core2.model.Dump;
-import wasm.core.numeric.U64;
+import wasm.core2.structure.ModuleInstance;
+import wasm.core2.structure.WasmReader;
 
 public class Select implements Operate {
 
@@ -16,12 +16,12 @@ public class Select implements Operate {
     @Override
     public void operate(ModuleInstance mi, Dump args) {
         boolean v3 = mi.popBool();
-        U64 v2 = mi.popU64();
-        U64 v1 = mi.popU64();
+        USize v2 = mi.popUSize();
+        USize v1 = mi.popUSize();
         if (v3) {
-            mi.pushU64(v1);
+            mi.pushUSize(v1);
         } else {
-            mi.pushU64(v2);
+            mi.pushUSize(v2);
         }
     }
 

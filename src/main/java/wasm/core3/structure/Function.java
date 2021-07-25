@@ -1,8 +1,8 @@
 package wasm.core3.structure;
 
+import wasm.core.numeric.USize;
 import wasm.core2.model.section.CodeSection;
 import wasm.core2.model.section.FunctionType;
-import wasm.core.numeric.U64;
 
 public interface Function {
 
@@ -14,7 +14,7 @@ public interface Function {
     /**
      * 调用函数
      */
-    U64[] call(U64... args);
+    USize[] call(USize... args);
 
     /**
      * 是否内部函数

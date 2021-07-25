@@ -10,7 +10,7 @@ import static wasm.core.util.NumberTransform.*;
 /**
  * 数字接口
  */
-public interface USize<T> extends Dump, Comparable<T> {
+public interface USize extends Dump {
 
     int intValue();
 

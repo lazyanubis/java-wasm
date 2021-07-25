@@ -1,8 +1,7 @@
 package wasm.core2.instance;
 
+import wasm.core.numeric.*;
 import wasm.core3.model.index.*;
-import wasm.core.numeric.U32;
-import wasm.core.numeric.U64;
 import wasm.core3.structure.Function;
 import wasm.core2.instruction.Action;
 import wasm.core2.instruction.Expression;
@@ -69,7 +68,7 @@ public class Module implements ModuleInstance {
     }
 
     @Override
-    public U64[] invoke(String name, U64... args) {
+    public USize[] invoke(String name, USize... args) {
         Object member = getMember(name);
         if (member instanceof Function) {
             Function f = (Function) member;
@@ -93,28 +92,28 @@ public class Module implements ModuleInstance {
     }
 
     @Override
+    public void pushUSize(USize value) {
+        operandStack.pushUSize(value);
+    }
+
+    @Override
+    public void pushU8(U8 value) {
+        operandStack.pushU8(value);
+    }
+
+    @Override
+    public void pushU16(U16 value) {
+        operandStack.pushU16(value);
+    }
+
+    @Override
+    public void pushU32(U32 value) {
+        operandStack.pushU32(value);
+    }
+
+    @Override
     public void pushU64(U64 value) {
         operandStack.pushU64(value);
-    }
-
-    @Override
-    public void pushS64(long value) {
-        operandStack.pushS64(value);
-    }
-
-    @Override
-    public void pushU32U(U32 value) {
-        operandStack.pushU32U(value);
-    }
-
-    @Override
-    public void pushU32S(U32 value) {
-        operandStack.pushU32S(value);
-    }
-
-    @Override
-    public void pushS32(int value) {
-        operandStack.pushS32(value);
     }
 
     @Override
@@ -123,18 +122,33 @@ public class Module implements ModuleInstance {
     }
 
     @Override
-    public void pushU64s(U64[] values) {
-        operandStack.pushU64s(values);
+    public void pushS32(int value) {
+        operandStack.pushS32(value);
     }
 
     @Override
-    public U64 popU64() {
-        return operandStack.popU64();
+    public void pushS64(long value) {
+        operandStack.pushS64(value);
     }
 
     @Override
-    public long popS64() {
-        return operandStack.popS64();
+    public void pushUSizes(USize[] values) {
+        operandStack.pushUSizes(values);
+    }
+
+    @Override
+    public USize popUSize() {
+        return operandStack.popUSize();
+    }
+
+    @Override
+    public U8 popU8() {
+        return operandStack.popU8();
+    }
+
+    @Override
+    public U16 popU16() {
+        return operandStack.popU16();
     }
 
     @Override
@@ -143,8 +157,8 @@ public class Module implements ModuleInstance {
     }
 
     @Override
-    public int popS32() {
-        return operandStack.popS32();
+    public U64 popU64() {
+        return operandStack.popU64();
     }
 
     @Override
@@ -153,19 +167,30 @@ public class Module implements ModuleInstance {
     }
 
     @Override
-    public U64[] popU64s(int size) {
-        return operandStack.popU64s(size);
+    public int popS32() {
+        return operandStack.popS32();
     }
 
     @Override
-    public U64 getOperand(int index) {
-        return operandStack.getOperand(index);
+    public long popS64() {
+        return operandStack.popS64();
     }
 
     @Override
-    public void setOperand(int index, U64 value) {
+    public USize[] popUSizes(int size) {
+        return operandStack.popUSizes(size);
+    }
+
+    @Override
+    public <T extends USize> T getOperand(int index, Class<T> c) {
+        return operandStack.getOperand(index, c);
+    }
+
+    @Override
+    public void setOperand(int index, USize value) {
         operandStack.setOperand(index, value);
     }
+
 
     @Override
     public int getFrameOffset() {
@@ -324,11 +349,11 @@ public class Module implements ModuleInstance {
 
     private void clearBlock(ControlFrame frame) {
         // 取出结果
-        U64[] results = popU64s(frame.functionType.results.length);
+        USize[] results = popUSizes(frame.functionType.results.length);
         // 弹出参数
-        popU64s(operandStack.size() - frame.bp);
+        popUSizes(operandStack.size() - frame.bp);
         // 装入结果
-        pushU64s(results);
+        pushUSizes(results);
         if (frame.instruction == Instruction.CALL && controlStack.depth() > 0) {
             ControlFrame callFrame = controlStack.topCallFrame(new int[1]);
             frameOffset = callFrame.bp;
@@ -337,9 +362,9 @@ public class Module implements ModuleInstance {
 
     @Override
     public void resetBlock(ControlFrame frame) {
-        U64[] results = popU64s(frame.functionType.parameters.length);
-        popU64s(operandStack.size() - frame.bp);
-        pushU64s(results);
+        USize[] results = popUSizes(frame.functionType.parameters.length);
+        popUSizes(operandStack.size() - frame.bp);
+        pushUSizes(results);
     }
 
 
@@ -419,7 +444,7 @@ public class Module implements ModuleInstance {
             // 执行初始化指令
             executeExpression(moduleInfo.globalSections[i].init);
             // 将执行结果存到对应位置
-            this.globals.add(new GlobalInstance(moduleInfo.globalSections[i].type, popU64()));
+            this.globals.add(new GlobalInstance(moduleInfo.globalSections[i].type, popUSize()));
         }
     }
 

@@ -14,7 +14,7 @@ public class Drop implements Operate {
 
     @Override
     public void operate(ModuleInstance mi, Dump args) {
-        mi.popU64();
+        mi.popUSize();
     }
 
 }

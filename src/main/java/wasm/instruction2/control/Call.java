@@ -1,17 +1,19 @@
 package wasm.instruction2.control;
 
 import wasm.core.exception.Check;
+import wasm.core.exception.WasmException;
+import wasm.core.numeric.U32;
 import wasm.core.numeric.U64;
+import wasm.core.numeric.USize;
 import wasm.core2.instruction.Instruction;
 import wasm.core2.instruction.Operate;
 import wasm.core2.model.Dump;
+import wasm.core2.model.Local;
 import wasm.core2.model.section.CodeSection;
 import wasm.core2.structure.ModuleInstance;
 import wasm.core2.structure.WasmReader;
 import wasm.core3.model.index.FunctionIndex;
 import wasm.core3.structure.Function;
-
-import java.util.Objects;
 
 public class Call implements Operate {
 
@@ -46,14 +48,25 @@ public class Call implements Operate {
         mi.enterBlock(Instruction.CALL, function.type(), code.expression);
 
         // 分配本地变量
-        long length = code.localCount();
-        for (int i = 0; i < length; i++) { mi.pushU64(U64.valueOf(0)); }
+        for (int i = 0; i < code.locals.length; i++) {
+            Local local = code.locals[i];
+            switch (local.type.value()) {
+                case 0x7F: for (int j = 0; j < local.n.intValue(); j++) { mi.pushU32(U32.valueOf(0)); } break;
+                case 0x7E: for (int j = 0; j < local.n.intValue(); j++) { mi.pushU64(U64.valueOf(0)); } break;
+//            case 0x7D: return F32;
+//            case 0x7C: return F64;
+                case 0x70: for (int j = 0; j < local.n.intValue(); j++) { mi.pushU32(U32.valueOf(0)); } break;
+                case 0x6F: for (int j = 0; j < local.n.intValue(); j++) { mi.pushU32(U32.valueOf(0)); } break;
+                default:
+                    throw new WasmException("what a type?");
+            }
+        }
     }
 
     private void callExternalFunction(ModuleInstance mi, Function function) {
-        U64[] args = mi.popU64s(function.type().parameters.length);
-        U64[] results = function.call(args);
-        mi.pushU64s(results);
+        USize[] args = mi.popUSizes(function.type().parameters.length);
+        USize[] results = function.call(args);
+        mi.pushUSizes(results);
     }
 
 }
