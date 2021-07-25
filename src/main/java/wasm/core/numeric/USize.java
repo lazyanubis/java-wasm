@@ -1,7 +1,7 @@
 package wasm.core.numeric;
 
 import wasm.core.exception.Check;
-import wasm.core2.model.Dump;
+import wasm.core.model.Dump;
 
 import java.math.BigInteger;
 
